@@ -1,21 +1,40 @@
-<p align="center"><img src="img/logo.svg" height="200"></p>
+<p align="center"><img src="img/logo.svg" height="250"></p>
+<p align="center">
+    <a href="https://groovy-lang.org">
+        <img src="https://img.shields.io/badge/runs%20on-Groovy-ffa">
+    </a>
+    <a href="https://www.jenkins.io">
+        <img src="https://img.shields.io/badge/runs%20by-Jenkins-fef">
+    </a>
+    <a><img src="https://img.shields.io/badge/platform-Unix-aff"></a>
+    <a><img src="https://img.shields.io/tokei/lines/github/egortrue/Sapsan"></a>
+    <a><img src="https://img.shields.io/github/repo-size/egortrue/Sapsan"></a>
+</p>
 
-> The ultimate DevOpsLess framework based on 'Jenkins Shared Library'
+## Description
+The ultimate DevOps Framework based on 'Jenkins Shared Library'
 
 ## Dependencies
 - System: `Linux` or `MacOS`
 - Software:
   - `Git v2.39.2`
   - `Docker v20.10.23`
+- Jenkins plugins:
+  - [Remote Jenkinsfile Provider](https://plugins.jenkins.io/remote-file/)
+- Local Workspace:
+  - [Docker Jenkins Master](https://hub.docker.com/r/jenkins/jenkins)
+  - [Docker Jenkins Agent](https://hub.docker.com/r/jenkins/agent)
+  - [Docker SCM-Manager](https://hub.docker.com/r/scmmanager/scm-manager)
 
 ## How to Use
+[TBC]
 
 ## Local Testing
-There is a [testing](test) folder with the necessary files to easily prepare simple infrastructure for local testing.
+There is a [testing](workspace) folder with the necessary files to easily prepare simple infrastructure for local testing.
 
 ### Build master container
 ```shell
-docker build -f Dockerfile.master -t jenkins-master .
+docker build -f workspace/Dockerfile.master -t jenkins-master .
 ```
 
 ### Run master container
@@ -24,13 +43,13 @@ docker run -d --name master \
   -p 8080:8080 \
   -p 50000:50000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  -v $(pwd)/jenkins_home:/var/jenkins_home \
+  -v $(pwd)/workspace/jenkins_home:/var/jenkins_home \
   jenkins-master
 ```
 
 ### Build agent container
 ```shell
-docker build -f Dockerfile.agent -t jenkins-agent .
+docker build -f workspace/Dockerfile.agent -t jenkins-agent .
 ```
 
 ### Run agent container
@@ -46,7 +65,7 @@ Go to `Manage Jenkins > Manage Nodes > New Node` and set up the following proper
 docker run -i --rm --init --name agent jenkins-agent java -jar /usr/share/jenkins/agent.jar
 ```
 
-[DEPRECATED] Go to `Manage Jenkins > Configure System > Global Pipeline Libraries` and setup the following properties
+[DEPRECATED] Go to `Manage Jenkins >  Configure System > Global Pipeline Libraries` and setup the following properties
 - Press `Add`
 - Set `Name` to `sapsan`
 - Set `Default version` to `main`
@@ -58,6 +77,6 @@ We are going to use opensource [SCM Manager](https://scm-manager.org)
 ```shell
 docker run -d --rm --name scm \
   -p 8081:8080 \
-  -v $(pwd)/scm-manager_home:/var/lib/scm \
+  -v $(pwd)/workspace/scm-manager_home:/var/lib/scm \
   scmmanager/scm-manager:latest
 ```

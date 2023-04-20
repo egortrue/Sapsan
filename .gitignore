@@ -1,3 +1,6 @@
+**/*.gdsl
+
+# Trash
 **/.idea
 **/*.iml
 **/out
