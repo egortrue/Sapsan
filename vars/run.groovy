@@ -4,7 +4,7 @@ import sapsan.utils.Logging
 def call(String type = "build") {
     Context.script = this
     node("linux") {
-        ansiColor("xterm") {
+        ansiColor('xterm') {
             switch (type) {
                 case "build":
                     break
