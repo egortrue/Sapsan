@@ -3,6 +3,7 @@ package sapsan.core
 import sapsan.utils.Logging
 
 import java.util.concurrent.Callable
+import java.util.function.Function
 
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
@@ -20,19 +21,19 @@ abstract class Context implements Serializable {
    * Интерфейс для вывода сообщений в консоль.
    * @see Logging#call
    */
-  public static final Callable<String> log = Logging.&call
+  public static final Function<String, Object> log = Logging.&call
 
   /**
    * Интерфейс для вывода предупреждений в консоль.
    * @see Logging.Warning#call
    */
-  public static final Callable<String> warning = Logging.Warning.&call
+  public static final Function<String, Object> warning = Logging.Warning.&call
 
   /**
    * Интерфейс для вывода ошибок в консоль.
    * @see Logging.Error#call
    */
-  public static final Callable<String> error = Logging.Error.&call
+  public static final Function<String, Object> error = Logging.Error.&call
 
 //  /**
 //   * Инициализация всех свойств объекта.
