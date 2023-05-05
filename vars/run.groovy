@@ -1,3 +1,6 @@
 
-def call(Closure pipeline) {
+def call(Closure script) {
+    node("linux") {
+        script()
+    }
 }
