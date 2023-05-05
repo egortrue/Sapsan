@@ -14,23 +14,28 @@
 ## Description
 The ultimate DevOps Framework based on 'Jenkins Shared Library'
 
-## Dependencies
+## Requirements
 - System: `Linux` or `MacOS`
 - Software:
-  - `Git v2.39.2`
-  - `Docker v20.10.23`
-- Jenkins plugins:
+  - `Git`
+  - `Docker`
+
+## Dependencies
+- Docker Images:
+  - [Jenkins Master](https://hub.docker.com/r/jenkins/jenkins)
+  - [Jenkins Agent](https://hub.docker.com/r/jenkins/agent)
+  - [SCM Manager](https://hub.docker.com/r/scmmanager/scm-manager)
+- Jenkins Plugins:
   - [Remote Jenkinsfile Provider](https://plugins.jenkins.io/remote-file/)
-- Local Workspace:
-  - [Docker Jenkins Master](https://hub.docker.com/r/jenkins/jenkins)
-  - [Docker Jenkins Agent](https://hub.docker.com/r/jenkins/agent)
-  - [Docker SCM-Manager](https://hub.docker.com/r/scmmanager/scm-manager)
 
 ## How to Use
 [TBC]
 
 ## Local Testing
-There is a [testing](workspace) folder with the necessary files to easily prepare simple infrastructure for local testing.
+There is a [workspace](workspace) folder with the necessary files to easily prepare simple infrastructure for local testing.
+Use the following commands. 
+All the commands **should be executed in root** of this project. 
+Otherwise, you can edit them manually.
 
 ### Build master container
 ```shell
@@ -53,7 +58,9 @@ docker build -f workspace/Dockerfile.agent -t jenkins-agent .
 ```
 
 ### Run agent container
-There is no need to start agent manually. The agent container will be started by the master container when you register agent in Jenkins.
+You should not start agent manually.
+The agent container will be started by the master container when you register agent in Jenkins.
+See the following step `Configure master`
 
 ### Configure master
 Go to `Manage Jenkins > Manage Nodes > New Node` and set up the following properties:
@@ -64,12 +71,6 @@ Go to `Manage Jenkins > Manage Nodes > New Node` and set up the following proper
 ```shell
 docker run -i --rm --init --name agent jenkins-agent java -jar /usr/share/jenkins/agent.jar
 ```
-
-[DEPRECATED] Go to `Manage Jenkins >  Configure System > Global Pipeline Libraries` and setup the following properties
-- Press `Add`
-- Set `Name` to `sapsan`
-- Set `Default version` to `main`
-- Setup `Retrival method` for your desire
 
 ### SCM
 We are going to use opensource [SCM Manager](https://scm-manager.org)

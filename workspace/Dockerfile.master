@@ -1,0 +1,12 @@
+FROM jenkins/jenkins:2.332.4
+
+USER root
+RUN apt update -y && apt install ssh -y
+
+# Install and configure docker
+RUN curl -fsSL https://get.docker.com -o get-docker.sh
+RUN sh get-docker.sh
+RUN usermod -aG docker jenkins
+RUN touch /var/run/docker.sock
+RUN chgrp docker /var/run/docker.sock
+RUN chown jenkins /var/run/docker.sock

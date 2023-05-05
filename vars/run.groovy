@@ -1,0 +1,3 @@
+
+def call(Closure pipeline) {
+}

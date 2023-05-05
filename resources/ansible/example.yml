@@ -1,0 +1,6 @@
+- name: Example Variables Playbook
+  vars_files:
+    - vars/example_variables.yml
+
+- name: Print
+  shell: "echo \"hello, world!\""

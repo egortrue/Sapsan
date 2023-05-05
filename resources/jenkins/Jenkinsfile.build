@@ -1,0 +1,15 @@
+library identifier: "ru.sber.devops.sapsan@master",
+        retriever: modernSCM([
+            $class: 'GitSCMSource',
+            credentialsId: 'scm',
+            remote: 'http://172.17.0.3:8080/scm/repo/admin/sapsan'
+        ])
+
+run {
+    configure()
+    checkout()
+    // sonar()
+    build()
+    // checkmarx()
+    // publish()
+}

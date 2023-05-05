@@ -1,0 +1,1 @@
+print("Hello, world! It's utility script")
