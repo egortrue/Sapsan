@@ -13,7 +13,7 @@ final class Logging {
     @NonCPS
     static void call(String text) {
       // TODO: Добавить метку Warning для Stage
-      Logging.call("[Warning] $text")
+      Logging.call(Colors.red("[Warning] $text"))
     }
   }
 
@@ -22,7 +22,7 @@ final class Logging {
     @NonCPS
     static void call(String text) {
       // TODO: Добавить метку Error для Stage и останавливать Pipeline
-      Logging.call("[Error] $text")
+      Logging.call(Colors.red("[Error] $text"))
     }
   }
 

@@ -1,6 +1,4 @@
-import java.util.concurrent.Callable
-import java.util.function.Function
-import sapsan.core.SapsanException
+import sapsan.core.Context
 
 def call(String type = "build") {
     node("linux") {
@@ -13,7 +11,7 @@ def call(String type = "build") {
                 case "deploy":
                     break
                 default:
-                    throw new SapsanException("run type is not valid")
+                    Context.error ""
             }
         }
     }
