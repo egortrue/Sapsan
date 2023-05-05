@@ -7,7 +7,7 @@ class SapsanException extends Exception {
 
     SapsanException(String message) {
         super(message)
-        Logging.error(Colors.red("SAPSAN: $message"))
+        Context.warning(Colors.red("SAPSAN: $message"))
     }
 
 }
