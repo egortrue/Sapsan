@@ -6,9 +6,13 @@ import sapsan.core.Context
 
 class Pipeline extends Context {
 
-  static Map staticParameters
+  enum Type {
+    CLASSIC,
+    MULTIBRANCH
+  }
 
   static ArrayList<Stage> stages = new ArrayList<Stage>()
+  static Type type = Type.CLASSIC
 
   static void init(Map staticParameters) {
     Pipeline.staticParameters = staticParameters
