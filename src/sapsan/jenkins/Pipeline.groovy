@@ -14,10 +14,6 @@ class Pipeline extends Context {
   static List<Stage> stages = new ArrayList<Stage>()
   static Type type = Type.CLASSIC
 
-  static void init(Map staticParameters) {
-    Pipeline.staticParameters = staticParameters
-  }
-
   /**
    * Запуск трубы
    * @param node метка агента Jenkins
