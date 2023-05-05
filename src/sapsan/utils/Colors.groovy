@@ -8,7 +8,7 @@ final class Colors {
 
     @NonCPS
     static String red(String message) {
-        "\033[31m$message$reset"
+        "\033[101m$message$reset"
     }
 
 }
