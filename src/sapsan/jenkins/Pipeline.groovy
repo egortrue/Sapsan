@@ -11,7 +11,7 @@ class Pipeline extends Context {
     MULTIBRANCH
   }
 
-  static ArrayList<Stage> stages = new ArrayList<Stage>()
+  static List<Stage> stages = new ArrayList<Stage>()
   static Type type = Type.CLASSIC
 
   static void init(Map staticParameters) {
