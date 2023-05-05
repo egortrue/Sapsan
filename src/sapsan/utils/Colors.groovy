@@ -4,11 +4,11 @@ import com.cloudbees.groovy.cps.NonCPS
 
 final class Colors {
 
-    static String reset = "\\033[0m"
+    static String reset = "\033[0m"
 
     @NonCPS
     static String red(String message) {
-        "\\033[31m$message$reset"
+        "\033[31m$message$reset"
     }
 
 }
