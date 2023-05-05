@@ -9,32 +9,25 @@ import sapsan.jenkins.Pipeline
  */
 final class Logging {
 
-  final class Log {
-    @NonCPS
-    static void call(Object object) {
-      Logging.call("${object.toString()}")
-    }
-  }
-
   final class Warning {
     @NonCPS
-    static void call(Object object) {
+    static void call(String text) {
       // TODO: Добавить метку Warning для Stage
-      Logging.call("[Warning] ${object.toString()}")
+      Logging.call("[Warning] $text")
     }
   }
 
 
   final class Error {
     @NonCPS
-    static void call(Object object) {
+    static void call(String text) {
       // TODO: Добавить метку Error для Stage и останавливать Pipeline
-      Pipeline.script.error "${object.toString()}"
+      Logging.call("[Error] $text")
     }
   }
 
   @NonCPS
-  private static void call(String text) {
+  static void call(String text) {
     Context.script.echo(text)
   }
 }
