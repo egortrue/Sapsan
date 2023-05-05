@@ -9,7 +9,9 @@ def call() {
 
     Pipeline.type = env.JOB_NAME.contains('/') ? Pipeline.Type.MULTIBRANCH : Pipeline.Type.CLASSIC
 
-    echo "Pipeline Type = ${Pipeline.type}"
+    echo "Pipeline.Type = ${Pipeline.type}"
+
+    sh "ls -al $env.WORKSPACE"
 
 //    if (multiBranch) {
 //        cleanWs()
