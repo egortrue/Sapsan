@@ -29,14 +29,12 @@ final class Logging {
     @NonCPS
     static void call(Object object) {
       // TODO: Добавить метку Error для Stage и останавливать Pipeline
-      // Logging.call("[Error] ${object.toString()}")
       Pipeline.script.error "${object.toString()}"
     }
   }
 
   @NonCPS
   private static void call(String text) {
-    // TODO: Добавить цвета (плагин ansiColor)
     Context.script.echo(text)
   }
 }
