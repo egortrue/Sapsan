@@ -1,4 +1,5 @@
 import sapsan.core.Context
+import sapsan.utils.Logging
 
 def call(String type = "build") {
     node("linux") {
@@ -11,7 +12,7 @@ def call(String type = "build") {
                 case "deploy":
                     break
                 default:
-                    Context.error "run.groovy \"type\" parameter is invalid"
+                    Logging.Error.call("run.groovy \"type\" parameter is invalid")
             }
         }
     }
