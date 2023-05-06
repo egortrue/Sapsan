@@ -10,19 +10,19 @@ import sapsan.jenkins.Pipeline
 final class Logging {
 
   @NonCPS
-  static void log(def object) {
-    Context.script.echo(object.toString())
+  static void log(String text) {
+    Context.script.echo(text)
   }
 
   @NonCPS
-  static void warning(def object) {
+  static void warning(String text) {
     // TODO: Добавить метку Warning для Stage
-    log(Colors.yellow("[Warning] ${object.toString()}"))
+    log(Colors.yellow("[Warning] $text"))
   }
 
   @NonCPS
-  static void error(def object) {
+  static void error(String text) {
     // TODO: Добавить метку Error для Stage и останавливать Pipeline
-    log(Colors.red("[Error] ${object.toString()}"))
+    log(Colors.red("[Error] $text"))
   }
 }
