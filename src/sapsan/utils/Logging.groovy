@@ -11,7 +11,7 @@ final class Logging {
 
   final class Warning {
     @NonCPS
-    static void print(Object object) {
+    static void print(def object) {
       // TODO: Добавить метку Warning для Stage
       Logging.print(Colors.yellow("[Warning] ${object.toString()}"))
     }
@@ -19,14 +19,14 @@ final class Logging {
 
   final class Error {
     @NonCPS
-    static void print(Object object) {
+    static void print(def object) {
       // TODO: Добавить метку Error для Stage и останавливать Pipeline
       Logging.print(Colors.red("[Error] ${object.toString()}"))
     }
   }
 
   @NonCPS
-  static void print(Object object) {
+  static void print(def object) {
     Context.script.echo(object.toString())
   }
 }
