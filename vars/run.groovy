@@ -16,7 +16,7 @@ def call(String type = "build") {
                 case "deploy":
                     break
                 default:
-                    log "run.groovy \"type\" parameter is invalid"
+                    c.log "run.groovy \"type\" parameter is invalid"
             }
         }
     }
