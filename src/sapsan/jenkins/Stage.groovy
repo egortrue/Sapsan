@@ -25,12 +25,12 @@ class Stage extends Context {
   void call() {
     setStatus(Status.STARTED)
     try {
-      Context.script.stage(name) {
+      script.stage(name) {
         steps(owner: this)
       }
-      setStatus(Status.FINISHED)
+      setStatus(Status.SUCCESS)
     } catch (Exception exception) {
-      Context.script.error exception.message
+      script.error exception.message
       setStatus(Status.FAILED)
     }
   }
@@ -39,10 +39,5 @@ class Stage extends Context {
     if (condition.call() == false) {
       setStatus(Status.SKIPPED)
     }
-  }
-
-  void setStatus(Status status) {
-//    Pipeline.log "[${this.name}] status changed (${this.status} -> ${status})"
-    this.status = status
   }
 }

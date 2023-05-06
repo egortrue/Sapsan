@@ -21,19 +21,19 @@ abstract class Context implements Serializable {
    * Интерфейс для вывода сообщений в консоль.
    * @see Logging#log
    */
-  public static final def log = Logging.&log
+  static final def log = Logging.&log
 
   /**
    * Интерфейс для вывода предупреждений в консоль.
    * @see Logging#warning
    */
-  public static final def warning = Logging.&warning
+   static final def warning = Logging.&warning
 
   /**
    * Интерфейс для вывода ошибок в консоль.
    * @see Logging#error
    */
-  public static final def error = Logging.&error
+  static final def error = Logging.&error
 
 //  /**
 //   * Инициализация всех свойств объекта.

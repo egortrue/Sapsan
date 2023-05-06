@@ -7,12 +7,22 @@ import sapsan.core.Context
 class Pipeline extends Context {
 
   enum Type {
+    NOT_DEFINED,
     CLASSIC,
     MULTIBRANCH
   }
 
+  enum Task {
+    NOT_DEFINED,
+    BUILD,
+    DELIVERY,
+    TESTING,
+    DEPLOYMENT,
+  }
+
   static List<Stage> stages = new ArrayList<Stage>()
-  static Type type = Type.CLASSIC
+  static Type type = Type.NOT_DEFINED
+  static Task task = Task.NOT_DEFINED
 
   /**
    * Запуск трубы
