@@ -2,8 +2,6 @@ import groovy.transform.Field
 import sapsan.core.Context
 import sapsan.utils.Logging
 
-@Delegate @Field Context context
-
 def call(String type = "build") {
     Context.script = this
     node("linux") {
@@ -16,7 +14,7 @@ def call(String type = "build") {
                 case "deploy":
                     break
                 default:
-                    cerror("run.groovy \"type\" parameter is invalid")
+                    Context.warning("run.groovy \"type\" parameter is invalid")
             }
         }
     }

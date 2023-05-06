@@ -13,7 +13,7 @@ final class Logging {
     @NonCPS
     static void call(String text) {
       // TODO: Добавить метку Warning для Stage
-      Logging.call(Colors.red("[Warning] $text"))
+      Logging.call(Colors.yellow("[Warning] $text"))
     }
   }
 
