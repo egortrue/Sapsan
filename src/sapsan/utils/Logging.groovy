@@ -11,23 +11,22 @@ final class Logging {
 
   final class Warning {
     @NonCPS
-    static void call(String text) {
+    static void call(Object object) {
       // TODO: Добавить метку Warning для Stage
-      Logging.call(Colors.yellow("[Warning] $text"))
+      Logging.call(Colors.yellow("[Warning] ${object.toString()}"))
     }
   }
 
-
   final class Error {
     @NonCPS
-    static void call(String text) {
+    static void call(Object object) {
       // TODO: Добавить метку Error для Stage и останавливать Pipeline
-      Logging.call(Colors.red("[Error] $text"))
+      Logging.call(Colors.red("[Error] ${object.toString()}"))
     }
   }
 
   @NonCPS
-  static void call(String text) {
-    Context.script.echo(text)
+  static void call(Object object) {
+    Context.script.echo(object.toString())
   }
 }
