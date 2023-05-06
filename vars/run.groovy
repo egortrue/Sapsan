@@ -5,7 +5,7 @@ import sapsan.utils.Logging
 @Delegate @Field Context context
 
 def call(String type = "build") {
-    context.script = this
+    Context.script = this
     node("linux") {
         ansiColor('xterm') {
             switch (type) {
