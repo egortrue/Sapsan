@@ -1,8 +1,11 @@
+import groovy.transform.Field
 import sapsan.core.Context
 import sapsan.utils.Logging
 
+@Delegate @Field Context context
+
 def call(String type = "build") {
-    Context.script = this
+    context.script = this
     node("linux") {
         ansiColor('xterm') {
             switch (type) {
@@ -13,7 +16,7 @@ def call(String type = "build") {
                 case "deploy":
                     break
                 default:
-                    Context.error("run.groovy \"type\" parameter is invalid")
+                    error("run.groovy \"type\" parameter is invalid")
             }
         }
     }
