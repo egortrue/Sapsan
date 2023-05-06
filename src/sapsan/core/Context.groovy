@@ -33,7 +33,7 @@ abstract class Context implements Serializable {
    * Интерфейс для вывода ошибок в консоль.
    * @see Logging.Error#call
    */
-  public static final def error = Logging.Error.&call
+  public static final def cerror = Logging.Error.&call
 
 //  /**
 //   * Инициализация всех свойств объекта.
