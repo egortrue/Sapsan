@@ -3,12 +3,13 @@ import sapsan.core.Context
 import sapsan.utils.Logging
 
 def call(String type = "build") {
-    Context.script = this
+    def c = new Context()
+    c.script = this
     node("linux") {
         ansiColor('xterm') {
-            Context.log("log message")
-            Context.warning("warning message")
-            Context.error("error message")
+            c.log("log message")
+            c.warning("warning message")
+            c.error("error message")
         }
     }
 }
