@@ -32,8 +32,8 @@ class Pipeline extends Context {
      */
     @NonCPS
     static void run(String node = 'linux', Closure closure) {
-        pipeline.node(node) {
-            pipeline.ansiColor('xterm') {
+        script.node(node) {
+            script.ansiColor('xterm') {
                 closure.call()
 //        stages.each { stage -> stage.call()}
             }

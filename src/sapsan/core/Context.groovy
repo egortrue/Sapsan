@@ -1,6 +1,6 @@
 package sapsan.core
 
-import groovy.lang.Script
+import groovy.transform.Field
 
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
@@ -12,7 +12,7 @@ class Context {
      * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.
      * Позволяет использовать команды Jenkins, прописанные в /src/pipeline.gdsl
      */
-    static Script pipeline
+    static volatile Script script
 
 //  /**
 //   * Инициализация всех свойств объекта.
