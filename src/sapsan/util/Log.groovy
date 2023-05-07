@@ -5,7 +5,7 @@ import sapsan.core.Context
 /**
  * Статический класс для вывода информации в консоль.
  */
-final class Log implements Context {
+final class Log extends Context {
 
   static void info(String text) {
     script.echo(Color.green(text))
