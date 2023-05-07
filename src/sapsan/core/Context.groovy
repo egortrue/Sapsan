@@ -1,12 +1,9 @@
 package sapsan.core
 
-import groovy.transform.CompileStatic
-
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-@CompileStatic
 class Context {
 
   /**

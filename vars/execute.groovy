@@ -1,6 +1,6 @@
-import sapsan.util.Log
 import sapsan.core.Context
 import sapsan.jenkins.Pipeline
+import sapsan.util.Log
 
 def call() {
     Context.script = this
