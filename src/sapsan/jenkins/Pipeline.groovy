@@ -30,10 +30,10 @@ class Pipeline extends Context {
    * @param closure выполняемые действия
    */
   static void run(String node = 'linux', Closure closure) {
-    Context.script.node(node) {
-      closure.call()
-      stages.each { stage ->
-        stage.call()
+    script.node(node) {
+      ansiColor('xterm') {
+        closure.call()
+//        stages.each { stage -> stage.call()}
       }
     }
   }

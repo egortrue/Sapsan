@@ -1,13 +1,12 @@
 import sapsan.util.Log
 import sapsan.core.Context
+import sapsan.jenkins.Pipeline
 
 def call() {
     Context.script = this
-    node("linux") {
-        ansiColor('xterm') {
-            Log.info("log message")
-            Log.warning("warning message")
-            Log.error("error message")
-        }
+    Pipeline.run {
+        Log.info("log message")
+        Log.warning("warning message")
+        Log.error("error message")
     }
 }
