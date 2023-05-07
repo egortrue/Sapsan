@@ -5,4 +5,4 @@ library identifier: "sapsan@master",
                 remote       : 'http://172.17.0.3:8080/scm/repo/admin/sapsan-test'
         ])
 
-execute()
+execute(env)

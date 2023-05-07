@@ -1,12 +1,10 @@
 package sapsan.core
 
-import com.cloudbees.groovy.cps.SerializableScript
-
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-class Context extends SerializableScript {
+class Context {
 
     /**
      * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.
