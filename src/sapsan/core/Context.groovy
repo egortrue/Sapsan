@@ -1,5 +1,6 @@
 package sapsan.core
 
+import org.codehaus.groovy.runtime.MethodClosure
 import sapsan.utils.Logging
 
 import java.util.concurrent.Callable
@@ -21,19 +22,19 @@ class Context {
    * Интерфейс для вывода сообщений в консоль.
    * @see Logging#log
    */
-  static volatile def log = Logging.&log
+  static volatile MethodClosure log = Logging.&log
 
   /**
    * Интерфейс для вывода предупреждений в консоль.
    * @see Logging#warning
    */
-   static volatile def warning = Logging.&warning
+   static volatile MethodClosure warning = Logging.&warning
 
   /**
    * Интерфейс для вывода ошибок в консоль.
    * @see Logging#error
    */
-  static volatile def error = Logging.&error
+  static volatile MethodClosure error = Logging.&error
 
 //  /**
 //   * Инициализация всех свойств объекта.
