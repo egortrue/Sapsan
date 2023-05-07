@@ -1,7 +1,17 @@
-def sapsan = library identifier: "ru.sber.devops.sapsan@master",
+library identifier: "ru.sber.devops.sapsan@master",
         retriever: modernSCM([
             $class: 'GitSCMSource',
             credentialsId: 'scm',
             remote: 'http://172.17.0.3:8080/scm/repo/admin/sapsan-test'
         ])
 
+import sapsan.core.Context
+import sapsan.jenkins.Pipeline
+import sapsan.util.Log
+
+Context.script = this
+Pipeline.run {
+        Log.info("log message")
+        Log.warning("warning message")
+        Log.error("error message")
+}
