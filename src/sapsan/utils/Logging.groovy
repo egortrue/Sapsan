@@ -3,7 +3,6 @@ package sapsan.utils
 /**
  * Статический класс для вывода информации в консоль.
  */
-@Singleton
 class Logging {
 
   static volatile Script script
