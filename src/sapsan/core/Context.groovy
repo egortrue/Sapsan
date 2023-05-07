@@ -7,7 +7,6 @@ import sapsan.utils.Logging
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-@CompileStatic
 abstract class Context {
 
   /**
