@@ -1,10 +1,9 @@
 package sapsan.utils
 
-import groovy.transform.CompileStatic
-
 /**
  * Статический класс для вывода информации в консоль.
  */
+@Singleton
 abstract class Logging {
 
   static volatile Script script

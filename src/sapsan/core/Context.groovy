@@ -1,6 +1,5 @@
 package sapsan.core
 
-import groovy.transform.CompileStatic
 import sapsan.utils.Logging
 
 /**
@@ -19,19 +18,19 @@ abstract class Context {
    * Интерфейс для вывода сообщений в консоль.
    * @see Logging#log
    */
-  static volatile def log = Logging.&log
+  static def log = Logging.&log
 
   /**
    * Интерфейс для вывода предупреждений в консоль.
    * @see Logging#warning
    */
-   static volatile def warning = Logging.&warning
+   static def warning = Logging.&warning
 
   /**
    * Интерфейс для вывода ошибок в консоль.
    * @see Logging#error
    */
-  static volatile def error = Logging.&error
+  static def error = Logging.&error
 
 //  /**
 //   * Инициализация всех свойств объекта.
