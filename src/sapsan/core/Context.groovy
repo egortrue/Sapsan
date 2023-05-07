@@ -18,19 +18,19 @@ abstract class Context {
    * Интерфейс для вывода сообщений в консоль.
    * @see Logging#log
    */
-  static def log = Logging.&log
+  def log = Logging.&log
 
   /**
    * Интерфейс для вывода предупреждений в консоль.
    * @see Logging#warning
    */
-   static def warning = Logging.&warning
+   def warning = Logging.&warning
 
   /**
    * Интерфейс для вывода ошибок в консоль.
    * @see Logging#error
    */
-  static def error = Logging.&error
+  def error = Logging.&error
 
 //  /**
 //   * Инициализация всех свойств объекта.
