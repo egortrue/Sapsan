@@ -10,6 +10,7 @@ import java.util.function.Function
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
+@Singleton
 class Context {
 
   /**

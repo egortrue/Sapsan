@@ -15,6 +15,7 @@ final class Logging {
 
   static void warning(String text) {
     // TODO: Добавить метку Warning для Stage
+    // TODO: Сохранять все предупреждения в отдельный файл/переменную
     Context.script.echo(Colors.yellow("[Warning] $text"))
   }
 
