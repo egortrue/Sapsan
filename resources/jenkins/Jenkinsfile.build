@@ -5,4 +5,4 @@ library identifier: "ru.sber.devops.sapsan@master",
             remote: 'http://172.17.0.3:8080/scm/repo/admin/sapsan-test'
         ])
 
-echo(this.toString())
+echo(this.class.name)
