@@ -9,7 +9,6 @@ import java.util.function.Function
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-@Singleton
 class Context implements Serializable {
 
   /**
@@ -22,19 +21,19 @@ class Context implements Serializable {
    * Интерфейс для вывода сообщений в консоль.
    * @see Logging#log
    */
-  static final def log = Logging.&log
+  static def log = Logging.&log
 
   /**
    * Интерфейс для вывода предупреждений в консоль.
    * @see Logging#warning
    */
-   static final def warning = Logging.&warning
+   static def warning = Logging.&warning
 
   /**
    * Интерфейс для вывода ошибок в консоль.
    * @see Logging#error
    */
-  static final def error = Logging.&error
+  static def error = Logging.&error
 
 //  /**
 //   * Инициализация всех свойств объекта.
