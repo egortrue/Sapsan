@@ -4,9 +4,9 @@ import com.cloudbees.groovy.cps.NonCPS
 
 final class Colors {
 
-    static String reset = "\033[0m"
-    static String redBg = "\033[101m"
-    static String yellowBg = "\033[43m"
+    private static String reset = "\033[0m"
+    private static String redBg = "\033[101m"
+    private static String yellowBg = "\033[43m"
 
     @NonCPS
     static String red(String message) {
