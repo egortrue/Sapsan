@@ -1,2 +1,2 @@
-@Library("sapsan")
+@Library("sapsan@master")
 execute()
