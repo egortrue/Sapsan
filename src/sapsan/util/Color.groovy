@@ -1,7 +1,6 @@
 package sapsan.util
 
-final class Colors {
-
+final class Color {
     private static String reset = "\033[0m"
     private static String redBg = "\033[101m"
     private static String yellowBg = "\033[43m"
@@ -18,5 +17,4 @@ final class Colors {
     static String green(String message) {
         "$greenBg$message$reset"
     }
-
 }

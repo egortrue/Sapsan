@@ -7,18 +7,18 @@ import sapsan.core.Context
  */
 final class Log implements Context {
 
-  static def info(String text) {
-    script.echo(Colors.green(text))
+  static void info(String text) {
+    script.echo(Color.green(text))
   }
 
-  static def warning(String text) {
+  static void warning(String text) {
     // TODO: Добавить метку Warning для Stage
     // TODO: Сохранять все предупреждения в отдельный файл/переменную
-    script.echo(Colors.yellow("[Warning] $text"))
+    script.echo(Color.yellow("[Warning] $text"))
   }
 
-  static def error(String text) {
+  static void error(String text) {
     // TODO: Добавить метку Error для Stage и останавливать Pipeline
-    script.echo(Colors.red("[Error] $text"))
+    script.echo(Color.red("[Error] $text"))
   }
 }
