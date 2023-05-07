@@ -1,9 +1,9 @@
-library identifier: "ru.sber.devops.sapsan@master",
+library identifier: "sapsan@master",
         retriever: modernSCM([
                 $class       : 'GitSCMSource',
                 credentialsId: 'scm',
                 remote       : 'http://172.17.0.3:8080/scm/repo/admin/sapsan-test'
         ])
-@Library("ru.sber.devops.sapsan@master") _
+@Library("sapsan@master") _
 
 execute()
