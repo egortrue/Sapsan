@@ -1,6 +1,6 @@
 import groovy.transform.Field
-import sapsan.core.Context
 import sapsan.utils.Logging
+import sapsan.core.Context
 
 def call(String type = "build") {
     Context.script = this
