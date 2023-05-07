@@ -29,10 +29,9 @@ class Pipeline extends Context {
      * @param node метка агента Jenkins
      * @param closure выполняемые действия
      */
-    static void run(Script script, String node = 'linux', Closure closure) {
-        Context.script = script
-        script.node(node) {
-            script.ansiColor('xterm') {
+    static void run(String node = 'linux', Closure closure) {
+        pipelineScript.node(node) {
+            pipelineScript.ansiColor('xterm') {
                 closure.call()
 //        stages.each { stage -> stage.call()}
             }

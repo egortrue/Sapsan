@@ -6,8 +6,8 @@ import sapsan.core.Context
 class ReleaseNotes extends Context {
 
   def publish() {
-    Context.script.echo nexusUrl
-    Context.script.echo bbUrl
+    Context.env.echo nexusUrl
+    Context.env.echo bbUrl
   }
 
 }

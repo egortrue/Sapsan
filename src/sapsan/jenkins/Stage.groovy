@@ -25,12 +25,12 @@ class Stage extends Context {
     void call() {
         setStatus(Status.STARTED)
         try {
-            script.stage(name) {
+            env.stage(name) {
                 steps(owner: this)
             }
             setStatus(Status.SUCCESS)
         } catch (Exception exception) {
-            script.error exception.message
+            env.error exception.message
             setStatus(Status.FAILED)
         }
     }
