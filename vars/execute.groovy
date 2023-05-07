@@ -3,8 +3,7 @@ import sapsan.jenkins.Pipeline
 import sapsan.util.Log
 
 def call() {
-    Context.script = this
-    Pipeline.run {
+    Pipeline.run(this) {
         Log.info("log message")
         Log.warning("warning message")
         Log.error("error message")
