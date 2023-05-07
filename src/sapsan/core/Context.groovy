@@ -1,10 +1,9 @@
 package sapsan.core
-
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-class Context {
+class Context extends SerializablePipeline {
 
     /**
      * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.
