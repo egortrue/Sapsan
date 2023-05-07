@@ -1,7 +1,7 @@
 import sapsan.util.Log
 import sapsan.core.Context
 
-def call(String type = "build") {
+def call() {
     Context.script = this
     node("linux") {
         ansiColor('xterm') {
