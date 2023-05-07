@@ -1,13 +1,13 @@
-package sapsan.utils
+package sapsan.util
+
+import sapsan.core.Context
 
 /**
  * Статический класс для вывода информации в консоль.
  */
-class Logging {
+final class Log implements Context {
 
-  static volatile Script script
-
-  static def log(String text) {
+  static def info(String text) {
     script.echo(Colors.green(text))
   }
 
