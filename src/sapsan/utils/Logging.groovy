@@ -10,16 +10,16 @@ import sapsan.jenkins.Pipeline
 final class Logging {
 
   static void log(String text) {
-    Context.script.echo(text)
+    Context.script.echo(Colors.green(text))
   }
 
   static void warning(String text) {
     // TODO: Добавить метку Warning для Stage
-    log(Colors.yellow("[Warning] $text"))
+    Context.script.echo(Colors.yellow("[Warning] $text"))
   }
 
   static void error(String text) {
     // TODO: Добавить метку Error для Stage и останавливать Pipeline
-    log(Colors.red("[Error] $text"))
+    Context.script.echo(Colors.red("[Error] $text"))
   }
 }
