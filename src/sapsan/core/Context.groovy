@@ -9,7 +9,7 @@ import java.util.function.Function
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-class Context implements Serializable {
+class Context {
 
   /**
    * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.

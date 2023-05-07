@@ -6,6 +6,7 @@ def call(String type = "build") {
     Context.script = this
     node("linux") {
         ansiColor('xterm') {
+            Context.log("log message")
             Context.warning("warning message")
             Context.error("error message")
         }
