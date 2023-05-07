@@ -3,7 +3,8 @@ import sapsan.core.Context
 import sapsan.utils.Logging
 
 def call(String type = "build") {
-    Context.instance.script = this
+    Context.script = this
+    Logging.script = this
     node("linux") {
         ansiColor('xterm') {
             Context.log("log message")

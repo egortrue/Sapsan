@@ -1,17 +1,12 @@
 package sapsan.core
 
-import org.codehaus.groovy.runtime.MethodClosure
 import sapsan.utils.Logging
-
-import java.util.concurrent.Callable
-import java.util.function.Function
 
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-@Singleton
-class Context {
+abstract class Context {
 
   /**
    * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.
