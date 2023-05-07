@@ -12,11 +12,7 @@ class Context {
      * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.
      * Позволяет использовать команды Jenkins, прописанные в /src/pipeline.gdsl
      */
-    static Script script
-
-    Context(Script script) {
-        this.script = script
-    }
+    static Script pipeline
 
 //  /**
 //   * Инициализация всех свойств объекта.
