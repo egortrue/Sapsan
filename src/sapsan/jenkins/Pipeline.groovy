@@ -1,5 +1,6 @@
 package sapsan.jenkins
 
+import com.cloudbees.groovy.cps.NonCPS
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import sapsan.core.Context
@@ -29,6 +30,7 @@ class Pipeline extends Context {
      * @param node метка агента Jenkins
      * @param closure выполняемые действия
      */
+    @NonCPS
     static void run(String node = 'linux', Closure closure) {
         script.node(node) {
             script.ansiColor('xterm') {
