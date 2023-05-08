@@ -1,6 +1,6 @@
 package sapsan.jenkins
 
-import sapsan.core.Context
+import sapsan.Context
 
 class Stage extends Context {
 

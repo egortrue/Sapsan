@@ -1,4 +1,4 @@
-package sapsan.core
+package sapsan
 
 import groovy.transform.Field
 

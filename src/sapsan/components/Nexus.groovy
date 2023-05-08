@@ -1,7 +1,6 @@
 package sapsan.components
 
 import com.cloudbees.groovy.cps.NonCPS
-import sapsan.core.Component
 import sapsan.jenkins.Pipeline
 
 class Nexus extends Component {

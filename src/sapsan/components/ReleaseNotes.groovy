@@ -1,6 +1,6 @@
 package sapsan.components
 
-import sapsan.core.Context
+import sapsan.Context
 
 @Singleton
 class ReleaseNotes extends Context {

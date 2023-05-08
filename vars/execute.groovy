@@ -1,4 +1,4 @@
-import sapsan.core.Context
+import sapsan.Context
 import sapsan.jenkins.Pipeline
 import sapsan.util.Log
 

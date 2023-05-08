@@ -1,8 +1,8 @@
-package sapsan.core
+package sapsan.components
 
 import com.cloudbees.groovy.cps.NonCPS
 import groovy.json.JsonOutput
-import sapsan.core.Context
+import sapsan.Context
 import sapsan.jenkins.Pipeline
 
 abstract class Component extends Context {
