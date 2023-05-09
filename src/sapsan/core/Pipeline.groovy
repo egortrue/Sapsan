@@ -52,15 +52,15 @@ class Pipeline extends Context {
 
     private static void configure() {
         Log.info """\
-        JOB_NAME=${env.JOB_NAME}
-        JOB_BASE_NAME=${env.JOB_BASE_NAME}
-        JOB_URL=${env.JOB_URL}
-        BUILD_URL=${env.BUILD_URL}
-        NODE_NAME=${env.NODE_NAME}
-        NODE_LABELS=${env.NODE_LABELS}"""
+        JOB_NAME=${script.env.JOB_NAME}
+        JOB_BASE_NAME=${script.env.JOB_BASE_NAME}
+        JOB_URL=${script.env.JOB_URL}
+        BUILD_URL=${script.env.BUILD_URL}
+        NODE_NAME=${script.env.NODE_NAME}
+        NODE_LABELS=${script.env.NODE_LABELS}"""
 
-        type = env.JOB_NAME.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
-        
+        type = script.env.JOB_NAME.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
+
         Log.info "Pipeline.Type = $type"
     }
 
