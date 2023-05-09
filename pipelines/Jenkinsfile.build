@@ -7,11 +7,4 @@ Pipeline.run(this) {
     Log.info "checkout scm..."
     Log.info "build project..."
     Log.info "publish artifact..."
-    Log.info sh(script: 'env|sort', returnStdout: true)
-
-    def text = """\
-hello, world!
-it's multiline
-"""
-    Log.info text
 }
