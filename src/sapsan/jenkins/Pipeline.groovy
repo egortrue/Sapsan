@@ -36,6 +36,11 @@ class Pipeline extends Context {
 //                //stages.each { stage -> stage.call()}
 //            }
 //        }
+        def config = [:]
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = config
+        closure()
+
         pipeline {
             agent any
 
