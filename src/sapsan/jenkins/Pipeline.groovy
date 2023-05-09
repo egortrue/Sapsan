@@ -21,7 +21,7 @@ class Pipeline extends Context {
         DEPLOYMENT,
     }
 
-    static List<Stage> stages = new ArrayList<Stage>()
+    static def stages = []
     static Type type = Type.NOT_DEFINED
     static Task task = Task.NOT_DEFINED
 
