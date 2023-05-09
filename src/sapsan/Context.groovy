@@ -1,12 +1,10 @@
 package sapsan
 
-import groovy.transform.Field
-
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде
  */
-class Context {
+abstract class Context {
 
     /**
      * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.
