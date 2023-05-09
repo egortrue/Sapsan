@@ -8,6 +8,6 @@ class Job extends Context {
     }
 
     static String getBaseUrl() {
-        url.split("/")[0..3]
+        url.split("/")[0..3].join('')
     }
 }
