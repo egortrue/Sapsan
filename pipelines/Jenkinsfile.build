@@ -3,8 +3,7 @@ import sapsan.Context
 import sapsan.jenkins.Pipeline
 import sapsan.util.Log
 
-Context.script = this
-Pipeline.run {
+Pipeline.run(this) {
     Log.info "checkout scm..."
     Log.info "build project..."
     Log.info "publish artifact..."
