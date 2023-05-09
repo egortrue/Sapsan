@@ -1,0 +1,18 @@
+@Library("sapsan@master") _
+import sapsan.Context
+import sapsan.jenkins.Pipeline
+import sapsan.util.Log
+
+Context.script = this
+Pipeline.run {
+    Log.info "checkout scm..."
+    Log.info "build project..."
+    Log.info "publish artifact..."
+    Log.info env
+
+    def text = """\
+hello, world!
+it's multiline
+"""
+    Log.info text
+}

@@ -30,36 +30,10 @@ class Pipeline extends Context {
      * @param closure выполняемые действия
      */
     static void run(String node = 'linux', Closure closure) {
-//        script.node(node) {
-//            script.ansiColor('xterm') {
-//                closure.call()
-//                //stages.each { stage -> stage.call()}
-//            }
-//        }
-        def config = [:]
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = config
-        closure()
-
-        pipeline {
-            agent any
-
-            stages {
-                stage('Build') {
-                    steps {
-                        echo 'Building...'
-                    }
-                }
-                stage('Test') {
-                    steps {
-                        echo 'Testing...'
-                    }
-                }
-                stage('Deploy') {
-                    steps {
-                        echo 'Deploying...'
-                    }
-                }
+        script.node(node) {
+            script.ansiColor('xterm') {
+                closure.call()
+                //stages.each { stage -> stage.call()}
             }
         }
     }
