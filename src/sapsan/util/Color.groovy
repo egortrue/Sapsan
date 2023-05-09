@@ -1,5 +1,8 @@
 package sapsan.util
 
+/**
+ * Статический класс для поддержки цветного вывода.
+ */
 final class Color {
     private static String reset = "\033[0m"
     private static String redBg = "\033[101m"

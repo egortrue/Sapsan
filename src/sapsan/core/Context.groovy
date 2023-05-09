@@ -1,4 +1,4 @@
-package sapsan
+package sapsan.core
 
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
@@ -7,7 +7,7 @@ package sapsan
 abstract class Context {
 
     /**
-     * Корневой восходящий скрипт, содержащийся в /vars. Содержит шаги трубы.
+     * Корневой восходящий скрипт (Jenkinsfile).
      * Позволяет использовать команды Jenkins, прописанные в /src/pipeline.gdsl
      */
     protected static Script script

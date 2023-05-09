@@ -1,8 +1,8 @@
-package sapsan.jenkins
+package sapsan.core
 
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
-import sapsan.Context
+import sapsan.util.Log
 
 class Pipeline extends Context {
 
@@ -31,6 +31,8 @@ class Pipeline extends Context {
      */
     static void run(Script script, String node = 'linux', Closure closure) {
         Context.script = script
+        configure()
+
         script.node(node) {
             script.ansiColor('xterm') {
                 closure.call()
@@ -39,7 +41,6 @@ class Pipeline extends Context {
         }
     }
 
-
     /**
      * Обертка создания шага пайплайна
      * Регистрация шага в пайплайне
@@ -47,6 +48,20 @@ class Pipeline extends Context {
      */
     static void stage(String name, @ClosureParams(value = SimpleType, options = "Stage") Closure steps) {
         stages << new Stage(name, steps)
+    }
+
+    private static void configure() {
+        Log.info """\
+        JOB_NAME=${env.JOB_NAME}
+        JOB_BASE_NAME=${env.JOB_BASE_NAME}
+        JOB_URL=${env.JOB_URL}
+        BUILD_URL=${env.BUILD_URL}
+        NODE_NAME=${env.NODE_NAME}
+        NODE_LABELS=${env.NODE_LABELS}"""
+
+        type = env.JOB_NAME.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
+        
+        Log.info "Pipeline.Type = $type"
     }
 
 }

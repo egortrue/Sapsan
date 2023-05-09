@@ -1,6 +1,6 @@
 package sapsan.util
 
-import sapsan.Context
+import sapsan.core.Context
 
 /**
  * Статический класс для вывода информации в консоль.
