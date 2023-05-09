@@ -1,6 +1,5 @@
 package sapsan.jenkins
 
-import com.cloudbees.groovy.cps.NonCPS
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import sapsan.Context
@@ -21,9 +20,9 @@ class Pipeline extends Context {
         DEPLOYMENT,
     }
 
-    static def stages = []
     static Type type = Type.NOT_DEFINED
     static Task task = Task.NOT_DEFINED
+    static def stages = []
 
     /**
      * Запуск трубы
@@ -31,10 +30,31 @@ class Pipeline extends Context {
      * @param closure выполняемые действия
      */
     static void run(String node = 'linux', Closure closure) {
-        script.node(node) {
-            script.ansiColor('xterm') {
-                closure.call()
-//        stages.each { stage -> stage.call()}
+//        script.node(node) {
+//            script.ansiColor('xterm') {
+//                closure.call()
+//                //stages.each { stage -> stage.call()}
+//            }
+//        }
+        pipeline {
+            agent any
+
+            stages {
+                stage('Build') {
+                    steps {
+                        echo 'Building...'
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        echo 'Testing...'
+                    }
+                }
+                stage('Deploy') {
+                    steps {
+                        echo 'Deploying...'
+                    }
+                }
             }
         }
     }
@@ -42,6 +62,7 @@ class Pipeline extends Context {
 
     /**
      * Обертка создания шага пайплайна
+     * Регистрация шага в пайплайне
      * @see Stage
      */
     static void stage(String name, @ClosureParams(value = SimpleType, options = "Stage") Closure steps) {
