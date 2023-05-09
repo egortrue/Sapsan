@@ -26,6 +26,7 @@ class Pipeline extends Context {
 
     /**
      * Запуск трубы
+     * @param script объект jenkinsfile
      * @param node метка агента Jenkins
      * @param closure выполняемые действия
      */
@@ -61,6 +62,7 @@ class Pipeline extends Context {
         type = script.env.JOB_NAME.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
 
         Log.info "Pipeline.Type = $type"
+        Log.info Job.baseUrl
     }
 
 }

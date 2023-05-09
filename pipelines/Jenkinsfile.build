@@ -1,10 +1,6 @@
 @Library("sapsan@master") _
-import sapsan.core.Context
 import sapsan.core.Pipeline
-import sapsan.util.Log
 
 Pipeline.run(this) {
-    Log.info "checkout scm..."
-    Log.info "build project..."
-    Log.info "publish artifact..."
+
 }
