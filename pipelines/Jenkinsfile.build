@@ -7,7 +7,7 @@ Pipeline.run(this) {
     Log.info "checkout scm..."
     Log.info "build project..."
     Log.info "publish artifact..."
-    Log.info env
+    Log.info env.toString()
 
     def text = """\
 hello, world!
