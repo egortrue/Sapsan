@@ -18,7 +18,8 @@ abstract class Module extends Context {
     }
 
     Module() {
-        Map parameters = Pipeline.staticParameters[this.class.simpleName]
+//        Map parameters = Pipeline.staticParameters[this.class.simpleName]
+        Map parameters = []
         Log.info "Create component \"${this.class.simpleName}\"\nwith parameters: ${JsonOutput.prettyPrint(JsonOutput.toJson(parameters))}"
         initParameters(parameters)
     }
