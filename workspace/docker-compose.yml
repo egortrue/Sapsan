@@ -34,3 +34,8 @@ services:
       - "8081:8080"
     volumes:
       - ./scm_home:/var/lib/scm
+
+  docker-registry:
+    container_name: docker-registry
+    image: bitnami/harbor-registry
+    restart: always

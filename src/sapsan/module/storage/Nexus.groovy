@@ -6,14 +6,6 @@ import sapsan.module.Module
 
 class Nexus extends Module {
 
-    private static Nexus _instance
-
-    static Nexus getInstance() {
-        if (_instance == null)
-            _instance = new Nexus()
-        return _instance
-    }
-
     // Параметры сервиса
     private final String baseUrlSigma = "http://nexus.sigma.sber.ru/repository"
     private final String baseUrlAlpha = "http://nexus.alpha.sber.ru/repository"

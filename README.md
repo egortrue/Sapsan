@@ -35,8 +35,9 @@ The ultimate DevOps Framework based on 'Jenkins Shared Library'
 #### Jenkins Plugins:
 
 - [Remote Jenkinsfile Provider](https://plugins.jenkins.io/remote-file/) **(required)**
-- [Jenkins Swarm Agent](https://plugins.jenkins.io/swarm/) _(local testing)_
+- [Ansi Color](https://plugins.jenkins.io/ansicolor/) **(required)**
 - [Docker Workflow](https://plugins.jenkins.io/docker-workflow/)
+- [Jenkins Swarm Agent](https://plugins.jenkins.io/swarm/) _(local testing)_
 - And all the suggested plugins from
   official [Jenkins repository](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/install/platform-plugins.json)
 

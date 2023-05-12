@@ -1,6 +1,12 @@
 @Library("sapsan@master") _
 import sapsan.core.Pipeline
+import sapsan.module.scm.Git
+import sapsan.module.build.Docker
 
 Pipeline.run(this, "docker") {
-    sh "docker ps -a"
+    Git.instance.checkout()
+    // Sonar.scan()
+    Docker.instance.build()
+    // Checkmarx.scan()
+    // Docker.publish()
 }

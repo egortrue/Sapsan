@@ -14,33 +14,27 @@ class Git extends Module {
         return _instance
     }
 
-    enum Type {
-        CLASSIC,
-        MULTIBRANCH
-    }
-
-    Type type
     String url
     String branch
 
     @Override
     @NonCPS
     void initParameters(Map parameters) {
-        type = parameters["type"] as Type
-        url = parameters["url"]
-        branch = parameters["branch"]
+        if (Pipeline.type == Pipeline.Type.CLASSIC) {
+            url = parameters["url"]
+            branch = parameters["branch"]
 
-        assert type != null
-        assert url != null
-        assert branch != null
+            assert url != null
+            assert branch != null
+        }
     }
 
-    static void checkout() {
+    void checkout() {
         Pipeline.stage("Checkout") {
             log "checkout repo from $instance.url"
             if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
                 checkout scm
-            } else {
+            } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
                 checkout([
                         $class                           : 'GitSCM',
                         branches                         : [[name: '*/master']],

@@ -5,13 +5,18 @@ USER root
 # Disable Initial Wizard at First Startup
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
-# Install plugins
+# Add base plugins
 ENV SUGGESTED_PLUGINS="https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/jenkins/install/platform-plugins.json"
 RUN curl -s $SUGGESTED_PLUGINS | grep suggested | awk '{ print $3 }' | cut -d '"' -f 2  > jenkins-plugins.txt
 RUN echo "swarm" >> jenkins-plugins.txt
 RUN echo "blueocean" >> jenkins-plugins.txt
 RUN echo "docker-workflow" >> jenkins-plugins.txt
-RUN echo "remote-file" >> jenkins-plugins.txt # CORE
+
+# Add CORE plugins
+RUN echo "ansicolor" >> jenkins-plugins.txt
+RUN echo "remote-file" >> jenkins-plugins.txt
+
+# Install plugins
 RUN jenkins-plugin-cli --plugin-file jenkins-plugins.txt
 
 USER jenkins
