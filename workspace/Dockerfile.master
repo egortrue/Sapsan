@@ -1,12 +1,17 @@
 FROM jenkins/jenkins:2.332.4
 
 USER root
-RUN apt update -y && apt install ssh -y
 
-# Install and configure docker
-RUN curl -fsSL https://get.docker.com -o get-docker.sh
-RUN sh get-docker.sh
-RUN usermod -aG docker jenkins
-RUN touch /var/run/docker.sock
-RUN chgrp docker /var/run/docker.sock
-RUN chown jenkins /var/run/docker.sock
+# Disable Initial Wizard at First Startup
+ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+
+# Install plugins
+ENV SUGGESTED_PLUGINS="https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/jenkins/install/platform-plugins.json"
+RUN curl -s $SUGGESTED_PLUGINS | grep suggested | awk '{ print $3 }' | cut -d '"' -f 2  > jenkins-plugins.txt
+RUN echo "swarm" >> jenkins-plugins.txt
+RUN echo "blueocean" >> jenkins-plugins.txt
+RUN echo "docker-workflow" >> jenkins-plugins.txt
+RUN echo "remote-file" >> jenkins-plugins.txt # CORE
+RUN jenkins-plugin-cli --plugin-file jenkins-plugins.txt
+
+USER jenkins

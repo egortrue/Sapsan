@@ -6,6 +6,6 @@
 **/out
 **/.DS_Store
 
-# Testing output
+# Workspace
 **/jenkins_home
-**/scm-manager_home
+**/scm_home

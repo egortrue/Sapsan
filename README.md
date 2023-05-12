@@ -11,73 +11,45 @@
     <a><img src="https://img.shields.io/github/repo-size/egortrue/Sapsan"></a>
 </p>
 
-## Description
+# Description
+
 The ultimate DevOps Framework based on 'Jenkins Shared Library'
 
-## Requirements
-- System: `Linux` or `MacOS`
-- Software:
-  - `Git`
-  - `Docker`
+# Requirements
 
-## Dependencies
-- Docker Images:
-  - [Jenkins Master](https://hub.docker.com/r/jenkins/jenkins)
-  - [Jenkins Agent](https://hub.docker.com/r/jenkins/agent)
-  - [SCM Manager](https://hub.docker.com/r/scmmanager/scm-manager)
-- Jenkins Plugins:
-  - [Remote Jenkinsfile Provider](https://plugins.jenkins.io/remote-file/)
+#### System: Any (for local testing: Unix-like)
 
-## How to Use
-[TBC]
+#### Software:
 
-## Local Testing
-There is a [workspace](workspace) folder with the necessary files to easily prepare simple infrastructure for local testing.
-Use the following commands. 
-All the commands **should be executed in root** of this project. 
-Otherwise, you can edit them manually.
+- `Git`
+- `Docker`
+- `Docker Compose v3`
 
-### Build master container
-```shell
-docker build -f workspace/Dockerfile.master -t jenkins-master .
-```
+#### Docker Images:
 
-### Run master container
-```shell
-docker run -d --name master \
-  -p 8080:8080 \
-  -p 50000:50000 \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v $(pwd)/workspace/jenkins_home:/var/jenkins_home \
-  jenkins-master
-```
+- [Jenkins Master](https://hub.docker.com/r/jenkins/jenkins)
+- [Jenkins Agent](https://hub.docker.com/r/jenkins/agent)
+- [SCM Manager](https://hub.docker.com/r/scmmanager/scm-manager)
+- [Docker In Docker](https://hub.docker.com/_/docker)
 
-### Build agent container
-```shell
-docker build -f workspace/Dockerfile.agent -t jenkins-agent .
-```
+#### Jenkins Plugins:
 
-### Run agent container
-You should not start agent manually.
-The agent container will be started by the master container when you register agent in Jenkins.
-See the following step `Configure master`
+- [Remote Jenkinsfile Provider](https://plugins.jenkins.io/remote-file/) **(required)**
+- [Jenkins Swarm Agent](https://plugins.jenkins.io/swarm/) _(local testing)_
+- [Docker Workflow](https://plugins.jenkins.io/docker-workflow/)
+- And all the suggested plugins from
+  official [Jenkins repository](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/install/platform-plugins.json)
 
-### Configure master
-Go to `Manage Jenkins > Manage Nodes > New Node` and set up the following properties:
-- Set `Remote root directory` to `/home/jenkins/agent`
-- Set `Launch method` to `Launch agent via execution of command`
-- Set `Launch command` with the following command
+# How to Use
+
+# Local Testing
+
+There is a [workspace](workspace) folder with the necessary files,
+such as Docker Compose file and Dockerfiles for master and agent
+to easily prepare simple infrastructure for local
+testing.
 
 ```shell
-docker run -i --rm --init --name agent jenkins-agent java -jar /usr/share/jenkins/agent.jar
-```
-
-### SCM
-We are going to use opensource [SCM Manager](https://scm-manager.org)
-
-```shell
-docker run -d --rm --name scm \
-  -p 8081:8080 \
-  -v $(pwd)/workspace/scm-manager_home:/var/lib/scm \
-  scmmanager/scm-manager:latest
+cd workpace && \
+docker compose up -d --build
 ```

@@ -63,6 +63,7 @@ class Pipeline extends Context {
 
         Log.info "Pipeline.Type = $type"
         Log.info Job.baseUrl
+        Log.info Job.path
     }
 
 }

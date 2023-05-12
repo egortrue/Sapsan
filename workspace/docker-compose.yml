@@ -1,0 +1,36 @@
+name: sapsan
+services:
+  jenkins-master:
+    container_name: jenkins-master
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.master
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+
+  jenkins-agent:
+    container_name: jenkins-agent
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    command: >
+      /bin/bash -c "curl -o swarm-client.jar http://jenkins-master:8080/swarm/swarm-client.jar &&
+      java -jar swarm-client.jar -url http://jenkins-master:8080 -username admin -password admin -executors 1 -labels \"agent docker\""
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - jenkins-master
+  
+  scm-manager:
+    container_name: scm-manager
+    image: scmmanager/scm-manager
+    restart: always
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./scm_home:/var/lib/scm

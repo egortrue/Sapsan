@@ -1,14 +1,10 @@
 FROM jenkins/agent
 
 USER root
-RUN apt update -y && apt install ssh -y
 
 # Install and configure docker
-RUN curl -fsSL https://get.docker.com -o get-docker.sh
-RUN sh get-docker.sh
+RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+RUN apt update -y && apt install -y docker-ce docker-ce-cli containerd.io
 RUN usermod -aG docker jenkins
-RUN touch /var/run/docker.sock
-RUN chgrp docker /var/run/docker.sock
-RUN chown jenkins /var/run/docker.sock
 
-RUN apt install -y python3 pip
+USER root

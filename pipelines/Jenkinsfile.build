@@ -1,6 +1,6 @@
 @Library("sapsan@master") _
 import sapsan.core.Pipeline
 
-Pipeline.run(this) {
-
+Pipeline.run(this, "docker") {
+    sh "docker ps -a"
 }
