@@ -28,7 +28,7 @@ services:
   
   scm-manager:
     container_name: scm-manager
-    image: scmmanager/scm-manager
+    image: scmmanager/scm-manager:latest
     restart: always
     ports:
       - "8081:8080"
