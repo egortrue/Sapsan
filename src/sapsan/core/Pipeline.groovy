@@ -64,6 +64,7 @@ NODE_LABELS=${script.env.NODE_LABELS}"""
         Log.info "Pipeline.Type = $type"
         Log.info Job.baseUrl
         Log.info Job.path
+        Log.info Job.name
     }
 
 }
