@@ -9,5 +9,5 @@ abstract class Module extends Context {
     protected abstract void initParameters(Map parameters)
 
     @NonCPS
-    abstract void getInfo()
+    abstract String getInfo()
 }

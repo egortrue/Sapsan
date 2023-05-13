@@ -26,7 +26,7 @@ class Git extends Module {
 
     @Override
     @NonCPS
-    def getInfo() {
+    String getInfo() {
         """
         [Git Information]
         Git.url=$url
