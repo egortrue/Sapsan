@@ -15,8 +15,8 @@ class Pipeline extends Context {
     enum Task {
         NOT_DEFINED,
         BUILD,
-        DELIVERY,
         TESTING,
+        DELIVERY,
         DEPLOYMENT,
     }
 
@@ -31,10 +31,16 @@ class Pipeline extends Context {
      * @param closure выполняемые действия
      */
     static void run(Script script, String node = 'linux', Closure closure) {
+
         Context.script = script
+        type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
+
         script.node(node) {
             script.ansiColor('xterm') {
-                configure()
+
+                Log.info Job.info
+                Log.info Pipeline.info
+
                 closure.call()
                 //stages.each { stage -> stage.call()}
             }
@@ -50,15 +56,12 @@ class Pipeline extends Context {
         stages << new Stage(name, steps)
     }
 
-    private static void configure() {
-        Log.info Job.info
-
-        type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
-
-        Log.info "Pipeline.Type = $type"
-        Log.info Job.baseUrl
-        Log.info Job.path
-        Log.info Job.name
+    static String getInfo() {
+        """
+        [Pipeline Information]
+        Pipeline.type=$type
+        Pipeline.task=$task
+        """.stripIndent()
     }
 
 }

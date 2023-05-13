@@ -1,12 +1,12 @@
 package sapsan.core
 
 class Job extends Context {
-    static String getUrl() {
-        script.env.BUILD_URL
-    }
-
     static String getName() {
         script.env.JOB_NAME
+    }
+
+    static String getUrl() {
+        script.env.BUILD_URL
     }
 
     static String getBaseUrl() {
@@ -19,12 +19,11 @@ class Job extends Context {
 
     static String getInfo() {
         """
-        JOB_NAME=${script.env.JOB_NAME}
-        JOB_BASE_NAME=${script.env.JOB_BASE_NAME}
-        JOB_URL=${script.env.JOB_URL}
-        BUILD_URL=${script.env.BUILD_URL}
-        NODE_NAME=${script.env.NODE_NAME}
-        NODE_LABELS=${script.env.NODE_LABELS}
+        [Job Information]
+        Job.name=$name
+        Job.url=$url
+        Job.baseUrl=$baseUrl
+        Job.path=$path
         """.stripIndent()
     }
 }
