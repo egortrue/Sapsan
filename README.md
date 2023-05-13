@@ -29,7 +29,7 @@ The ultimate DevOps Framework based on 'Jenkins Shared Library'
 
 - [Remote Jenkinsfile Provider](https://plugins.jenkins.io/remote-file/) **(required)**
 - [Ansi Color](https://plugins.jenkins.io/ansicolor/) **(required)**
-- [Docker Workflow](https://plugins.jenkins.io/docker-workflow/)
+- [Docker Workflow](https://plugins.jenkins.io/docker-workflow/) _(local testing)_
 - [Jenkins Swarm Agent](https://plugins.jenkins.io/swarm/) _(local testing)_
 - And all the suggested plugins from
   official [Jenkins repository](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/install/platform-plugins.json)
@@ -47,10 +47,25 @@ The ultimate DevOps Framework based on 'Jenkins Shared Library'
 
 There is a [workspace](workspace) folder with the necessary files,
 such as Docker Compose file and Dockerfiles for master and agent
-to easily prepare a simple infrastructure for local
-testing.
+to easily prepare a simple infrastructure for local testing.
+
+### Run Docker
 
 ```shell
 cd workpace && \
 docker compose up -d --build
+```
+
+### Configure SCM Manager
+
+### Add the library in Jenkins
+
+### Add job in Jenkins
+
+The SCM Manager available in docker internal network with the address you find using the following command.
+
+```shell
+USER=admin && \
+REPO=sapsan && \
+echo "http://$(docker network inspect sapsan_default | grep Gateway | awk '{ print $2 }' | cut -d '"' -f 2):8081/scm/repo/$USER/$REPO/"
 ```

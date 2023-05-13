@@ -12,7 +12,7 @@ RUN echo "swarm" >> jenkins-plugins.txt
 RUN echo "blueocean" >> jenkins-plugins.txt
 RUN echo "docker-workflow" >> jenkins-plugins.txt
 
-# Add CORE plugins
+# Add Sapsan core plugins
 RUN echo "ansicolor" >> jenkins-plugins.txt
 RUN echo "remote-file" >> jenkins-plugins.txt
 
