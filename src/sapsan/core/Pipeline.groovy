@@ -32,9 +32,11 @@ class Pipeline extends Context {
      */
     static void run(Script script, String node = 'linux', Closure closure) {
 
+        // Настройка
         Context.script = script
         type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
 
+        // Запуск
         script.node(node) {
             script.ansiColor('xterm') {
 

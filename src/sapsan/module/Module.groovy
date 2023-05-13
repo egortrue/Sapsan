@@ -1,9 +1,7 @@
 package sapsan.module
 
 import com.cloudbees.groovy.cps.NonCPS
-import groovy.json.JsonOutput
 import sapsan.core.Context
-import sapsan.util.Log
 
 abstract class Module extends Context {
 
@@ -17,5 +15,4 @@ abstract class Module extends Context {
 
     @NonCPS
     protected abstract void initParameters(Map parameters)
-
 }

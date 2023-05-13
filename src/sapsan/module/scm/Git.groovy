@@ -20,13 +20,10 @@ class Git extends Module {
             url = parameters["url"]
             branch = parameters["branch"]
 
-//            assert url != null
-//            assert branch != null
+            assert url != null
+            assert branch != null
         }
-    }
-
-    static void checkout() {
-        Log.info getInstance().info
+        Log.info(info)
     }
 
     String getInfo() {
@@ -36,6 +33,9 @@ class Git extends Module {
         Git.branch=$branch
         """.stripIndent()
     }
+
+    static void checkout() {
+        Log.info "checkout..."
 
 //        Pipeline.stage("Checkout") {
 //            log "checkout repo from $instance.url"
@@ -52,4 +52,5 @@ class Git extends Module {
 //                ])
 //            }
 //        }
+    }
 }
