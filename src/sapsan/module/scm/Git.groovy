@@ -2,12 +2,12 @@ package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
 import groovy.transform.CompileDynamic
+import groovy.transform.CompileStatic
 import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-@CompileDynamic
 @Singleton
 @InheritConstructors
 class Git extends Module {

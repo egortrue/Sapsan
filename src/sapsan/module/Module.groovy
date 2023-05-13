@@ -1,10 +1,12 @@
 package sapsan.module
 
 import com.cloudbees.groovy.cps.NonCPS
+import groovy.transform.CompileDynamic
 import sapsan.core.Context
 
+@CompileDynamic
 abstract class Module extends Context {
-    
+
     Module() {
         //Map parameters = Pipeline.staticParameters[this.class.simpleName]
         Map parameters = [:]
