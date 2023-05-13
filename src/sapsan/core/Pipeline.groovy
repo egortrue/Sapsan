@@ -70,10 +70,8 @@ class Pipeline extends Context {
             task = Task.BUILD
         }
 
-        properties = script.readProperties(script.libraryResource(Configuration.properties))
-        parameters = script.readProperties(script.libraryResource(Configuration.parameters))
-
-        
+        properties = script.readProperties(text: script.libraryResource(Configuration.properties))
+        parameters = script.readProperties(text: script.libraryResource(Configuration.parameters))
     }
 
     /**

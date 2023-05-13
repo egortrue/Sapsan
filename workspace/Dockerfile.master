@@ -16,6 +16,7 @@ RUN echo "docker-workflow" >> jenkins-plugins.txt
 
 # Add Sapsan core plugins
 RUN echo "ws-cleanup" >> jenkins-plugins.txt
+RUN echo "pipeline-utility-steps" >> jenkins-plugins.txt
 RUN echo "ansicolor" >> jenkins-plugins.txt
 RUN echo "remote-file" >> jenkins-plugins.txt
 
