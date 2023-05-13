@@ -6,8 +6,6 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-import java.beans.Introspector
-
 @InheritConstructors
 class Git extends Module {
     String url
@@ -27,18 +25,14 @@ class Git extends Module {
     }
 
     String getInfo() {
-        String info = "[${this.class.simpleName.capitalize()} Information]\n"
+        Log.info(this.properties.minus(super.class.properties))
 
-        def properties = Introspector.getBeanInfo(this.getClass()).propertyDescriptors.findAll { pd ->
-            !pd.name.equals("class") && pd.readMethod != null && !pd.syntheticConstructor
-        }
-
-        properties.each { property ->
-            def value = this."${property.name}"
-            println "Property name: ${property.name}, value: $value"
-        }
+        """
+        [Git Information]
+        Git.url=$url
+        Git.branch=$branch
+        """.stripIndent()
     }
-
 
     static void checkout(String url = null, String branch = null) {
 
