@@ -6,7 +6,6 @@ import sapsan.module.build.Docker
 Pipeline.run(this, "docker") {
     Git.instance.checkout()
     // Sonar.scan()
-    Docker.instance.build()
     // Checkmarx.scan()
     // Docker.publish()
 }

@@ -10,10 +10,10 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - ./jenkins_home:/var/jenkins_home
+      - ./persistent/jenkins-master:/var/jenkins_home
 
   jenkins-agent:
-    container_name: jenkins-agent
+    scale: 1
     restart: always
     build:
       context: .
@@ -25,7 +25,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - jenkins-master
-  
+
   scm-manager:
     container_name: scm-manager
     image: scmmanager/scm-manager:latest
@@ -33,9 +33,13 @@ services:
     ports:
       - "8081:8080"
     volumes:
-      - ./scm_home:/var/lib/scm
+      - ./persistent/scm-manager:/var/lib/scm
 
   docker-registry:
     container_name: docker-registry
-    image: bitnami/harbor-registry
+    image: registry
     restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./persistent/docker-registry:

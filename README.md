@@ -25,13 +25,6 @@ The ultimate DevOps Framework based on 'Jenkins Shared Library'
 - `Docker`
 - `Docker Compose v3`
 
-#### Docker Images:
-
-- [Jenkins Master](https://hub.docker.com/r/jenkins/jenkins)
-- [Jenkins Agent](https://hub.docker.com/r/jenkins/agent)
-- [SCM Manager](https://hub.docker.com/r/scmmanager/scm-manager)
-- [Docker In Docker](https://hub.docker.com/_/docker)
-
 #### Jenkins Plugins:
 
 - [Remote Jenkinsfile Provider](https://plugins.jenkins.io/remote-file/) **(required)**
@@ -41,13 +34,20 @@ The ultimate DevOps Framework based on 'Jenkins Shared Library'
 - And all the suggested plugins from
   official [Jenkins repository](https://github.com/jenkinsci/jenkins/blob/master/core/src/main/resources/jenkins/install/platform-plugins.json)
 
+#### Docker Images (Local Testing):
+
+- [Jenkins Master](https://hub.docker.com/r/jenkins/jenkins)
+- [Jenkins Agent](https://hub.docker.com/r/jenkins/agent)
+- [SCM Manager](https://hub.docker.com/r/scmmanager/scm-manager)
+- [Docker Registry](https://hub.docker.com/_/registry)
+
 # How to Use
 
 # Local Testing
 
 There is a [workspace](workspace) folder with the necessary files,
 such as Docker Compose file and Dockerfiles for master and agent
-to easily prepare simple infrastructure for local
+to easily prepare a simple infrastructure for local
 testing.
 
 ```shell
