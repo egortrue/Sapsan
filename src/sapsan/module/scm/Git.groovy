@@ -24,16 +24,6 @@ class Git extends Module {
         }
     }
 
-    @Override
-    @NonCPS
-    String getInfo() {
-        """
-        [Git Information]
-        Git.url=$url
-        Git.branch=$branch
-        """.stripIndent()
-    }
-
     static void checkout(String url = null, String branch = null) {
 
         if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {

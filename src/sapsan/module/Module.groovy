@@ -9,5 +9,16 @@ abstract class Module extends Context {
     protected abstract void initParameters(Map parameters)
 
     @NonCPS
-    abstract String getInfo()
+    String getInfo() {
+        String info = "[${this.class.simpleName.capitalize()} Information]\n"
+
+        def properties = this.metaClass.getProperties().findAll { property ->
+            !property.synthetic && !Modifier.isStatic(property.getModifiers())
+        }
+
+        properties.each { property ->
+            def value = this.getProperty(property.name)
+            info += "${property.name}=$value\n"
+        }
+    }
 }
