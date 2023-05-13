@@ -56,7 +56,7 @@ class Pipeline extends Context {
                 task = Task.DEPLOYMENT
             if (Job.name.toLowerCase().contains("test"))
                 task = Task.TESTING
-        } else (type == Type.MULTIBRANCH) {
+        } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
         }
 
