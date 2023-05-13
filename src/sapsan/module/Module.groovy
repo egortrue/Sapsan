@@ -1,11 +1,8 @@
 package sapsan.module
 
 import com.cloudbees.groovy.cps.NonCPS
-import groovy.transform.InheritConstructors
 import sapsan.core.Context
 
-@Singleton
-@InheritConstructors
 abstract class Module extends Context {
 
     Module() {
