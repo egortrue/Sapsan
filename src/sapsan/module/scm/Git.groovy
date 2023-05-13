@@ -35,7 +35,7 @@ class Git extends Module {
     static void checkout() {
         Pipeline.stage("Checkout SCM") {
             Log.info(getInstance().info)
-            Log.info(scm.userRemoteConfigs[0].url)
+            Log.info(script.scm.userRemoteConfigs[0].url)
             if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
                 script.checkout script.scm
             } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
