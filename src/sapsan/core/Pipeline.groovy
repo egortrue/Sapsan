@@ -21,6 +21,8 @@ class Pipeline extends Context {
 
     static Type type = Type.NOT_DEFINED
     static Task task = Task.NOT_DEFINED
+    static Map properties
+    static Map parameters
     static def stages = []
 
     /**
@@ -62,12 +64,16 @@ class Pipeline extends Context {
             else if (Job.name.toLowerCase().contains("test"))
                 task = Task.TESTING
             else {
-                Log.error "Pipeline task not defined!"
+                Log.error "Pipeline.task not defined!"
             }
         } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
         }
 
+        properties = script.readProperties(script.libraryResource(Configuration.properties))
+        parameters = script.readProperties(script.libraryResource(Configuration.parameters))
+
+        
     }
 
     /**

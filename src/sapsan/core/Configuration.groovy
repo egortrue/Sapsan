@@ -6,7 +6,6 @@ class Configuration extends Context {
     @Lazy static String properties = "$root/${Job.project}/properties/${Pipeline.task.toString().toLowerCase()}.properties"
     @Lazy static String parameters = "$root/${Job.project}/parameters/${Pipeline.task.toString().toLowerCase()}.yml"
 
-
     static String getInfo() {
         """
         [Configuration Information]
