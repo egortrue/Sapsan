@@ -3,5 +3,5 @@ import sapsan.core.Pipeline
 import sapsan.module.scm.Git
 
 Pipeline.run(this, "docker") {
-    Git.getDeclaredConstructor().newInstance().checkout()
+    new Git().checkout()
 }
