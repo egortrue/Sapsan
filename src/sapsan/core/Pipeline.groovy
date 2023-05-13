@@ -71,7 +71,7 @@ class Pipeline extends Context {
         }
 
         properties = script.readProperties(text: script.libraryResource(Configuration.properties))
-        parameters = script.readYAML(text: script.libraryResource(Configuration.parameters))
+        parameters = script.readYaml(text: script.libraryResource(Configuration.parameters))
     }
 
     /**
