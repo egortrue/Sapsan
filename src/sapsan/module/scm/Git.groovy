@@ -34,7 +34,7 @@ class Git extends Module {
     }
 
     static void checkout() {
-        Log.info "checkout..."
+        Log.info(instance.info)
 
 //        Pipeline.stage("Checkout") {
 //            log "checkout repo from $instance.url"
