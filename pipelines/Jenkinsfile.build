@@ -1,5 +1,5 @@
 try {
-    @Library('https://github.com/egortrue/Sapsan@master') _
+    @Library('https://github.com/egortrue/Sapsan') _
 } catch (Exception e) {
     @Library("sapsan@master") _
 }
