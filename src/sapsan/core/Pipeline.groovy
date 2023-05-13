@@ -16,12 +16,12 @@ class Pipeline extends Context {
         NOT_DEFINED,
         BUILD,
         TESTING,
-        DELIVERY,
         DEPLOYMENT,
     }
 
     static Type type = Type.NOT_DEFINED
     static Task task = Task.NOT_DEFINED
+    static Map config
     static def stages = []
 
     /**
@@ -31,12 +31,8 @@ class Pipeline extends Context {
      * @param closure выполняемые действия
      */
     static void run(Script script, String node = 'linux', Closure closure) {
-
-        // Настройка
         Context.script = script
-        type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
-
-        // Запуск
+        configure()
         script.node(node) {
             script.ansiColor('xterm') {
 
@@ -46,9 +42,25 @@ class Pipeline extends Context {
                 Log.info Pipeline.info
 
                 closure.call()
-                stages.each { stage -> stage.call() }
+                stages.each { it.call() }
             }
         }
+    }
+
+    private static void configure() {
+        type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
+
+        // Определение задачи
+        if (type == Type.CLASSIC) {
+            if (Job.name.toLowerCase().contains("deploy"))
+                task = Task.DEPLOYMENT
+            if (Job.name.toLowerCase().contains("test"))
+                task = Task.TESTING
+        } else (type == Type.MULTIBRANCH) {
+            task = Task.BUILD
+        }
+
+        // Определение проекта
     }
 
     /**

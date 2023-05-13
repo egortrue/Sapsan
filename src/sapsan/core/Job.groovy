@@ -14,7 +14,7 @@ class Job extends Context {
     }
 
     static String getPath() {
-        url.split("/")[3..-1].join('/')
+        "/" + url.split("/")[3..-1].join('/')
     }
 
     static String getInfo() {
