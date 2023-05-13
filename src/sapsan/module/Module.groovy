@@ -6,7 +6,6 @@ import sapsan.core.Context
 abstract class Module extends Context {
 
     Module() {
-        assert script != null
         //Map parameters = Pipeline.staticParameters[this.class.simpleName]
         Map parameters = [:]
         //Log.info "Create component \"${this.class.simpleName}\"\n" +
@@ -16,5 +15,5 @@ abstract class Module extends Context {
 
     @NonCPS
     protected abstract void initParameters(Map parameters)
-    
+
 }

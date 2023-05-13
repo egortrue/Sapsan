@@ -18,8 +18,8 @@ class Git extends Module {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = parameters["url"]
             branch = parameters["branch"]
-            assert url != null
-            assert branch != null
+//            assert url != null
+//            assert branch != null
         } else {
 //            url = script.scm.userRemoteConfigs[0].url
         }
