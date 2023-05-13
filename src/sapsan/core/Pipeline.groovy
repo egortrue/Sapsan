@@ -54,8 +54,11 @@ class Pipeline extends Context {
         if (type == Type.CLASSIC) {
             if (Job.name.toLowerCase().contains("deploy"))
                 task = Task.DEPLOYMENT
-            if (Job.name.toLowerCase().contains("test"))
+            else if (Job.name.toLowerCase().contains("test"))
                 task = Task.TESTING
+            else {
+                Log.error "Pipeline task not defined!"
+            }
         } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
         }
