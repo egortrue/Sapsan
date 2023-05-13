@@ -1,5 +1,7 @@
 package sapsan.core
 
+import com.cloudbees.groovy.cps.NonCPS
+
 /**
  * Базовый класс, содержащий поля, для внутреннего использования.
  * Доступен везде

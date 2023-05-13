@@ -23,7 +23,8 @@ class Git extends Module {
             assert url != null
             assert branch != null
         }
-        Log.info(info)
+
+        Log.info properties
     }
 
     String getInfo() {
