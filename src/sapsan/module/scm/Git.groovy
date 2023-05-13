@@ -19,9 +19,10 @@ class Git extends Module {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = parameters["url"]
             branch = parameters["branch"]
-
             assert url != null
             assert branch != null
+        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+
         }
     }
 
@@ -35,6 +36,7 @@ class Git extends Module {
 
     static void checkout() {
         Log.info(getInstance().info)
+        Log.info(properties)
 
 //        Pipeline.stage("Checkout") {
 //            log "checkout repo from $instance.url"
