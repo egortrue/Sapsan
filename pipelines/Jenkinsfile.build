@@ -4,4 +4,5 @@ import sapsan.module.scm.Git
 
 Pipeline.run(this, "docker") {
     new Git().checkout()
+
 }

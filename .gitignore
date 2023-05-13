@@ -5,7 +5,3 @@
 **/*.iml
 **/out
 **/.DS_Store
-
-# Workspace
-**/jenkins_home
-**/scm_home

@@ -31,12 +31,8 @@ class Git extends Module {
         """.stripIndent()
     }
 
-    void checkout() {
-        if (Pipeline.type = Pipeline.Type.MULTIBRANCH)
-            script.checkout script.scm
-        else {
-
-        }
+    static void checkout() {
+        script.checkout script.scm
     }
 
     void checkout(String url, String branch = 'master') {

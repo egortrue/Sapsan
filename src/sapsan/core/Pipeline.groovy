@@ -59,8 +59,7 @@ class Pipeline extends Context {
         } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
         }
-
-        // Определение проекта
+        
     }
 
     /**

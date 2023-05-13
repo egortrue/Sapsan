@@ -17,6 +17,10 @@ class Job extends Context {
         "/" + url.split("/")[3..-1].join('/')
     }
 
+    static String getProject() {
+        "projectA"
+    }
+
     static String getInfo() {
         """
         [Job Information]
