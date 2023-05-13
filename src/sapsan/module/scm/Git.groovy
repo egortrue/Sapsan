@@ -24,6 +24,22 @@ class Git extends Module {
         }
     }
 
+    String getInfo() {
+        String info = "[${this.class.simpleName.capitalize()} Information]\n"
+
+        def properties = this.metaClass.getProperties().findAll { property ->
+            !property.synthetic && !Modifier.isStatic(property.getModifiers())
+        }
+
+        properties.each { property ->
+            def value = this.getProperty(property.name)
+            info += "${property.name}=$value\n"
+        }
+
+        return info
+    }
+
+
     static void checkout(String url = null, String branch = null) {
 
         if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
