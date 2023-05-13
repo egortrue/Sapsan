@@ -21,7 +21,6 @@ class Pipeline extends Context {
 
     static Type type = Type.NOT_DEFINED
     static Task task = Task.NOT_DEFINED
-    static Map config
     static def stages = []
 
     /**
@@ -59,7 +58,9 @@ class Pipeline extends Context {
         } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
         }
-        
+
+        Log.info Configuration.properties
+
     }
 
     /**
