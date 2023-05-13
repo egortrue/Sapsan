@@ -26,10 +26,9 @@ class Git extends Module {
 
     String getInfo() {
         String info = "[${this.class.simpleName.capitalize()} Information]\n"
-        
+
         this.metaClass.properties.each { property ->
-            def value = this.getProperty(property.name)
-            info += "${property.name}=$value\n"
+            info += property.name
         }
 
         return info
