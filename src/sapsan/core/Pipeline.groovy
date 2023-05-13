@@ -34,12 +34,13 @@ class Pipeline extends Context {
 
         // Настройка
         Context.script = script
-        script.cleanWs()
         type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Запуск
         script.node(node) {
             script.ansiColor('xterm') {
+
+                script.cleanWs()
 
                 Log.info Job.info
                 Log.info Pipeline.info

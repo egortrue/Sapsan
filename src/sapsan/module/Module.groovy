@@ -20,5 +20,7 @@ abstract class Module extends Context {
             def value = this.getProperty(property.name)
             info += "${property.name}=$value\n"
         }
+
+        return info
     }
 }
