@@ -1,11 +1,14 @@
 package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
+import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
+@InheritConstructors
 class Git extends Module {
+    @Lazy static Git instance = new Git()
 
     String url
     String branch
@@ -40,12 +43,9 @@ class Git extends Module {
                 script.checkout script.scm
             } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
                 checkout([
-                        $class                           : 'GitSCM',
-                        branches                         : [[name: '*/master']],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions                       : [[$class: 'CleanCheckout']],
-                        submoduleCfg                     : [],
-                        userRemoteConfigs                : [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
+                        $class           : 'GitSCM',
+                        branches         : [[name: '*/master']],
+                        userRemoteConfigs: [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
                 ])
             }
         }
