@@ -6,7 +6,6 @@ import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
-@InheritConstructors
 class Git extends Module {
     String url
     String branch
