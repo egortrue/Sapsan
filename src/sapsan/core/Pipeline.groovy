@@ -39,6 +39,7 @@ class Pipeline extends Context {
 
                 Log.info Job.info
                 Log.info Pipeline.info
+                Log.info Configuration.properties
 
                 closure.call()
                 stages.each { it.call() }
@@ -58,8 +59,6 @@ class Pipeline extends Context {
         } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
         }
-
-        Log.info Configuration.properties
 
     }
 
