@@ -1,8 +1,6 @@
 package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
-import groovy.transform.CompileDynamic
-import groovy.transform.CompileStatic
 import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
@@ -10,8 +8,6 @@ import sapsan.util.Log
 
 @InheritConstructors
 class Git extends Module {
-    @Lazy static Git instance = instance ?: new Git()
-
     String url
     String branch
 
@@ -28,7 +24,9 @@ class Git extends Module {
         }
     }
 
-    String getInfo() {
+    @Override
+    @NonCPS
+    def getInfo() {
         """
         [Git Information]
         Git.url=$url
@@ -36,20 +34,18 @@ class Git extends Module {
         """.stripIndent()
     }
 
-    static void checkout() {
-        Pipeline.stage("Checkout SCM") {
-            Log.info(instance.info)
-            Log.info(instance.info)
+    static void checkout(String url = null, String branch = null) {
 
-            if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-                script.checkout script.scm
-            } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
-                checkout([
-                        $class           : 'GitSCM',
-                        branches         : [[name: '*/master']],
-                        userRemoteConfigs: [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
-                ])
-            }
+        if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+            script.checkout script.scm
+        } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
+            checkout([
+                    $class           : 'GitSCM',
+                    branches         : [[name: '*/master']],
+                    userRemoteConfigs: [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
+            ])
         }
+
     }
+
 }

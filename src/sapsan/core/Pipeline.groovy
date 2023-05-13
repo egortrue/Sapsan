@@ -34,6 +34,7 @@ class Pipeline extends Context {
 
         // Настройка
         Context.script = script
+        script.cleanWs()
         type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Запуск
