@@ -6,7 +6,7 @@ import sapsan.module.build.Docker
 import sapsan.util.Log
 
 Pipeline.run(this, "docker") {
-    Log.info(new Git().getInfo())
+    new Git().getInfo()
 //    Pipeline.stage("Checkout SCM") {
 //        Git.checkout()
 //        Git.checkout()
