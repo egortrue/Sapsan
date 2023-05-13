@@ -33,21 +33,27 @@ class Pipeline extends Context {
         Context.script = script
         script.node(node) {
             script.ansiColor('xterm') {
-                configure()
-                closure.call()
-                stages.each { it.call() }
+
+                Pipeline.stage("Init") {
+                    script.cleanWs()
+                    configure()
+
+                    Log.info Job.info
+                    Log.info Pipeline.info
+                    Log.info Configuration.properties
+                    Log.info Configuration.parameters
+
+                    closure.call()
+                }
+
+                stages.each {
+                    it.call()
+                }
             }
         }
     }
 
     private static void configure() {
-        script.cleanWs()
-
-        Log.info Job.info
-        Log.info Pipeline.info
-        Log.info Configuration.properties
-        Log.info Configuration.parameters
-
         type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Определение задачи
