@@ -20,8 +20,8 @@ class Git extends Module {
             url = parameters["url"]
             branch = parameters["branch"]
 
-            assert url != null
-            assert branch != null
+//            assert url != null
+//            assert branch != null
         }
     }
 
