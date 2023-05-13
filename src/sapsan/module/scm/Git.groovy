@@ -36,7 +36,7 @@ class Git extends Module {
 
     static void checkout() {
         Log.info(getInstance().info)
-        Log.info properties.findAll({ !['class'].contains(it.key) })
+        Log.info getProperties().findAll({ !['class'].contains(it.key) })
 //      if (!args.containsKey(property) || args[property] == null)
 
 //        Pipeline.stage("Checkout") {
