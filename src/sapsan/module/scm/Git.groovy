@@ -8,7 +8,7 @@ import sapsan.util.Log
 
 @InheritConstructors
 class Git extends Module {
-    @Lazy static Git instance = new Git()
+    static Git instance = new Git()
 
     String url
     String branch
@@ -16,7 +16,7 @@ class Git extends Module {
     @Override
     @NonCPS
     void initParameters(Map parameters) {
-        Log.info("hello from git")
+        Log.info(Pipeline.type)
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = parameters["url"]
             branch = parameters["branch"]
