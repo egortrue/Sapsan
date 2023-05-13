@@ -43,5 +43,4 @@ class Git extends Module {
 //                ])
 //            }
 //        }
-    }
 }
