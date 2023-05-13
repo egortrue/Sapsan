@@ -6,6 +6,8 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
+import java.beans.Introspector
+
 @InheritConstructors
 class Git extends Module {
     String url
@@ -27,11 +29,14 @@ class Git extends Module {
     String getInfo() {
         String info = "[${this.class.simpleName.capitalize()} Information]\n"
 
-        this.metaClass.properties.each { property ->
-            info += property.name
+        def properties = Introspector.getBeanInfo(this.getClass()).propertyDescriptors.findAll { pd ->
+            !pd.name.equals("class") && pd.readMethod != null && !pd.syntheticConstructor
         }
 
-        return info
+        properties.each { property ->
+            def value = this."${property.name}"
+            println "Property name: ${property.name}, value: $value"
+        }
     }
 
 
