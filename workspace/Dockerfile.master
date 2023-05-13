@@ -8,11 +8,14 @@ ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 # Add base plugins
 ENV SUGGESTED_PLUGINS="https://raw.githubusercontent.com/jenkinsci/jenkins/master/core/src/main/resources/jenkins/install/platform-plugins.json"
 RUN curl -s $SUGGESTED_PLUGINS | grep suggested | awk '{ print $3 }' | cut -d '"' -f 2  > jenkins-plugins.txt
-RUN echo "swarm" >> jenkins-plugins.txt
 RUN echo "blueocean" >> jenkins-plugins.txt
+
+# Add plugins for local testing
+RUN echo "swarm" >> jenkins-plugins.txt
 RUN echo "docker-workflow" >> jenkins-plugins.txt
 
 # Add Sapsan core plugins
+RUN echo "ws-cleanup" >> jenkins-plugins.txt
 RUN echo "ansicolor" >> jenkins-plugins.txt
 RUN echo "remote-file" >> jenkins-plugins.txt
 
