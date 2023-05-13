@@ -21,8 +21,8 @@ class Git extends Module {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = parameters["url"]
             branch = parameters["branch"]
-//            assert url != null
-//            assert branch != null
+            assert url != null
+            assert branch != null
         } else {
 //            url = script.scm.userRemoteConfigs[0].url
         }
@@ -38,8 +38,8 @@ class Git extends Module {
 
     static void checkout() {
         Pipeline.stage("Checkout SCM") {
-            Log.info(instance.info)
-            Log.info(instance.info)
+            Log.info(info)
+            Log.info(info)
 
             if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
                 script.checkout script.scm
