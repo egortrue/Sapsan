@@ -6,7 +6,7 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-@Singleton(lazy = true)
+@Singleton
 @InheritConstructors
 class Git extends Module {
 
