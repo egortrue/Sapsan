@@ -1,11 +1,11 @@
 package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
-import groovy.json.JsonOutput
 import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
+@InheritConstructors
 class Git extends Module {
     String url
     String branch
@@ -31,23 +31,19 @@ class Git extends Module {
         """.stripIndent()
     }
 
-    void checkout(String url = null, String branch = null) {
-
-        initParameters([:])
-        this.url = this.url ?: url
-        this.branch = this.branch ?: branch
-
-
-        if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+    void checkout() {
+        if (Pipeline.type = Pipeline.Type.MULTIBRANCH)
             script.checkout script.scm
-        } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            checkout([
-                    $class           : 'GitSCM',
-                    branches         : [[name: '*/master']],
-                    userRemoteConfigs: [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
-            ])
-        }
+        else {
 
+        }
+    }
+
+    void checkout(String url, String branch = 'master') {
+        checkout([$class           : 'GitSCM',
+                  branches         : [[name: branch]],
+                  userRemoteConfigs: [[credentialsId: 'scm-manager', url: url]]
+        ])
     }
 
 }
