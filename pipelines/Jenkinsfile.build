@@ -1,10 +1,11 @@
 @Library("sapsan@master") _
 import sapsan.core.Pipeline
 import sapsan.module.scm.Git
+import sapsan.module.Module
 import sapsan.module.build.Docker
 
 Pipeline.run(this, "docker") {
-    Git.getInfo()
+    (Git as Module).getInfo()
 //    Pipeline.stage("Checkout SCM") {
 //        Git.checkout()
 //        Git.checkout()
