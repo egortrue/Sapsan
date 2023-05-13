@@ -36,7 +36,8 @@ class Git extends Module {
 
     static void checkout() {
         Log.info(getInstance().info)
-        Log.info(getProperties().toString())
+        Log.info(properties.findAll({ !['class'].contains(it.key) }))
+//      if (!args.containsKey(property) || args[property] == null)
 
 //        Pipeline.stage("Checkout") {
 //            log "checkout repo from $instance.url"
