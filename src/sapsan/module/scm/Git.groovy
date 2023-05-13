@@ -1,6 +1,7 @@
 package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
+import groovy.json.JsonOutput
 import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
@@ -25,8 +26,7 @@ class Git extends Module {
     }
 
     String getInfo() {
-        Log.info(this.properties.minus(super.class.properties))
-
+        Log.info "${JsonOutput.prettyPrint(JsonOutput.toJson(this.properties.minus(super.class.properties)))}"
         """
         [Git Information]
         Git.url=$url
