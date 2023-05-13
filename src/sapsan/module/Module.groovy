@@ -4,7 +4,7 @@ import com.cloudbees.groovy.cps.NonCPS
 import sapsan.core.Context
 
 abstract class Module extends Context {
-
+    
     Module() {
         //Map parameters = Pipeline.staticParameters[this.class.simpleName]
         Map parameters = [:]

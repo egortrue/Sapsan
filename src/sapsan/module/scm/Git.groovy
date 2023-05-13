@@ -1,14 +1,16 @@
 package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
+import groovy.transform.CompileDynamic
 import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
+@CompileDynamic
+@Singleton
 @InheritConstructors
 class Git extends Module {
-    @Lazy static Git instance = new Git()
 
     String url
     String branch
