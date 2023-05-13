@@ -44,7 +44,7 @@ class Pipeline extends Context {
                 Log.info Pipeline.info
 
                 closure.call()
-                //stages.each { stage -> stage.call()}
+                stages.each { stage -> stage.call() }
             }
         }
     }

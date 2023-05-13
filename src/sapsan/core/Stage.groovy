@@ -1,5 +1,7 @@
 package sapsan.core
 
+import sapsan.util.Log
+
 class Stage extends Context {
 
     enum Status {
@@ -23,12 +25,12 @@ class Stage extends Context {
     void call() {
         setStatus(Status.STARTED)
         try {
-            env.stage(name) {
+            script.stage(name) {
                 steps(owner: this)
             }
             setStatus(Status.SUCCESS)
         } catch (Exception exception) {
-            env.error exception.message
+            Log.error exception.message
             setStatus(Status.FAILED)
         }
     }
