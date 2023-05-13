@@ -1,18 +1,14 @@
 package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
+import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
+import sapsan.util.Log
 
+@Singleton(lazy = true)
+@InheritConstructors
 class Git extends Module {
-
-    private static Git _instance
-
-    static Git getInstance() {
-        if (_instance == null)
-            _instance = new Git()
-        return _instance
-    }
 
     String url
     String branch
@@ -29,21 +25,24 @@ class Git extends Module {
         }
     }
 
-    void checkout() {
-        Pipeline.stage("Checkout") {
-            log "checkout repo from $instance.url"
-            if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-                checkout scm
-            } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
-                checkout([
-                        $class                           : 'GitSCM',
-                        branches                         : [[name: '*/master']],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions                       : [[$class: 'CleanCheckout']],
-                        submoduleCfg                     : [],
-                        userRemoteConfigs                : [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
-                ])
-            }
-        }
+    static void checkout() {
+        Log.info "hello!"
+    }
+
+//        Pipeline.stage("Checkout") {
+//            log "checkout repo from $instance.url"
+//            if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+//                checkout scm
+//            } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
+//                checkout([
+//                        $class                           : 'GitSCM',
+//                        branches                         : [[name: '*/master']],
+//                        doGenerateSubmoduleConfigurations: false,
+//                        extensions                       : [[$class: 'CleanCheckout']],
+//                        submoduleCfg                     : [],
+//                        userRemoteConfigs                : [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
+//                ])
+//            }
+//        }
     }
 }
