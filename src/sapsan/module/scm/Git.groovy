@@ -8,9 +8,9 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-@Singleton
 @InheritConstructors
 class Git extends Module {
+    @Lazy static Git instance = instance ?: new Git()
 
     String url
     String branch
