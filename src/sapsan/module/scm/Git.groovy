@@ -29,16 +29,15 @@ class Git extends Module {
         [Git Information]
         Git.url=$url
         Git.branch=$branch
-        Git.scm=$scm
         """.stripIndent()
     }
 
     static void checkout() {
         Pipeline.stage("Checkout SCM") {
             Log.info(getInstance().info)
-
+            Log.info(script.scm)
             if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-                checkout scm
+                script.checkout script.scm
             } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
                 checkout([
                         $class                           : 'GitSCM',
