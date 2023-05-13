@@ -1,8 +1,4 @@
-try {
-    @Library('https://github.com/egortrue/Sapsan') _
-} catch (Exception e) {
-    @Library("sapsan@master") _
-}
+@Library("http://172.19.0.1:8081/scm/repo/admin/sapsan-test.git") _
 
 import sapsan.core.Pipeline
 import sapsan.module.scm.Git
