@@ -1,12 +1,10 @@
 package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
-import groovy.transform.InheritConstructors
 import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-@Singleton(lazy = true)
 class Git extends Module {
 
     String url
@@ -15,7 +13,7 @@ class Git extends Module {
     @Override
     @NonCPS
     void initParameters(Map parameters) {
-        Log.info(Pipeline.type.toString())
+        Log.info("hello from git")
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = parameters["url"]
             branch = parameters["branch"]
@@ -36,7 +34,7 @@ class Git extends Module {
 
     static void checkout() {
         Pipeline.stage("Checkout SCM") {
-            Log.info(getInstance().info)
+            Log.info(instance.info)
 
             if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
                 script.checkout script.scm
