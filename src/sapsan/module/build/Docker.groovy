@@ -10,11 +10,6 @@ class Docker extends Module {
 
     }
 
-    @Override
-    void getInfo() {
-
-    }
-
     static void build(String file = null) {
 
     }
