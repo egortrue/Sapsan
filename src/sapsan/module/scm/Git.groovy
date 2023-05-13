@@ -35,7 +35,7 @@ class Git extends Module {
     static void checkout() {
         Pipeline.stage("Checkout SCM") {
             Log.info(getInstance().info)
-            Log.info(script.scm)
+            Log.info(script.scm.toString())
             if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
                 script.checkout script.scm
             } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
