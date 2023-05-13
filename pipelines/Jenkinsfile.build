@@ -1,4 +1,9 @@
-@Library("sapsan@master") _
+try {
+    @Library('https://github.com/egortrue/Sapsan@master') _
+} catch (Exception e) {
+    @Library("sapsan@master") _
+}
+
 import sapsan.core.Pipeline
 import sapsan.module.scm.Git
 import sapsan.module.build.Docker
