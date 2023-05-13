@@ -8,7 +8,7 @@ import sapsan.util.Log
 
 @InheritConstructors
 class Git extends Module {
-    static Git instance = new Git()
+    @Lazy static Git instance = new Git()
 
     String url
     String branch
