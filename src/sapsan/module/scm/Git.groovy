@@ -6,6 +6,7 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
+@Singleton
 @InheritConstructors
 class Git extends Module {
 
@@ -25,7 +26,15 @@ class Git extends Module {
     }
 
     static void checkout() {
-        Log.info "hello!"
+        Log.info instance.info
+    }
+
+    String getInfo() {
+        """
+        [Git Information]
+        Git.url=$url
+        Git.branch=$branch
+        """.stripIndent()
     }
 
 //        Pipeline.stage("Checkout") {
