@@ -16,13 +16,14 @@ class Git extends Module {
     @Override
     @NonCPS
     void initParameters(Map parameters) {
+        Log.info(Pipeline.type)
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = parameters["url"]
             branch = parameters["branch"]
             assert url != null
             assert branch != null
         } else {
-            url = script.scm.userRemoteConfigs[0].url
+//            url = script.scm.userRemoteConfigs[0].url
         }
     }
 
