@@ -31,16 +31,9 @@ class Pipeline extends Context {
      */
     static void run(Script script, String node = 'linux', Closure closure) {
         Context.script = script
-        configure()
         script.node(node) {
             script.ansiColor('xterm') {
-
-                script.cleanWs()
-
-                Log.info Job.info
-                Log.info Pipeline.info
-                Log.info Configuration.properties
-
+                configure()
                 closure.call()
                 stages.each { it.call() }
             }
@@ -48,6 +41,13 @@ class Pipeline extends Context {
     }
 
     private static void configure() {
+        script.cleanWs()
+
+        Log.info Job.info
+        Log.info Pipeline.info
+        Log.info Configuration.properties
+        Log.info Configuration.parameters
+
         type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Определение задачи
