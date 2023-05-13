@@ -16,7 +16,7 @@ class Git extends Module {
     @Override
     @NonCPS
     void initParameters(Map parameters) {
-        Log.info(Pipeline.type)
+        Log.info(Pipeline.type.toString())
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = parameters["url"]
             branch = parameters["branch"]
