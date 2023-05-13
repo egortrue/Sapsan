@@ -26,7 +26,7 @@ class Git extends Module {
     }
 
     static void checkout() {
-        Log.info "hello"
+        Log.info instance.info
     }
 
     String getInfo() {
