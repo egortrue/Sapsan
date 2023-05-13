@@ -6,7 +6,7 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-@Singleton
+@Singleton(lazy = true)
 @InheritConstructors
 class Git extends Module {
 
@@ -21,6 +21,8 @@ class Git extends Module {
             branch = parameters["branch"]
             assert url != null
             assert branch != null
+        } else {
+            url = script.scm.userRemoteConfigs[0].url
         }
     }
 
@@ -35,7 +37,7 @@ class Git extends Module {
     static void checkout() {
         Pipeline.stage("Checkout SCM") {
             Log.info(getInstance().info)
-            Log.info(script.scm.userRemoteConfigs[0].url)
+
             if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
                 script.checkout script.scm
             } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
