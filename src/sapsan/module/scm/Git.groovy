@@ -6,8 +6,6 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-@Singleton
-@InheritConstructors
 class Git extends Module {
 
     String url
@@ -21,8 +19,6 @@ class Git extends Module {
             branch = parameters["branch"]
             assert url != null
             assert branch != null
-        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-
         }
     }
 
@@ -31,28 +27,26 @@ class Git extends Module {
         [Git Information]
         Git.url=$url
         Git.branch=$branch
+        Git.scm=$scm
         """.stripIndent()
     }
 
     static void checkout() {
-        Log.info(getInstance().info)
-        Log.info getProperties().findAll({ !['class'].contains(it.key) }).toString()
-//      if (!args.containsKey(property) || args[property] == null)
+        Pipeline.stage("Checkout SCM") {
+            Log.info(getInstance().info)
 
-//        Pipeline.stage("Checkout") {
-//            log "checkout repo from $instance.url"
-//            if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-//                checkout scm
-//            } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
-//                checkout([
-//                        $class                           : 'GitSCM',
-//                        branches                         : [[name: '*/master']],
-//                        doGenerateSubmoduleConfigurations: false,
-//                        extensions                       : [[$class: 'CleanCheckout']],
-//                        submoduleCfg                     : [],
-//                        userRemoteConfigs                : [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
-//                ])
-//            }
-//        }
+            if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+                checkout scm
+            } else if (Pipeline.type == Pipeline.Type.CLASSIC) {
+                checkout([
+                        $class                           : 'GitSCM',
+                        branches                         : [[name: '*/master']],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions                       : [[$class: 'CleanCheckout']],
+                        submoduleCfg                     : [],
+                        userRemoteConfigs                : [[credentialsId: '<gitCredentials>', url: '<gitRepoURL>']]
+                ])
+            }
+        }
     }
 }
