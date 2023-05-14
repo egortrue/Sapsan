@@ -3,7 +3,8 @@ package sapsan.util
 import com.cloudbees.groovy.cps.NonCPS
 import sapsan.core.Context
 
-import static groovy.json.JsonOutput.*
+import static groovy.json.JsonOutput.prettyPrint
+import static groovy.json.JsonOutput.toJson
 
 /**
  * Статический класс для вывода информации в консоль.
@@ -11,14 +12,14 @@ import static groovy.json.JsonOutput.*
 final class Log extends Context {
 
     @NonCPS
-    static void var(String name = "", def variable) {
-        def string = "<${variable.getClass().name}> " + name
+    static void var(String name = null, def variable) {
+        def string = name ?: variable.getClass().name
 
         switch (variable.getClass()) {
             case [ArrayList, LinkedHashMap, HashMap, Map]:
                 string += " " + prettyPrint(toJson(variable)); break
             default:
-                string += "=$variable"
+                string += " = $variable"
         }
 
         script.echo(Color.cyan(string))
