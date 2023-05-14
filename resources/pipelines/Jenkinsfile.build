@@ -5,7 +5,5 @@ import sapsan.module.scm.Git
 
 Pipeline.run(this, "agent") {
     Git.checkout()
-    def result = CustomBuild.execute()
-    //Scanner.scan(result)
-    Publish.jenkins(result)
+    CustomBuild.execute()
 }

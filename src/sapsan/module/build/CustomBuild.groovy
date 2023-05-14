@@ -7,10 +7,21 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
+@Singleton
 class CustomBuild extends Module {
 
     static Script buildScript
     static String buildScriptPath = ".ci/build.groovy"
+
+    @Override
+    void initProperties(Map properties) {
+        buildScript.initProperties(properties)
+    }
+
+    @Override
+    void checkProperties(Map properties) {
+        buildScript.checkProperties(properties)
+    }
 
     /**
      * Запуск кастомного скрипта для сборки проекта
@@ -30,8 +41,9 @@ class CustomBuild extends Module {
         if (buildScriptText.size() == 0 || buildScript == null)
             Log.error("No custom build found!")
 
-
+        getInstance().checkProperties(Configuration.properties["build"])
         Pipeline.stage(buildScript.getName()) {
+            getInstance().initProperties(Configuration.properties["build"])
             buildScript.call()
         }
     }
