@@ -4,6 +4,8 @@ import sapsan.module.build.CustomBuild
 import sapsan.module.scm.Git
 
 Pipeline.run(this, "agent") {
+    
     Git.checkout()
+
     CustomBuild.execute()
 }

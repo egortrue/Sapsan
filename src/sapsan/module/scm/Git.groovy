@@ -1,11 +1,11 @@
 package sapsan.module.scm
 
-import sapsan.core.Context
+
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
 @Singleton
-class Git extends Context implements Module {
+class Git extends Module {
     String url
     String branch
 

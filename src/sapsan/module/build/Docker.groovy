@@ -2,12 +2,10 @@ package sapsan.module.build
 
 import sapsan.core.Configuration
 import sapsan.core.Pipeline
-import sapsan.core.Context
 import sapsan.module.Module
-import sapsan.util.Log
 
 @Singleton
-class Docker extends Context implements Module {
+class Docker extends Module {
 
     private String name
     private String image
