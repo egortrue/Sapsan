@@ -2,23 +2,20 @@ package sapsan.core
 
 class Configuration extends Context {
 
-    @Lazy static def parameters = parse({ return parametersPath })
-    @Lazy static def properties = parse({ return propertiesPath })
-
     private static String root = "configurations"
     private static String parametersFile = "parameters.yaml"
     private static String properitesFile = "properties.yaml"
 
-    private static String getGlobalParametersPath() {
-        "$root/$parametersFile"
+    static Map getGlobalParameters() {
+        parse("$root/$parametersFile")
     }
 
-    private static String getParametersPath() {
-        "$root/${Job.name}/$parametersFile"
+    static Map getParameters() {
+        parse("$root/${Job.name}/$parametersFile")
     }
 
-    private static String getPropertiesPath() {
-        "$root/${Job.name}/$properitesFile"
+    static Map getProperties() {
+        parse("$root/${Job.name}/$properitesFile")
     }
 
     private static Map parse(String path) {
@@ -28,9 +25,9 @@ class Configuration extends Context {
     static String getInfo() {
         """
         [Configuration Information]
-        Configuration.globalParametersPath=$globalParametersPath
-        Configuration.parametersPath=$parametersPath
-        Configuration.propertiesPath=$propertiesPath
+        Configuration.globalParametersPath="$root/$parametersFile"
+        Configuration.parametersPath="$root/${Job.name}/$parametersFile"
+        Configuration.propertiesPath="$root/${Job.name}/$properitesFile"
         """.stripIndent()
     }
 
