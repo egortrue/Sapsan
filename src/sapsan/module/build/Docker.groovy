@@ -1,6 +1,6 @@
 package sapsan.module.build
 
-import sapsan.core.Configuration
+
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
@@ -11,13 +11,13 @@ class Docker extends Module {
     private String file
 
     @Override
-    void initProperties(Map properties) {
+    void initProperties() {
         image = properties["image"]
         file = properties["dockerfile"]
     }
 
     @Override
-    void checkProperties(Map properties) {
+    void checkProperties() {
         assert properties != null
         assert properties["image"] != null
         assert properties["dockerfile"] != null
@@ -25,7 +25,6 @@ class Docker extends Module {
 
     @Override
     def execute() {
-        checkProperties(Configuration.properties["docker"])
         Pipeline.stage("Build Docker") {
 
         }

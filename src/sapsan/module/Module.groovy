@@ -5,7 +5,7 @@ import sapsan.util.Log
 
 abstract class Module extends Context {
 
-    protected Map properties
+    public Map properties
 
     protected Module() {
         Log.info "Initializing module '${this.class.name}'"

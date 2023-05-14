@@ -7,12 +7,12 @@ import sapsan.module.Module
 class Python extends Module {
 
     @Override
-    void initProperties(Map properties) {
+    void initProperties() {
 
     }
 
     @Override
-    void checkProperties(Map properties) {
+    void checkProperties() {
 
     }
 
