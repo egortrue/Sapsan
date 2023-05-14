@@ -5,14 +5,15 @@ import sapsan.core.Context
 import sapsan.module.Module
 import sapsan.util.Log
 
+@Singleton
 class Docker extends Context implements Module {
 
-    static private String name
-    static private String image
-    static private String file
+    private String name
+    private String image
+    private String file
 
     @Override
-    void initProperties(def properties) {
+    void checkProperties(Object properties) {
         image = properties["image"]
         file = properties["dockerfile"]
 
@@ -21,12 +22,12 @@ class Docker extends Context implements Module {
     }
 
     static void build() {
-        Pipeline.stage("Build Docker") {
-            Pipeline.properties["docker"].each {
-                name = it.key
-                initProperties(it)
+        Pipeline.properties["docker"].each {
+            instance.checkProperties(it)
+        }
 
-            }
+        Pipeline.stage("Build Docker") {
+
         }
     }
 }
