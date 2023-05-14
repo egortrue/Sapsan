@@ -37,7 +37,7 @@ class Pipeline extends Context {
             script.ansiColor('xterm') {
 
                 Pipeline.stage("Configuration") {
-                    script.cleanWs()
+                    Context.script.cleanWs()
                     configure()
                 }
 
