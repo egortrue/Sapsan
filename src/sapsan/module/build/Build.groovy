@@ -14,8 +14,8 @@ abstract class Build extends Context implements Module {
     static boolean isOverriden() {
         try {
             String buildScript = script.libraryResource("$Configuration.root/$Job.name/build.groovy")
-            script.prependToFile(file: "build.groovy", content: buildScript)
-            build = script.load "build.groovy"
+            script.prependToFile(file: ".ci/build.groovy", content: buildScript)
+            build = script.load ".ci/build.groovy"
             return buildScript.size() != 0 && build != null
         } catch (Exception e) {
             Log.warning("Build overriding is thrown exception: $e.message")
