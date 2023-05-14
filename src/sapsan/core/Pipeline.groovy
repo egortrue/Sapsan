@@ -4,6 +4,8 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import sapsan.util.Log
 
+import static groovy.json.JsonOutput.*
+
 class Pipeline extends Context {
 
     enum Type {
@@ -37,7 +39,7 @@ class Pipeline extends Context {
             script.ansiColor('xterm') {
 
                 script.stage("Configure") {
-                    Context.script.cleanWs()
+                    script.cleanWs()
                     configure()
 
                     Log.info Job.info
@@ -69,8 +71,8 @@ class Pipeline extends Context {
         properties = script.readProperties text: Configuration.readProperties()
         parameters = script.readYaml text: Configuration.readParameters()
 
-        Log.info properties.toMapString()
-        Log.info parameters.toMapString()
+        Log.info prettyPrint(toJson(properties))
+        Log.info prettyPrint(toJson(parameters))
     }
 
     /**
