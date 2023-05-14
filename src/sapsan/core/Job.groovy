@@ -2,18 +2,18 @@ package sapsan.core
 
 class Job extends Context {
 
-    @Lazy static String branch = "${script.env.BRANCH_NAME}"
-//    @Lazy static String url = "${script.env.BUILD_URL}"
-
     /**
      *  Уникальный путь до джобы
      */
     static String getName() {
-        if (branch)
+        if (script.env.BRANCH_NAME)
             return script.env.JOB_NAME.split('/')[0..-2].join('/')
         return script.env.JOB_NAME
     }
 
+    static String getBranch() {
+        script.env.BRANCH_NAME
+    }
 
     static String getUrl() {
         script.env.BUILD_URL
