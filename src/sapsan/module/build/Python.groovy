@@ -15,7 +15,7 @@ class Python extends Context implements Module {
 
     }
 
-    static void make() {
+    static void archive() {
 
     }
 }

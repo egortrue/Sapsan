@@ -28,7 +28,16 @@ abstract class Build extends Context implements Module {
         if (!isOverriden())
             build.call()
         else {
-            
+            for (int i = 0; i < Configuration.properties.size(); ++i) {
+                switch (Configuration.properties[i].key) {
+                    case ("python"):
+                        Python.archive()
+                        break;
+                    case ("docker"):
+                        Docker.build()
+                        break;
+                }
+            }
         }
     }
 }
