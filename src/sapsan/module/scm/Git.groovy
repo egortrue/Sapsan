@@ -37,7 +37,7 @@ class Git extends Context implements Module {
     }
 
     static void checkout() {
-        instance.checkProperties(Pipeline.properties["checkout"])
+        getInstance().checkProperties(Pipeline.properties["checkout"])
         Pipeline.stage("Checkout SCM") {
 
         }
