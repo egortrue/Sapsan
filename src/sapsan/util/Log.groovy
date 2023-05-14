@@ -15,7 +15,7 @@ final class Log extends Context {
         def string = name + " [${variable.getClass().name}]"
 
         switch (variable.getClass()) {
-            case [ArrayList, LinkedHashMap, Map]:
+            case [ArrayList, LinkedHashMap, HashMap, Map]:
                 string += "\n" + prettyPrint(toJson(variable)); break
             default:
                 string += "=$variable"
