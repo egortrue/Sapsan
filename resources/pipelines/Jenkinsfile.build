@@ -5,5 +5,6 @@ import sapsan.module.scm.Git
 
 Pipeline.run(this, "agent") {
     Git.checkout()
-    Docker.build()
+    Build.execute()
+    Artifact.publish()
 }
