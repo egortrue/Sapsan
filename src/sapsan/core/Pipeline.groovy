@@ -87,20 +87,25 @@ class Pipeline extends Context {
      * @return
      */
     static Module getBuild() {
-        Log.var "Available 'build' type", Configuration.packageBuild
+        return initModule("build", [
+            // TODO: Генерировать список
+            sapsan.module.build.Custom.name,
+            sapsan.module.build.Docker.name,
+            sapsan.module.build.Python.name,
+        ])
+    }
+
+    static private Module initModule(String name, List available) {
+        Log.var "Available $name type", Configuration.packageBuild
 
         String className = Configuration.properties.find {
-            Configuration.packageBuild.contains(it.key)
+            available.contains(it.key)
         }?.key ?: "Custom"
 
         def classObject = Pipeline.class.classLoader.loadClass("sapsan.module.build.$className", true)
         Log.info("Initiated build class: $classObject.name")
 
         return classObject.getDeclaredConstructor().newInstance() as Module
-    }
-
-    static Module initModule() {
-
     }
 
     static String getInfo() {

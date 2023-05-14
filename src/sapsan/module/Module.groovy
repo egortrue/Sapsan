@@ -6,25 +6,28 @@ import sapsan.util.Log
 
 abstract class Module extends Context {
 
-    public Map properties
-
     protected Module() {
         Log.info "Initializing module '${this.class.name}'"
         checkProperties()
     }
 
     /**
+     * Определяем, откуда модуль берет свои свойства
+     */
+    protected abstract Map getProperties()
+
+    /**
      * Инициализация свойств модуля (во время выполнения шага)
      * @param properties
      */
-    abstract void initProperties()
+    protected abstract void initProperties()
 
     /**
      * Список свойств для проверки перед запуском
      * @param properties
      */
     @NonCPS
-    abstract void checkProperties()
+    protected abstract void checkProperties()
 
     /**
      * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна

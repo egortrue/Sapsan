@@ -9,6 +9,12 @@ class Git extends Module {
     String branch
 
     @Override
+    protected
+    Map getProperties() {
+        return
+    }
+
+    @Override
     void initProperties() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = properties["url"]

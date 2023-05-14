@@ -8,18 +8,16 @@ import sapsan.util.Log
 
 class Custom extends Module {
 
-    static Script checkoutScript
-    static String checkoutScriptFile = "checkout.groovy"
-    static String checkoutScriptPath = ".ci/$checkoutScriptFile"
+    Script checkoutScript
+    String checkoutScriptFile = "checkout.groovy"
+    String checkoutScriptPath = ".ci/$checkoutScriptFile"
 
     @Override
-    void initProperties() {
-        checkoutScript.initProperties(properties)
-    }
+    void initProperties() {}
 
     @Override
     void checkProperties() {
-        checkoutScript.checkProperties(properties)
+        initScript()
     }
 
     /**
@@ -28,6 +26,14 @@ class Custom extends Module {
      */
     @Override
     def execute() {
+        checkoutScript.checkProperties(Configuration.properties["build"])
+        Pipeline.stage(checkoutScript.name) {
+            checkoutScript.initProperties(Configuration.properties["build"])
+            checkoutScript.execute(properties)
+        }
+    }
+
+    private void initScript() {
         String checkoutScriptText = ""
 
         try {
@@ -42,11 +48,5 @@ class Custom extends Module {
             Log.error("No custom Checkout found!")
 
         Log.var checkoutScriptText.size()
-
-        checkProperties(Configuration.properties["build"])
-        Pipeline.stage(checkoutScript.name) {
-            initProperties(Configuration.properties["build"])
-            checkoutScript.execute(properties)
-        }
     }
 }

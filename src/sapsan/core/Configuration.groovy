@@ -7,14 +7,6 @@ class Configuration extends Context {
     private static String parametersFile = "parameters.yaml"
     private static String propertiesFile = "properties.yaml"
 
-    // Модули
-    // TODO: Генерировать список
-    static def packageBuild = [
-        sapsan.module.build.Custom.name,
-        sapsan.module.build.Docker.name,
-        sapsan.module.build.Python.name,
-    ]
-
     private static Map globalParameters
     private static Map parameters
     private static Map properties
