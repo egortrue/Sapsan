@@ -3,19 +3,9 @@ package sapsan.core
 class Job extends Context {
 
     static String getName() {
-        script.env.JOB_NAME
-    }
-
-    static String getProject() {
-        if (script.env.BRANCH_NAME) {
-            if (name.split('/').length <= 2)
-                return null
-            return name.split('/')[-3]
-        } else {
-            if (name.split('/').length <= 1)
-                return null
-            return name.split('/')[-2]
-        }
+        if (script.env.BRANCH_NAME)
+            return script.env.JOB_NAME.split('/')[0..-2]
+        return script.env.JOB_NAME
     }
 
     static String getBranch() {
@@ -34,7 +24,6 @@ class Job extends Context {
         """
         [Job Information]
         Job.name=$name
-        Job.project=$project
         Job.branch=$branch
         Job.url=$url
         Job.baseUrl=$baseUrl
