@@ -1,4 +1,9 @@
 params:
-  VERSION
-  HELLO
-  WORLD
+  DEFAULT:
+    - VERSION
+    - HELLO
+  WORLD:
+    type: ""
+    value: ""
+    description: ""
+
