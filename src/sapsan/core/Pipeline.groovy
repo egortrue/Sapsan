@@ -70,6 +70,7 @@ class Pipeline extends Context {
         parameters = script.readYaml(text: script.libraryResource(Configuration.parameters))
 
         Log.info properties.toMapString()
+        Log.info parameters.toMapString()
     }
 
     /**
