@@ -24,8 +24,9 @@ class Docker extends Module {
         assert properties["dockerfile"] != null
     }
 
-    static void build() {
-        getInstance().checkProperties(Configuration.properties["docker"])
+    @Override
+    void execute() {
+        checkProperties(Configuration.properties["docker"])
         Pipeline.stage("Build Docker") {
 
         }

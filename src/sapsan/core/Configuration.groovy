@@ -2,9 +2,13 @@ package sapsan.core
 
 class Configuration extends Context {
 
+    // Файлы конфигураций
     private static String root = "configurations"
     private static String parametersFile = "parameters.yaml"
-    private static String properitesFile = "properties.yaml"
+    private static String propertiesFile = "properties.yaml"
+
+    // Файлы модулей
+    private static String packageBuild = "sapsan.module.build"
 
     private static Map globalParameters
     private static Map parameters
@@ -24,8 +28,14 @@ class Configuration extends Context {
 
     static Map getProperties() {
         if (properties == null)
-            properties = parse("$root/${Job.name}/$properitesFile")
+            properties = parse("$root/${Job.name}/$propertiesFile")
         return properties
+    }
+
+    static Module getBuild() {
+        def classLoader = new GroovyClassLoader()
+        def packageClasses = classLoader.getPackageClassLoader(packageBuild).getClasses()
+        packageClasses.each { println it }
     }
 
     static String getInfo() {
@@ -33,7 +43,7 @@ class Configuration extends Context {
         [Configuration Information]
         Configuration.globalParametersPath="$root/$parametersFile"
         Configuration.parametersPath="$root/${Job.name}/$parametersFile"
-        Configuration.propertiesPath="$root/${Job.name}/$properitesFile"
+        Configuration.propertiesPath="$root/${Job.name}/$propertiesFile"
         """.stripIndent()
     }
 

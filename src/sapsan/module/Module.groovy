@@ -18,7 +18,7 @@ abstract class Module extends Context {
     abstract void checkProperties(Map properties)
 
     /**
-     *
+     * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна
      */
     abstract void execute()
 

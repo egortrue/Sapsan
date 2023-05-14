@@ -26,7 +26,8 @@ class Custom extends Module {
      * Запуск кастомного скрипта для сборки проекта
      * @param name название шага пайплайна
      */
-    static void execute() {
+    @Override
+    void execute() {
         String buildScriptText = ""
 
         try {
@@ -42,9 +43,9 @@ class Custom extends Module {
 
         Log.var buildScriptText.size()
 
-        getInstance().checkProperties(Configuration.properties["build"])
+        checkProperties(Configuration.properties["build"])
         Pipeline.stage(buildScript.name) {
-            getInstance().initProperties(Configuration.properties["build"])
+            initProperties(Configuration.properties["build"])
             buildScript.execute()
         }
     }

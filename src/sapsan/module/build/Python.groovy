@@ -4,7 +4,6 @@ import sapsan.core.Configuration
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
-@Singleton
 class Python extends Module {
 
     @Override
@@ -17,8 +16,8 @@ class Python extends Module {
 
     }
 
-    static void archive() {
-        getInstance().checkProperties(Configuration.properties["docker"])
+    void execute() {
+        checkProperties(Configuration.properties["docker"])
         Pipeline.stage("Archive Python") {
 
         }
