@@ -20,6 +20,7 @@ class Docker extends Context implements Module {
 
     @Override
     void checkProperties(def properties) {
+        assert properties != null
         assert properties["image"] != null
         assert properties["dockerfile"] != null
     }

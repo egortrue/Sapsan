@@ -24,6 +24,7 @@ class Git extends Context implements Module {
 
     @Override
     void checkProperties(def properties) {
+        assert properties != null
         assert properties["url"] != null
         assert properties["branch"] != null
     }
