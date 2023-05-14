@@ -1,7 +1,7 @@
 import groovy.transform.Field
 import sapsan.util.Log
 
-@Field String name = "Build Service-1"
+@Field String name = "Build<br>Service-1"
 
 void initProperties(Map properties) {
 
