@@ -11,7 +11,7 @@ abstract class Build extends Context implements Module {
         def content = script.libraryResource("$Configuration.root/$Job.name/build.groovy")
         Log.info content
         script.prependToFile(file: "build.groovy",
-                content: )
+                content: content)
         def build = script.load "build.groovy"
         script.sh "ls -al"
     }
