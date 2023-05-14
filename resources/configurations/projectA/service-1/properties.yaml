@@ -1,0 +1,7 @@
+docker:
+  project1:
+  - dockerfile: ''
+    image: ''
+  project2:
+  - dockerfile: ''
+    image: ''
