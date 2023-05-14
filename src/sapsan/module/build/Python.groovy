@@ -1,20 +1,19 @@
 package sapsan.module.build
 
 import sapsan.core.Configuration
-import sapsan.core.Context
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
 @Singleton
-class Python extends Context implements Module {
+class Python extends Module {
 
     @Override
-    void initProperties(Object properties) {
+    void initProperties(Map properties) {
 
     }
 
     @Override
-    void checkProperties(Object properties) {
+    void checkProperties(Map properties) {
 
     }
 
