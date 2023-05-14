@@ -9,7 +9,7 @@ abstract class Build extends Context implements Module {
     static void execute() {
         script.prependToFile(file: "build.groovy",
                 content: script.libraryResource("$Configuration.root/$Job.name/build.groovy"))
-        Script build = script.load "build.groovy"
+        def build = script.load "$Configuration.root/$Job.name/build.groovy"
         build()
     }
 }
