@@ -12,7 +12,7 @@ class Docker extends Context implements Module {
     static private String file
 
     @Override
-    void initProperties(Map properties) {
+    void initProperties(AbstractMap properties) {
         name = properties.key
         image = properties.value["image"]
         file = properties.value["dockerfile"]

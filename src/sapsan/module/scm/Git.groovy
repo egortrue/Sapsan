@@ -11,7 +11,7 @@ class Git extends Context implements Module {
     String branch
 
     @Override
-    void initProperties(Map properties) {
+    void initProperties(AbstractMap properties) {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = properties["url"]
             branch = properties["branch"]
