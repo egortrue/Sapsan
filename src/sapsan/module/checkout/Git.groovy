@@ -1,5 +1,7 @@
 package sapsan.module.checkout
 
+import com.cloudbees.groovy.cps.NonCPS
+import sapsan.core.Configuration
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
@@ -9,9 +11,8 @@ class Git extends Module {
     String branch
 
     @Override
-    protected
-    Map getProperties() {
-        return
+    protected Map getProperties() {
+        return Configuration.properties["Git"]
     }
 
     @Override
@@ -26,6 +27,7 @@ class Git extends Module {
     }
 
     @Override
+    @NonCPS
     void checkProperties() {
         assert properties != null
         assert properties["url"] != null
@@ -39,7 +41,7 @@ class Git extends Module {
         }
     }
 
-    void checkout(String url, String branch = 'master') {
+    private void checkout(String url, String branch = 'master') {
         checkout([$class           : 'GitSCM',
                   branches         : [[name: branch]],
                   userRemoteConfigs: [[credentialsId: 'scm-manager', url: url]]
