@@ -9,16 +9,17 @@ import sapsan.util.Log
 class Custom extends Module {
 
     static Script checkoutScript
-    static String checkoutScriptPath = ".ci/checkout.groovy"
+    static String checkoutScriptFile = "checkout.groovy"
+    static String checkoutScriptPath = ".ci/$checkoutScriptFile"
 
     @Override
-    void initProperties(Map properties) {
-        buildScript.initProperties(properties)
+    void initProperties() {
+        checkoutScript.initProperties(properties)
     }
 
     @Override
-    void checkProperties(Map properties) {
-        buildScript.checkProperties(properties)
+    void checkProperties() {
+        checkoutScript.checkProperties(properties)
     }
 
     /**
@@ -27,25 +28,25 @@ class Custom extends Module {
      */
     @Override
     def execute() {
-        String buildScriptText = ""
+        String checkoutScriptText = ""
 
         try {
-            buildScriptText = script.libraryResource("$Configuration.root/$Job.name/build.groovy")
-            script.prependToFile(file: buildScriptPath, content: buildScriptText)
-            buildScript = script.load buildScriptPath
+            checkoutScriptText = script.libraryResource("$Configuration.root/$Job.name/$checkoutScriptFile")
+            script.prependToFile(file: checkoutScriptPath, content: checkoutScriptText)
+            checkoutScript = script.load checkoutScriptPath
         } catch (Exception e) {
-            Log.error("Build overriding is thrown exception: $e.message")
+            Log.error("Checkout overriding is thrown exception: $e.message")
         }
 
-        if (buildScriptText.size() == 0 || buildScript == null)
-            Log.error("No custom build found!")
+        if (checkoutScriptText.size() == 0 || checkoutScript == null)
+            Log.error("No custom Checkout found!")
 
-        Log.var buildScriptText.size()
+        Log.var checkoutScriptText.size()
 
         checkProperties(Configuration.properties["build"])
-        Pipeline.stage(buildScript.name) {
+        Pipeline.stage(checkoutScript.name) {
             initProperties(Configuration.properties["build"])
-            buildScript.execute()
+            checkoutScript.execute(properties)
         }
     }
 }

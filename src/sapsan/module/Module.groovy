@@ -15,13 +15,13 @@ abstract class Module extends Context {
      * Инициализация свойств модуля (во время выполнения шага)
      * @param properties
      */
-    abstract void initProperties(Map properties)
+    abstract void initProperties()
 
     /**
      * Список свойств для проверки перед запуском
      * @param properties
      */
-    abstract void checkProperties(Map properties)
+    abstract void checkProperties()
 
     /**
      * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна

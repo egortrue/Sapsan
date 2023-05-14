@@ -12,12 +12,12 @@ class Custom extends Module {
     static String buildScriptPath = ".ci/build.groovy"
 
     @Override
-    void initProperties(Map properties) {
+    void initProperties() {
         buildScript.initProperties(properties)
     }
 
     @Override
-    void checkProperties(Map properties) {
+    void checkProperties() {
         buildScript.checkProperties(properties)
     }
 
@@ -38,14 +38,14 @@ class Custom extends Module {
         }
 
         if (buildScriptText.size() == 0 || buildScript == null)
-            Log.error("No custom build found!")
+            Log.error("No custom Build found!")
 
         Log.var buildScriptText.size()
 
         checkProperties(Configuration.properties["build"])
         Pipeline.stage(buildScript.name) {
             initProperties(Configuration.properties["build"])
-            buildScript.execute()
+            buildScript.execute(properties)
         }
     }
 }

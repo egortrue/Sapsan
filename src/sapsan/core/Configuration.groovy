@@ -3,7 +3,7 @@ package sapsan.core
 class Configuration extends Context {
 
     // Файлы конфигураций
-    private static String root = "configurations"
+    public static String root = "configurations"
     private static String parametersFile = "parameters.yaml"
     private static String propertiesFile = "properties.yaml"
 
