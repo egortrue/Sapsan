@@ -12,15 +12,17 @@ class Git extends Module {
 
     @Override
     @NonCPS
-    void initParameters(Map parameters) {
+    void initProperties(Map properties) {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            url = parameters["url"]
-            branch = parameters["branch"]
-            assert url != null
-            assert branch != null
-        } else {
-//            url = script.scm.userRemoteConfigs[0].url
+            url = properties["url"]
+            branch = properties["branch"]
+        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+            url = script.scm.userRemoteConfigs[0].url
+            branch = script.scm.userRemoteConfigs[0].branch
         }
+
+        assert url != null
+        assert branch != null
     }
 
     String getInfo() {
@@ -32,8 +34,9 @@ class Git extends Module {
     }
 
     static void checkout() {
+        initProperties([:])
         Pipeline.stage("Checkout SCM") {
-            
+
         }
     }
 

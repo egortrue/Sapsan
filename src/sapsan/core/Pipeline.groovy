@@ -23,7 +23,7 @@ class Pipeline extends Context {
     static Task task = Task.NOT_DEFINED
     static Map properties
     static Map parameters
-    static def stages = []
+    static ArrayList<Stage> stages = []
 
     /**
      * Запуск трубы
@@ -48,11 +48,16 @@ class Pipeline extends Context {
 
                     closure.call()
                 }
+
+                for (int i = 0; i < stages.count(); ++i) {
+                    stages[i].execute()
+                }
             }
         }
     }
 
     private static void configure() {
+        // Определение типа
         type = script.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Определение задачи
@@ -68,6 +73,7 @@ class Pipeline extends Context {
             task = Task.BUILD
         }
 
+        // Определение конфигурации
         properties = script.readProperties text: Configuration.readProperties()
         parameters = script.readYaml text: Configuration.readParameters()
     }

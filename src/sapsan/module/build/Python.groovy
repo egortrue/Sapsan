@@ -4,7 +4,7 @@ import sapsan.module.Module
 
 class Python extends Module {
     @Override
-    protected void initParameters(Map parameters) {
+    protected void initProperties(Map properties) {
 
     }
 }
