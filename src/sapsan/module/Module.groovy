@@ -4,7 +4,8 @@ import com.cloudbees.groovy.cps.NonCPS
 import sapsan.core.Context
 
 interface Module {
-    
-    void checkProperties(def properties)
+
+    void initProperties(def properties)
+    void checkProperties()
 
 }
