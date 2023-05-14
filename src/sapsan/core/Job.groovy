@@ -4,15 +4,17 @@ import com.cloudbees.groovy.cps.NonCPS
 
 class Job extends Context {
 
-    @Lazy static String namee = "${script.env.JOB_NAME}"
+    @Lazy static String name = "${script.env.JOB_NAME}"
     @Lazy static String project = "${script.env.JOB_NAME}"
     @Lazy static String branch = "${script.env.BRANCH_NAME}"
     @Lazy static String url = "${script.env.BUILD_URL}"
 
+    @NonCPS
     static String getPath() {
-        namee.split('/')[0..-1].join('/')
+        name.split('/')[0..-1].join('/')
     }
 
+    @NonCPS
     static String getBaseUrl() {
         url.split('/')[0..2].join('/')
     }
@@ -20,7 +22,7 @@ class Job extends Context {
     static String getInfo() {
         """
         [Job Information]
-        Job.name=$namee
+        Job.name=$name
         Job.name=$project
         Job.branch=$branch
         Job.path=$path
