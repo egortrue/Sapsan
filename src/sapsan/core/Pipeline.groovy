@@ -44,6 +44,7 @@ class Pipeline extends Context {
                     Log.info Pipeline.info
                     Log.info Configuration.info
                     Log.var("properties", properties)
+                    Log.var("parameters", parameters)
 
                     closure.call()
                 }

@@ -12,7 +12,7 @@ final class Log extends Context {
 
     @NonCPS
     static void var(String name, def variable) {
-        def string = "<${variable.getClass().name}]> " + name
+        def string = "<${variable.getClass().name}> " + name
 
         switch (variable.getClass()) {
             case [ArrayList, LinkedHashMap, HashMap, Map]:
