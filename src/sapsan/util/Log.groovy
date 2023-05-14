@@ -21,7 +21,7 @@ final class Log extends Context {
                 string += "=$variable"
         }
 
-        script.echo(Color.green(string))
+        script.echo(Color.cyan(string))
     }
 
     @NonCPS
