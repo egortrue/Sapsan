@@ -18,7 +18,6 @@ class Job extends Context {
         """
         [Job Information]
         Job.name=$name
-        Job.project=$project
         Job.branch=$branch
         Job.path=$path
         Job.url=$url
