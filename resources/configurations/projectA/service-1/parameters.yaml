@@ -2,7 +2,11 @@ params:
   DEFAULT:
     - VERSION
     - HELLO
-  CustomParam:
+  CUSTOM1:
+    type: ""
+    value: ""
+    description: ""
+  CUSTOM2:
     type: ""
     value: ""
     description: ""
