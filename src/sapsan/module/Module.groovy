@@ -6,6 +6,6 @@ import sapsan.core.Context
 interface Module {
 
     void initProperties(def properties)
-    void checkProperties()
+    void checkProperties(def properties)
 
 }

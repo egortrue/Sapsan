@@ -13,21 +13,20 @@ class Docker extends Context implements Module {
     private String file
 
     @Override
-    void initProperties(Object properties) {
+    void initProperties(def properties) {
         image = properties["image"]
         file = properties["dockerfile"]
     }
 
     @Override
-    void checkProperties() {
-        assert image != null
-        assert file != null
+    void checkProperties(def properties) {
+        assert properties["image"] != null
+        assert properties["dockerfile"] != null
     }
 
     static void build() {
         Pipeline.properties["docker"].each {
-            instance.initProperties(it)
-            instance.checkProperties()
+            instance.checkProperties(it)
         }
 
         Pipeline.stage("Build Docker") {

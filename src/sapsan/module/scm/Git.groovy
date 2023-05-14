@@ -6,6 +6,7 @@ import sapsan.core.Context
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
+@Singleton
 class Git extends Context implements Module {
     String url
     String branch
@@ -19,9 +20,12 @@ class Git extends Context implements Module {
             url = script.scm.userRemoteConfigs[0].url
             branch = script.scm.userRemoteConfigs[0].branch
         }
+    }
 
-        assert url != null
-        assert branch != null
+    @Override
+    void checkProperties(def properties) {
+        assert properties["url"] != null
+        assert properties["branch"] != null
     }
 
     String getInfo() {
@@ -33,6 +37,7 @@ class Git extends Context implements Module {
     }
 
     static void checkout() {
+        instance.initProperties(Pipeline.properties["checkout"])
         Pipeline.stage("Checkout SCM") {
 
         }
