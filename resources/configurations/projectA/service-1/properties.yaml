@@ -5,3 +5,7 @@ docker:
   project2:
   - dockerfile: ''
     image: ''
+team:
+  email: ''
+  key: ''
+  name: ''
