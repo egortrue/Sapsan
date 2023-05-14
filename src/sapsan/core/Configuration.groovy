@@ -3,22 +3,22 @@ package sapsan.core
 class Configuration extends Context {
 
     static String root = "configurations"
-    @Lazy static String properties = "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.properties"
-    @Lazy static String parameters = "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.yml"
+    @Lazy static String propertiesFile = "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.properties"
+    @Lazy static String parametersFile = "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.yml"
 
     static String readProperties() {
-        script.libraryResource properties
+        script.libraryResource propertiesFile
     }
     
     static String readParameters() {
-        script.libraryResource parameters
+        script.libraryResource parametersFile
     }
 
     static String getInfo() {
         """
         [Configuration Information]
-        Configuration.properties=$properties
-        Configuration.parameters=$parameters
+        Configuration.propertiesFile=$propertiesFile
+        Configuration.parametersFile=$parametersFile
         """.stripIndent()
     }
 
