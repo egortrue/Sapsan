@@ -2,8 +2,8 @@ package sapsan.core
 
 class Configuration extends Context {
 
-    @Lazy static def parameters = parse(parametersPath)
-    @Lazy static def properties = parse(propertiesPath)
+    @Lazy static def parameters = { return parse(parametersPath) }
+    @Lazy static def properties = { return parse(propertiesPath) }
 
     private static String root = "configurations"
     private static String parametersFile = "parameters.yaml"
