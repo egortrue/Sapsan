@@ -5,11 +5,11 @@ class Configuration extends Context {
     static String root = "configurations"
 
     static String getPropertiesFile() {
-        "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.properties"
+        "$root/${Job.name}/properties.yaml"
     }
 
     static String getParametersFile() {
-        "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.yml"
+        "$root/${Job.name}/parameters.yaml"
     }
 
     static String readProperties() {

@@ -34,7 +34,7 @@ class Git extends Module {
     }
 
     static void checkout() {
-        initProperties([:])
+        initProperties(pipeline)
         Pipeline.stage("Checkout SCM") {
 
         }

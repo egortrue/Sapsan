@@ -2,6 +2,7 @@ package sapsan.module.build
 
 import sapsan.core.Pipeline
 import sapsan.module.Module
+import sapsan.util.Log
 
 class Docker extends Module {
 
@@ -18,9 +19,7 @@ class Docker extends Module {
     }
 
     static void build() {
-        initProperties(Pipeline.properties)
         Pipeline.stage("Build Docker") {
-
         }
     }
 }
