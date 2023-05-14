@@ -19,6 +19,7 @@ class Job extends Context {
         url.split('/')[0..2].join('/')
     }
 
+    @NonCPS
     static String getInfo() {
         """
         [Job Information]
