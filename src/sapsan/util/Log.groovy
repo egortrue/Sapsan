@@ -11,7 +11,7 @@ import static groovy.json.JsonOutput.*
 final class Log extends Context {
 
     @NonCPS
-    static void var(String name, Object object) {
+    static void var(String name, Map object) {
         script.echo(Color.green(name + "\n" + prettyPrint(toJson(object))))
     }
 
