@@ -2,16 +2,15 @@ package sapsan.module.scm
 
 import com.cloudbees.groovy.cps.NonCPS
 import groovy.transform.InheritConstructors
+import sapsan.core.Context
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
-@InheritConstructors
-class Git extends Module {
+class Git extends Context implements Module {
     String url
     String branch
 
     @Override
-    @NonCPS
     void initProperties(Map properties) {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = properties["url"]
