@@ -4,7 +4,7 @@ class Job extends Context {
 
     static String getName() {
         if (script.env.BRANCH_NAME)
-            return script.env.JOB_NAME.split('/')[0..-2]
+            return script.env.JOB_NAME.split('/')[0..-2].join('/')
         return script.env.JOB_NAME
     }
 
