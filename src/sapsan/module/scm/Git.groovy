@@ -10,7 +10,7 @@ class Git extends Context implements Module {
     String branch
 
     @Override
-    void initProperties(def properties) {
+    void initProperties(Map properties) {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = properties["url"]
             branch = properties["branch"]
@@ -21,7 +21,7 @@ class Git extends Context implements Module {
     }
 
     @Override
-    void checkProperties(def properties) {
+    void checkProperties(Map properties) {
         assert properties != null
         assert properties["url"] != null
         assert properties["branch"] != null
