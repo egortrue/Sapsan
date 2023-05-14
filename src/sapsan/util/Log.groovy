@@ -11,8 +11,17 @@ import static groovy.json.JsonOutput.*
 final class Log extends Context {
 
     @NonCPS
-    static void var(String name, Map object) {
-        script.echo(Color.green(name + " \n" + prettyPrint(toJson(object))))
+    static void var(String name, def variable) {
+        def string = name
+
+        switch (variable.getClass()) {
+            case [ArrayList, LinkedHashMap]:
+                string += "\n" + prettyPrint(toJson(variable)); break;
+            default:
+                string += "=$variable"
+        }
+
+        script.echo(Color.green(string))
     }
 
     @NonCPS
