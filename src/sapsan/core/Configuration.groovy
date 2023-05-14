@@ -1,6 +1,7 @@
 package sapsan.core
 
 import sapsan.module.Module
+import sapsan.util.Log
 
 class Configuration extends Context {
 
@@ -42,6 +43,8 @@ class Configuration extends Context {
     static Module getBuild() {
         String className = properties.find { packageBuild.contains(it.key) }?.key ?: "Custom"
         def classObject = Configuration.class.classLoader.loadClass("sapsan.module.build.$className", true)
+        Log.info("Initiated build class: $classObject.name")
+
         return classObject.getDeclaredConstructor().newInstance() as Module
     }
 
