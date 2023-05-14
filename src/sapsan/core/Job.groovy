@@ -7,7 +7,15 @@ class Job extends Context {
     }
 
     static String getProject() {
-        script.env.BRANCH_NAME ? name.split('/')[0..-3] : name.split('/')[0..-2]
+        if (script.env.BRANCH_NAME) {
+            if (name.split('/').length <= 2)
+                return null
+            return name.split('/')[-3]
+        } else {
+            if (name.split('/').length <= 1)
+                return null
+            return name.split('/')[-2]
+        }
     }
 
     static String getBranch() {
