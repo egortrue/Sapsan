@@ -1,7 +1,5 @@
 @Library("sapsan@master") _
 import sapsan.core.Pipeline
-import sapsan.module.scm.Git
 
-Pipeline.run(this, "docker") {
-    new Git().checkout()
+Pipeline.run(this) {
 }
