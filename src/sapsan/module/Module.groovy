@@ -5,6 +5,12 @@ import sapsan.core.Context
 
 abstract class Module extends Context {
 
+    protected Map properties
+
+    protected Module() {
+
+    }
+
     /**
      * Инициализация свойств модуля (во время выполнения шага)
      * @param properties

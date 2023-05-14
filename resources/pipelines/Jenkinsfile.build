@@ -9,5 +9,5 @@ Pipeline.run(this, "agent") {
     Module checkout = new Git()
 
     checkout.call()
-    Pipeline.build.call()
+    Pipeline.build()
 }
