@@ -28,14 +28,7 @@ abstract class Build extends Context implements Module {
         if (!isOverriden())
             build.call()
         else {
-            Pipeline.properties.each {
-                switch (it.key) {
-                    case ("python"):
-                        Python.make()
-                    case ("docker"):
-                        Docker.build()
-                }
-            }
+//            Configuration.parameters.
         }
     }
 }

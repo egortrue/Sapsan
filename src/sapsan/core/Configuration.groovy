@@ -6,6 +6,7 @@ class Configuration extends Context {
     static String parametersFile = "parameters.yaml"
     static String properitesFile = "properties.yaml"
 
+    @Lazy static String project = "$root/${Job.name}"
     @Lazy static Map parameters = parse(parametersPath)
     @Lazy static Map properties = parse(propertiesPath)
 
