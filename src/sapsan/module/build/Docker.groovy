@@ -26,9 +26,9 @@ class Docker extends Context implements Module {
     }
 
     static void build() {
-        Pipeline.properties["docker"].each {
-            getInstance().checkProperties(it)
-        }
+//        Pipeline.properties["docker"].each {
+//            getInstance().checkProperties(it)
+//        }
 
         Pipeline.stage("Build Docker") {
 
