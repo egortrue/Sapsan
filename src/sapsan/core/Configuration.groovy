@@ -6,20 +6,26 @@ class Configuration extends Context {
     private static String parametersFile = "parameters.yaml"
     private static String properitesFile = "properties.yaml"
 
+    private static Map globalParameters
+    private static Map parameters
+    private static Map properties
+
     static Map getGlobalParameters() {
-        parse("$root/$parametersFile")
+        if (globalParameters == null)
+            globalParameters = parse("$root/$parametersFile")
+        return globalParameters
     }
 
     static Map getParameters() {
-        parse("$root/${Job.name}/$parametersFile")
+        if (parameters == null)
+            parameters = parse("$root/${Job.name}/$parametersFile")
+        return parameters
     }
 
     static Map getProperties() {
-        parse("$root/${Job.name}/$properitesFile")
-    }
-
-    private static Map parse(String path) {
-        script.readYaml(text: script.libraryResource(path))
+        if (properties == null)
+            properties = parse("$root/${Job.name}/$properitesFile")
+        return properties
     }
 
     static String getInfo() {
@@ -31,4 +37,7 @@ class Configuration extends Context {
         """.stripIndent()
     }
 
+    private static Map parse(String path) {
+        script.readYaml(text: script.libraryResource(path))
+    }
 }

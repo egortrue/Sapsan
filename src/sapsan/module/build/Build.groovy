@@ -28,8 +28,8 @@ abstract class Build extends Context implements Module {
         if (!isOverriden())
             build.call()
         else {
-            for (int i = 0; i < Configuration.properties.size(); ++i) {
-                switch (Configuration.properties[i].key) {
+            Configuration.properties.each {
+                switch (it.key) {
                     case ("python"):
                         Python.archive()
                         break;
