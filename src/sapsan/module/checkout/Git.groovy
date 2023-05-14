@@ -26,15 +26,8 @@ class Git extends Module {
         assert properties["branch"] != null
     }
 
-    String getInfo() {
-        """
-        [Git Information]
-        Git.url=$url
-        Git.branch=$branch
-        """.stripIndent()
-    }
-
-    static void execute() {
+    @Override
+    void execute() {
         Pipeline.stage("Checkout SCM") {
             script.sh("ls -al")
         }
