@@ -6,6 +6,10 @@ class Job extends Context {
         script.env.JOB_NAME
     }
 
+    static String getProject() {
+        script.env.JOB_NAME
+    }
+
     static String getBranch() {
         script.env.BRANCH_NAME
     }
