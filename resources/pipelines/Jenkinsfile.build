@@ -5,7 +5,7 @@ import sapsan.module.Module
 import sapsan.module.checkout.Git
 
 Pipeline.run(this, "agent") {
-    Module checkout = Git
+    Module checkout = Git as sapsan.module.Module
     Module build = Configuration.getBuild()
 
     checkout.execute()
