@@ -1,9 +1,9 @@
 docker:
   project1:
-  - dockerfile: ''
+    dockerfile: ''
     image: ''
   project2:
-  - dockerfile: ''
+    dockerfile: ''
     image: ''
 team:
   email: ''
