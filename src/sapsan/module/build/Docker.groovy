@@ -1,5 +1,6 @@
 package sapsan.module.build
 
+import sapsan.core.Configuration
 import sapsan.core.Pipeline
 import sapsan.core.Context
 import sapsan.module.Module
@@ -26,10 +27,7 @@ class Docker extends Context implements Module {
     }
 
     static void build() {
-//        Pipeline.properties["docker"].each {
-//            getInstance().checkProperties(it)
-//        }
-
+        instance.checkProperties(Configuration.properties["docker"])
         Pipeline.stage("Build Docker") {
 
         }
