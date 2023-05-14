@@ -2,6 +2,6 @@
 import sapsan.core.Pipeline
 import sapsan.module.scm.Git
 
-Pipeline.run(this, "docker") {
+Pipeline.run(this, "agent") {
     Git.checkout()
 }
