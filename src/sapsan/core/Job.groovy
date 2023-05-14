@@ -16,7 +16,7 @@ class Job extends Context {
 
 
     static String getUrl() {
-
+        script.env.BUILD_URL
     }
 
     static String getBaseUrl() {
