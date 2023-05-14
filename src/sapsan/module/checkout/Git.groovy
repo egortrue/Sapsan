@@ -9,7 +9,7 @@ class Git extends Module {
     String branch
 
     @Override
-    void initProperties(Map properties) {
+    void initProperties() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = properties["url"]
             branch = properties["branch"]
@@ -20,14 +20,14 @@ class Git extends Module {
     }
 
     @Override
-    void checkProperties(Map properties) {
+    void checkProperties() {
         assert properties != null
         assert properties["url"] != null
         assert properties["branch"] != null
     }
 
     @Override
-    void execute() {
+    def execute() {
         Pipeline.stage("Checkout SCM") {
             script.sh("ls -al")
         }

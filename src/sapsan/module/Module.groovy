@@ -1,14 +1,15 @@
 package sapsan.module
 
-
 import sapsan.core.Context
+import sapsan.util.Log
 
 abstract class Module extends Context {
 
     protected Map properties
 
     protected Module() {
-
+        Log.info "Initializing module '${this.class.name}'"
+        checkProperties()
     }
 
     /**
