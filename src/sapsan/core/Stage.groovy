@@ -25,7 +25,9 @@ class Stage extends Context {
     void execute() {
         status = Status.STARTED
         try {
-            script.stage(name) { steps(owner: this) }
+            script.stage(name) {
+                steps()
+            }
             status = Status.SUCCESS
         } catch (Exception exception) {
             Log.error exception.message
