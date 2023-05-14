@@ -6,7 +6,6 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
 
-@Singleton
 class Custom extends Module {
 
     static Script buildScript

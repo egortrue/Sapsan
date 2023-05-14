@@ -4,7 +4,6 @@ import sapsan.core.Configuration
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
-@Singleton
 class Docker extends Module {
 
     private String name

@@ -1,11 +1,10 @@
 package sapsan.module.checkout
 
-
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
-@Singleton
 class Git extends Module {
+
     String url
     String branch
 
@@ -35,7 +34,7 @@ class Git extends Module {
         """.stripIndent()
     }
 
-    static void checkout() {
+    static void execute() {
         Pipeline.stage("Checkout SCM") {
             script.sh("ls -al")
         }
