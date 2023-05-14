@@ -12,7 +12,7 @@ final class Log extends Context {
 
     @NonCPS
     static void var(String name, Map object) {
-        script.echo(Color.green(name + "\n" + prettyPrint(toJson(object))))
+        script.echo(Color.green(name + " \n" + prettyPrint(toJson(object))))
     }
 
     @NonCPS
