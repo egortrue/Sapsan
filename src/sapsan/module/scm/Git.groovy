@@ -37,7 +37,7 @@ class Git extends Context implements Module {
 
     static void checkout() {
         Pipeline.stage("Checkout SCM") {
-
+            script.sh("ls -al")
         }
     }
 
