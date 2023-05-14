@@ -1,10 +1,11 @@
 @Library("sapsan@master") _
 import sapsan.core.Pipeline
+import sapsan.module.build.Build
 import sapsan.module.build.Docker
 import sapsan.module.scm.Git
 
 Pipeline.run(this, "agent") {
     Git.checkout()
     Build.execute()
-    Artifact.publish()
+//    Artifact.publish()
 }
