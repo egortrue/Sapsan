@@ -1,7 +1,6 @@
 package sapsan.module.build
 
 import sapsan.core.Configuration
-import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
 import sapsan.module.Module
@@ -42,7 +41,7 @@ class CustomBuild extends Module {
             Log.error("No custom build found!")
 
         getInstance().checkProperties(Configuration.properties["build"])
-        Pipeline.stage(buildScript.getName()) {
+        Pipeline.stage(buildScript.name) {
             getInstance().initProperties(Configuration.properties["build"])
             buildScript.call()
         }
