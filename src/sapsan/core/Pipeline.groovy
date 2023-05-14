@@ -39,10 +39,8 @@ class Pipeline extends Context {
                 Pipeline.stage("Init") {
                     script.cleanWs()
                     configure()
-                    Log.info Job.name
-
-
-//                    Log.info Job.info
+                    
+                    Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Configuration.info
                     Log.info properties.toMapString()
