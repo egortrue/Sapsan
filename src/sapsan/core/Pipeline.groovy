@@ -43,6 +43,7 @@ class Pipeline extends Context {
                     Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Configuration.info
+                    Log.info properties.toMapString()
 
                     closure.call()
                 }
@@ -71,7 +72,7 @@ class Pipeline extends Context {
         }
 
         properties = script.readProperties(text: script.libraryResource(Configuration.properties))
-        parameters = script.readYaml(text: script.libraryResource(Configuration.parameters))
+//        parameters = script.readYaml(text: script.libraryResource(Configuration.parameters))
     }
 
     /**
