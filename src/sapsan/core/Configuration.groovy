@@ -39,7 +39,7 @@ class Configuration extends Context {
 
     static Module getBuild() {
         String className = properties.find { packageBuild.contains(it.key) }?.key ?: "Custom"
-        return this.class.classLoader.loadClass("sapsan.module.build.$className", true).getDeclaredConstructor().newInstance() as Module
+        return Configuration.class.classLoader.loadClass("sapsan.module.build.$className", true).getDeclaredConstructor().newInstance() as Module
     }
 
     static String getInfo() {
