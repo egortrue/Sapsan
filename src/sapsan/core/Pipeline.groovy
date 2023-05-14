@@ -39,15 +39,13 @@ class Pipeline extends Context {
                 script.stage("Configure") {
                     Context.script.cleanWs()
                     configure()
+
+                    Log.info Job.info
+                    Log.info Pipeline.info
+                    Log.info Configuration.info
+
+                    closure.call()
                 }
-
-
-                Log.info Pipeline.info
-                Log.info Configuration.info
-
-                Log.info [:].toMapString()
-
-                closure.call()
             }
         }
     }
