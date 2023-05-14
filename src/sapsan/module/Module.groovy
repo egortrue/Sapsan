@@ -6,6 +6,6 @@ import sapsan.core.Context
 interface Module {
 
     @NonCPS
-    void initProperties(AbstractMap properties)
+    void initProperties(def properties)
 
 }

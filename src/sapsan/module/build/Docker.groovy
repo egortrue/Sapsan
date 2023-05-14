@@ -12,12 +12,10 @@ class Docker extends Context implements Module {
     static private String file
 
     @Override
-    void initProperties(AbstractMap properties) {
-        name = properties.key
-        image = properties.value["image"]
-        file = properties.value["dockerfile"]
+    void initProperties(def properties) {
+        image = properties["image"]
+        file = properties["dockerfile"]
 
-        assert name != null
         assert image != null
         assert file != null
     }
@@ -25,7 +23,7 @@ class Docker extends Context implements Module {
     static void build() {
         Pipeline.stage("Build Docker") {
             Pipeline.properties["docker"].each {
-                Log.info it.class.name
+                name = it.key
                 initProperties(it)
 
             }
