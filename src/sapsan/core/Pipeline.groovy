@@ -85,7 +85,10 @@ class Pipeline extends Context {
     static Module getBuild() {
         Log.var Configuration.packageBuild
 
-        String className = properties.find { Configuration.packageBuild.contains(it.key) }?.key ?: "Custom"
+        String className = properties.find {
+            Log.info("$it.key")
+            Configuration.packageBuild.contains(it.key)
+        }?.key ?: "Custom"
         def classObject = Pipeline.class.classLoader.loadClass("sapsan.module.build.$className", true)
         Log.info("Initiated build class: $classObject.name")
 
