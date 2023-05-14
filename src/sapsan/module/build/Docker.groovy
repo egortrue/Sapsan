@@ -20,6 +20,9 @@ class Docker extends Module {
 
     static void build() {
         Pipeline.stage("Build Docker") {
+            Pipeline.properties["docker"].each {
+                Log.info it.key
+            }
         }
     }
 }
