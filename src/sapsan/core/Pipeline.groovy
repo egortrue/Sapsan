@@ -36,16 +36,13 @@ class Pipeline extends Context {
         script.node(node) {
             script.ansiColor('xterm') {
 
-                Pipeline.stage("Init") {
-                    script.cleanWs()
-                    configure()
+                script.cleanWs()
+                configure()
 
-                    Log.info Pipeline.info
-                    Log.info Configuration.info
-                    
-                    Log.info properties.toMapString()
+                Log.info Pipeline.info
+                Log.info Configuration.info
 
-                }
+                Log.info properties.toMapString()
 
                 closure.call()
             }
