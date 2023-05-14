@@ -4,8 +4,6 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import sapsan.util.Log
 
-import static groovy.json.JsonOutput.*
-
 class Pipeline extends Context {
 
     enum Type {
@@ -45,6 +43,8 @@ class Pipeline extends Context {
                     Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Configuration.info
+                    Log.var name: "properties",
+                            object: properties
 
                     closure.call()
                 }
@@ -70,9 +70,6 @@ class Pipeline extends Context {
 
         properties = script.readProperties text: Configuration.readProperties()
         parameters = script.readYaml text: Configuration.readParameters()
-
-        Log.info prettyPrint(toJson(properties))
-        Log.info prettyPrint(toJson(parameters))
     }
 
     /**

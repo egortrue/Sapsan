@@ -3,10 +3,17 @@ package sapsan.util
 import com.cloudbees.groovy.cps.NonCPS
 import sapsan.core.Context
 
+import static groovy.json.JsonOutput.*
+
 /**
  * Статический класс для вывода информации в консоль.
  */
 final class Log extends Context {
+
+    @NonCPS
+    static void var(String name, Object object) {
+        script.echo(Color.green(name + "\n" + prettyPrint(toJson(object))))
+    }
 
     @NonCPS
     static void info(String text) {
