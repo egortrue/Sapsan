@@ -1,5 +1,7 @@
 package sapsan.core
 
+import com.cloudbees.groovy.cps.NonCPS
+
 class Job extends Context {
 
     @Lazy static String name = script.env.JOB_NAME
@@ -14,6 +16,7 @@ class Job extends Context {
         url.split('/')[0..2].join('/')
     }
 
+    @NonCPS
     static String getInfo() {
         """
         [Job Information]
