@@ -3,7 +3,7 @@ package sapsan.core
 class Job extends Context {
 
     @Lazy static String branch = "${script.env.BRANCH_NAME}"
-    @Lazy static String url = "${script.env.BUILD_URL}"
+//    @Lazy static String url = "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.yml"
 
     /**
      *  Уникальный путь до джобы
@@ -13,7 +13,11 @@ class Job extends Context {
             return script.env.JOB_NAME.split('/')[0..-2].join('/')
         return script.env.JOB_NAME
     }
-    
+
+
+    static String getUrl() {
+
+    }
 
     static String getBaseUrl() {
         url.split('/')[0..2].join('/')
