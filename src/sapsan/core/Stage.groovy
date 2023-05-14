@@ -22,7 +22,7 @@ class Stage extends Context {
         this.steps = steps
     }
 
-    void call() {
+    void execute() {
         setStatus(Status.STARTED)
         try {
             script.stage(name) {
