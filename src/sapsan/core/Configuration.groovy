@@ -38,7 +38,7 @@ class Configuration extends Context {
     }
 
     static Module getBuild() {
-        String className = properties.find { packageBuild.contains(it.key) }.key ?: "Custom"
+        String className = properties.find { packageBuild.contains(it.key) }?.key ?: "Custom"
         return this.class.classLoader.loadClass("sapsan.module.build.$className").getDeclaredConstructor().newInstance() as Module
     }
 
