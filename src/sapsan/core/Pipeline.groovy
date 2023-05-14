@@ -42,7 +42,7 @@ class Pipeline extends Context {
                 Log.info Pipeline.info
                 Log.info Configuration.info
 
-                Log.info properties.toMapString()
+                Log.info [:].toMapString()
 
                 closure.call()
             }
