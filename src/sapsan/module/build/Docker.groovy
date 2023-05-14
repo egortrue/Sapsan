@@ -14,13 +14,13 @@ class Docker extends Context implements Module {
     private String file
 
     @Override
-    void initProperties(def properties) {
+    void initProperties(Map properties) {
         image = properties["image"]
         file = properties["dockerfile"]
     }
 
     @Override
-    void checkProperties(def properties) {
+    void checkProperties(Map properties) {
         assert properties != null
         assert properties["image"] != null
         assert properties["dockerfile"] != null

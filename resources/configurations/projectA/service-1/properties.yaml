@@ -1,8 +1,8 @@
-docker:
-  image: ''
-  dockerfile: ''
-  compose: ''
 team:
   email: ''
   key: ''
   name: ''
+docker:
+  image: ''
+  dockerfile: ''
+  compose: ''
