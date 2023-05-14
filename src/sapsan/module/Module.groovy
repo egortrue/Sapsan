@@ -1,6 +1,6 @@
 package sapsan.module
 
-import com.cloudbees.groovy.cps.NonCPS
+
 import sapsan.core.Context
 
 abstract class Module extends Context {
@@ -16,5 +16,10 @@ abstract class Module extends Context {
      * @param properties
      */
     abstract void checkProperties(Map properties)
+
+    /**
+     *
+     */
+    abstract void execute()
 
 }

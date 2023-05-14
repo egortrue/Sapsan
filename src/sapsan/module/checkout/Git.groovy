@@ -1,4 +1,4 @@
-package sapsan.module.scm
+package sapsan.module.checkout
 
 
 import sapsan.core.Pipeline

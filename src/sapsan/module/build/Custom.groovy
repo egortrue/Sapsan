@@ -7,7 +7,7 @@ import sapsan.module.Module
 import sapsan.util.Log
 
 @Singleton
-class CustomBuild extends Module {
+class Custom extends Module {
 
     static Script buildScript
     static String buildScriptPath = ".ci/build.groovy"
@@ -39,6 +39,8 @@ class CustomBuild extends Module {
 
         if (buildScriptText.size() == 0 || buildScript == null)
             Log.error("No custom build found!")
+
+        Log.var buildScriptText.size()
 
         getInstance().checkProperties(Configuration.properties["build"])
         Pipeline.stage(buildScript.name) {

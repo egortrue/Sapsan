@@ -1,11 +1,14 @@
 @Library("sapsan@master") _
+
 import sapsan.core.Pipeline
-import sapsan.module.build.CustomBuild
-import sapsan.module.scm.Git
+import sapsan.module.Module
 
 Pipeline.run(this, "agent") {
-    
-    Git.checkout()
+    Module checkout = ""
+    Module build = ""
+    Module publish = ""
 
-    CustomBuild.execute()
+    checkout.execute()
+    build.execute()
+    publish.execute()
 }
