@@ -2,6 +2,14 @@ package sapsan.core
 
 class Job extends Context {
 
+    static String root = "configurations"
+    @Lazy static String properties = "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.properties"
+    @Lazy static String parameters = "$root/${Job.name}/${Pipeline.task.toString().toLowerCase()}.yml"
+
+
+    /**
+     *  Уникальный путь до джобы
+     */
     static String getName() {
         if (script.env.BRANCH_NAME)
             return script.env.JOB_NAME.split('/')[0..-2].join('/')
