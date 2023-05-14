@@ -85,7 +85,7 @@ class Pipeline extends Context {
     static Module getBuild() {
         Log.var Configuration.packageBuild
 
-        String className = properties.find {
+        String className = Configuration.properties.find {
             Log.info("$it.key")
             Configuration.packageBuild.contains(it.key)
         }?.key ?: "Custom"
