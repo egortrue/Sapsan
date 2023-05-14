@@ -8,8 +8,10 @@ import sapsan.util.Log
 
 abstract class Build extends Context implements Module {
     static void execute() {
+        def content = script.libraryResource("$Configuration.root/$Job.name/build.groovy")
+        Log.info content
         script.prependToFile(file: "build.groovy",
-                content: script.libraryResource("$Configuration.root/$Job.name/build.groovy"))
+                content: )
         def build = script.load "build.groovy"
         script.sh "ls -al"
     }
