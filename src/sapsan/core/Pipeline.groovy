@@ -21,8 +21,6 @@ class Pipeline extends Context {
 
     static Type type = Type.NOT_DEFINED
     static Task task = Task.NOT_DEFINED
-    static Map properties
-    static Map parameters
     static ArrayList<Stage> stages = []
 
     /**
@@ -43,8 +41,8 @@ class Pipeline extends Context {
                     Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Configuration.info
-                    Log.var("properties", properties)
-                    Log.var("parameters", parameters)
+                    Log.var("properties", Configuration.properties)
+                    Log.var("parameters", Configuration.parameters)
 
                     closure.call()
                 }
@@ -72,10 +70,6 @@ class Pipeline extends Context {
         } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
         }
-
-        // Определение конфигурации
-        properties = script.readYaml text: Configuration.readProperties()
-        parameters = script.readYaml text: Configuration.readParameters()
     }
 
     /**

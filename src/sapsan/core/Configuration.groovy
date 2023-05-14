@@ -3,28 +3,34 @@ package sapsan.core
 class Configuration extends Context {
 
     static String root = "configurations"
+    static String parametersFile = "parameters.yaml"
+    static String properitesFile = "properties.yaml"
 
-    static String getPropertiesFile() {
-        "$root/${Job.name}/properties.yaml"
+    @Lazy static Map parameters = parse(parametersPath)
+    @Lazy static Map properties = parse(propertiesPath)
+
+    static String getGlobalParametersPath() {
+        "$root/$parametersFile"
     }
 
-    static String getParametersFile() {
-        "$root/${Job.name}/parameters.yaml"
+    static String getParametersPath() {
+        "$root/${Job.name}/$parametersFile"
     }
 
-    static String readProperties() {
-        script.libraryResource propertiesFile
+    static String getPropertiesPath() {
+        "$root/${Job.name}/$properitesFile"
     }
 
-    static String readParameters() {
-        script.libraryResource parametersFile
+    static Map parse(String path) {
+        script.readYaml(text: script.libraryResource(path))
     }
 
     static String getInfo() {
         """
         [Configuration Information]
-        Configuration.propertiesFile=$propertiesFile
-        Configuration.parametersFile=$parametersFile
+        Configuration.globalParametersPath=$globalParametersPath
+        Configuration.parametersPath=$parametersPath
+        Configuration.propertiesPath=$propertiesPath
         """.stripIndent()
     }
 

@@ -1,7 +1,5 @@
 package sapsan.module.scm
 
-import com.cloudbees.groovy.cps.NonCPS
-import groovy.transform.InheritConstructors
 import sapsan.core.Context
 import sapsan.core.Pipeline
 import sapsan.module.Module
