@@ -32,7 +32,9 @@ class Git extends Module {
     }
 
     static void checkout() {
-        script.checkout script.scm
+        Pipeline.stage("Checkout SCM") {
+            
+        }
     }
 
     void checkout(String url, String branch = 'master') {
