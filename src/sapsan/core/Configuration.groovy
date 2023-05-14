@@ -7,8 +7,13 @@ class Configuration extends Context {
     private static String parametersFile = "parameters.yaml"
     private static String propertiesFile = "properties.yaml"
 
-    // Файлы модулей
-    private static String packageBuild = "sapsan.module.build"
+    // Модули
+    // TODO: Генерировать список
+    private static def packageBuild = [
+        sapsan.module.build.Custom.name,
+        sapsan.module.build.Docker.name,
+        sapsan.module.build.Python.name,
+    ]
 
     private static Map globalParameters
     private static Map parameters
@@ -33,9 +38,8 @@ class Configuration extends Context {
     }
 
     static Module getBuild() {
-        def classLoader = new GroovyClassLoader()
-        def packageClasses = classLoader.getPackageClassLoader(packageBuild).getClasses()
-        packageClasses.each { println it }
+        String className = properties.find { packageBuild.contains(it.key) }.key ?: "Custom"
+        return this.class.classLoader.loadClass("sapsan.module.build.$className").getDeclaredConstructor().newInstance() as Module
     }
 
     static String getInfo() {
