@@ -27,7 +27,7 @@ class Git extends Module {
     }
 
     @Override
-    void execute() {
+    void call() {
         Pipeline.stage("Checkout SCM") {
             script.sh("ls -al")
         }

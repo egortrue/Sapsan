@@ -8,6 +8,6 @@ Pipeline.run(this, "agent") {
     Module checkout = new Git()
     Module build = Configuration.getBuild()
 
-    checkout.execute()
+    checkout.call()
     Pipeline.build()
 }

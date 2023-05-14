@@ -16,7 +16,7 @@ class Python extends Module {
 
     }
 
-    void execute() {
+    void call() {
         checkProperties(Configuration.properties["docker"])
         Pipeline.stage("Archive Python") {
 
