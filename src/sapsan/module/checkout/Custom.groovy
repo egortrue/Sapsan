@@ -1,7 +1,51 @@
 package sapsan.module.checkout
 
-class Custom {
-    static void execute() {
+import sapsan.core.Configuration
+import sapsan.core.Job
+import sapsan.core.Pipeline
+import sapsan.module.Module
+import sapsan.util.Log
 
+class Custom extends Module {
+
+    static Script checkoutScript
+    static String checkoutScriptPath = ".ci/checkout.groovy"
+
+    @Override
+    void initProperties(Map properties) {
+        buildScript.initProperties(properties)
+    }
+
+    @Override
+    void checkProperties(Map properties) {
+        buildScript.checkProperties(properties)
+    }
+
+    /**
+     * Запуск кастомного скрипта для сборки проекта
+     * @param name название шага пайплайна
+     */
+    @Override
+    def execute() {
+        String buildScriptText = ""
+
+        try {
+            buildScriptText = script.libraryResource("$Configuration.root/$Job.name/build.groovy")
+            script.prependToFile(file: buildScriptPath, content: buildScriptText)
+            buildScript = script.load buildScriptPath
+        } catch (Exception e) {
+            Log.error("Build overriding is thrown exception: $e.message")
+        }
+
+        if (buildScriptText.size() == 0 || buildScript == null)
+            Log.error("No custom build found!")
+
+        Log.var buildScriptText.size()
+
+        checkProperties(Configuration.properties["build"])
+        Pipeline.stage(buildScript.name) {
+            initProperties(Configuration.properties["build"])
+            buildScript.execute()
+        }
     }
 }

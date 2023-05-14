@@ -26,7 +26,7 @@ class Custom extends Module {
      * @param name название шага пайплайна
      */
     @Override
-    void call() {
+    def execute() {
         String buildScriptText = ""
 
         try {

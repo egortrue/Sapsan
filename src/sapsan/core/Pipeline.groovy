@@ -82,8 +82,12 @@ class Pipeline extends Context {
         stages << new Stage(name, steps)
     }
 
+    /**
+     * Инициализация модуля сборки
+     * @return
+     */
     static Module getBuild() {
-        Log.var "Available Build Types", Configuration.packageBuild
+        Log.var "Available 'build' type", Configuration.packageBuild
 
         String className = Configuration.properties.find {
             Configuration.packageBuild.contains(it.key)
@@ -93,6 +97,10 @@ class Pipeline extends Context {
         Log.info("Initiated build class: $classObject.name")
 
         return classObject.getDeclaredConstructor().newInstance() as Module
+    }
+
+    static Module initModule() {
+
     }
 
     static String getInfo() {

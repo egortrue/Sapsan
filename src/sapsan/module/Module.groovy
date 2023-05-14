@@ -26,6 +26,6 @@ abstract class Module extends Context {
     /**
      * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна
      */
-    abstract void call()
+    abstract def execute()
 
 }

@@ -10,9 +10,9 @@ class Configuration extends Context {
     // Модули
     // TODO: Генерировать список
     static def packageBuild = [
-        sapsan.module.build.Custom.simpleName,
-        sapsan.module.build.Docker.simpleName,
-        sapsan.module.build.Python.simpleName,
+        sapsan.module.build.Custom.name,
+        sapsan.module.build.Docker.name,
+        sapsan.module.build.Python.name,
     ]
 
     private static Map globalParameters

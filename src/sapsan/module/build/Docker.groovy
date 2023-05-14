@@ -24,7 +24,7 @@ class Docker extends Module {
     }
 
     @Override
-    void call() {
+    def execute() {
         checkProperties(Configuration.properties["docker"])
         Pipeline.stage("Build Docker") {
 
