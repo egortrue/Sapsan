@@ -1,5 +1,6 @@
 package sapsan.module.build
 
+import com.cloudbees.groovy.cps.NonCPS
 import sapsan.core.Configuration
 import sapsan.core.Job
 import sapsan.core.Pipeline
@@ -17,6 +18,7 @@ class Custom extends Module {
     }
 
     @Override
+    @NonCPS
     void checkProperties() {
         buildScript.checkProperties(properties)
     }
@@ -42,7 +44,6 @@ class Custom extends Module {
 
         Log.var buildScriptText.size()
 
-        checkProperties(Configuration.properties["build"])
         Pipeline.stage(buildScript.name) {
             initProperties(Configuration.properties["build"])
             buildScript.execute(properties)

@@ -1,5 +1,6 @@
 package sapsan.module
 
+import com.cloudbees.groovy.cps.NonCPS
 import sapsan.core.Context
 import sapsan.util.Log
 
@@ -22,6 +23,7 @@ abstract class Module extends Context {
      * Список свойств для проверки перед запуском
      * @param properties
      */
+    @NonCPS
     abstract void checkProperties()
 
     /**
