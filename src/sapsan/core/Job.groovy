@@ -7,7 +7,7 @@ class Job extends Context {
     }
 
     static String getProject() {
-        script.env.JOB_NAME
+        script.env.BRANCH_NAME ? name.split('/')[0..-3] : name.split('/')[0..-2]
     }
 
     static String getBranch() {
@@ -22,10 +22,6 @@ class Job extends Context {
         url.split('/')[0..2].join('/')
     }
 
-    static String getPath() {
-        name.split('/')[0..-1].join('/')
-    }
-
     static String getInfo() {
         """
         [Job Information]
@@ -34,7 +30,6 @@ class Job extends Context {
         Job.branch=$branch
         Job.url=$url
         Job.baseUrl=$baseUrl
-        Job.path=$path
         """.stripIndent()
     }
 }
