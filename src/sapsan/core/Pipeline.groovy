@@ -56,7 +56,7 @@ class Pipeline extends Context {
     }
 
     private static void configure() {
-        type = Job.name.contains('/') ? Type.MULTIBRANCH : Type.CLASSIC
+        type = script.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Определение задачи
         if (type == Type.CLASSIC) {

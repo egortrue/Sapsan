@@ -1,30 +1,18 @@
 package sapsan.core
 
 class Job extends Context {
-    static String getName() {
-        script.env.JOB_NAME
-    }
 
-    static String getUrl() {
-        script.env.BUILD_URL
-    }
-
-    static String getBaseUrl() {
-        url.split("/")[0..2].join('/')
-    }
-
-    static String getPath() {
-        "/" + url.split("/")[3..-1].join('/')
-    }
-
-    static String getProject() {
-        "projectA"
-    }
+    @Lazy static String name = script.env.JOB_NAME
+    @Lazy static String branch = script.env.BRANCH_NAME
+    @Lazy static String url = script.env.BUILD_URL
+    @Lazy static String baseUrl = url.split('/')[0..2].join('/')
+    @Lazy static String path = name.split('/')[0..-1].join('/')
 
     static String getInfo() {
         """
         [Job Information]
         Job.name=$name
+        Job.branch=$branch
         Job.url=$url
         Job.baseUrl=$baseUrl
         Job.path=$path
