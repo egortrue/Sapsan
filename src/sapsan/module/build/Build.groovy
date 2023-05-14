@@ -25,7 +25,7 @@ abstract class Build extends Context implements Module {
 
 
     static void execute() {
-        if (isOverriden())
+        if (!isOverriden())
             build.call()
         else {
             Pipeline.properties.each {
