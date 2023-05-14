@@ -13,6 +13,6 @@ abstract class Build extends Context implements Module {
         script.prependToFile(file: "build.groovy",
                 content: content)
         def build = script.load "build.groovy"
-        script.sh "ls -al"
+        script.sh "cat build.groovy"
     }
 }
