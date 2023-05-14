@@ -49,7 +49,7 @@ class Pipeline extends Context {
                     closure.call()
                 }
 
-                for (int i = 0; i < stages.count(); ++i) {
+                for (int i = 0; i < stages.size(); ++i) {
                     stages[i].execute()
                 }
             }
