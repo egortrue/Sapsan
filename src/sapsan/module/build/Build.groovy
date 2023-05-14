@@ -7,6 +7,8 @@ import sapsan.module.Module
 
 abstract class Build extends Context implements Module {
     static void execute() {
-        script.libraryResource("$Configuration.root/$Job.name/build.groovy")
+        script.prependToFile(file: "build.groovy",
+                content: script.libraryResource("$Configuration.root/$Job.name/build.groovy"))
+        script.load "build.groovy"
     }
 }
