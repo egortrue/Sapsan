@@ -67,7 +67,7 @@ class Pipeline extends Context {
         }
 
         properties = script.readProperties text: Configuration.readProperties()
-        parameters = script.readYaml text: Configuration.readParameters()
+//        parameters = script.readYaml text: Configuration.readParameters()
 
         Log.info properties.toMapString()
         Log.info parameters.toMapString()
