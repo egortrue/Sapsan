@@ -20,6 +20,6 @@ abstract class Module extends Context {
     /**
      * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна
      */
-    abstract void execute()
+    abstract void call()
 
 }

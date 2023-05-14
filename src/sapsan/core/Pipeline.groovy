@@ -2,6 +2,7 @@ package sapsan.core
 
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
+import sapsan.module.Module
 import sapsan.util.Log
 
 class Pipeline extends Context {
@@ -79,6 +80,14 @@ class Pipeline extends Context {
      */
     static void stage(String name, @ClosureParams(value = SimpleType, options = "Stage") Closure steps) {
         stages << new Stage(name, steps)
+    }
+
+    static Module getBuild() {
+        String className = properties.find { Configuration.buildPackage.contains(it.key) }?.key ?: "Custom"
+        def classObject = Configuration.class.classLoader.loadClass("sapsan.module.build.$className", true)
+        Log.info("Initiated build class: $classObject.name")
+
+        return classObject.getDeclaredConstructor().newInstance() as Module
     }
 
     static String getInfo() {

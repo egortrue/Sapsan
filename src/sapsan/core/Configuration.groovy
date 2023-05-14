@@ -1,8 +1,5 @@
 package sapsan.core
 
-import sapsan.module.Module
-import sapsan.util.Log
-
 class Configuration extends Context {
 
     // Файлы конфигураций
@@ -12,7 +9,7 @@ class Configuration extends Context {
 
     // Модули
     // TODO: Генерировать список
-    private static def packageBuild = [
+    static def packageBuild = [
         sapsan.module.build.Custom.name,
         sapsan.module.build.Docker.name,
         sapsan.module.build.Python.name,
@@ -38,14 +35,6 @@ class Configuration extends Context {
         if (properties == null)
             properties = parse("$root/${Job.name}/$propertiesFile")
         return properties
-    }
-
-    static Module getBuild() {
-        String className = properties.find { packageBuild.contains(it.key) }?.key ?: "Custom"
-        def classObject = Configuration.class.classLoader.loadClass("sapsan.module.build.$className", true)
-        Log.info("Initiated build class: $classObject.name")
-
-        return classObject.getDeclaredConstructor().newInstance() as Module
     }
 
     static String getInfo() {
