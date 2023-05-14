@@ -40,7 +40,7 @@ class Pipeline extends Context {
                     script.cleanWs()
                     configure()
 
-                    Log.info Job.info
+//                    Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Configuration.info
                     Log.info properties.toMapString()
