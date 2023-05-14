@@ -74,7 +74,7 @@ class Pipeline extends Context {
         }
 
         // Определение конфигурации
-        properties = script.readProperties text: Configuration.readProperties()
+        properties = script.readYaml text: Configuration.readProperties()
         parameters = script.readYaml text: Configuration.readParameters()
     }
 
