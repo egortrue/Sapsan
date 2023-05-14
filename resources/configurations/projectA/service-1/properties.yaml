@@ -1,10 +1,7 @@
 docker:
-  project1:
-    dockerfile: ''
-    image: ''
-  project2:
-    dockerfile: ''
-    image: ''
+  image: ''
+  dockerfile: ''
+  compose: ''
 team:
   email: ''
   key: ''

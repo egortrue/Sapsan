@@ -24,8 +24,6 @@ class Docker extends Context implements Module {
         assert properties != null
         assert properties["image"] != null
         assert properties["dockerfile"] != null
-        Log.var properties
-        Log.var properties["image"]
     }
 
     static void build() {
