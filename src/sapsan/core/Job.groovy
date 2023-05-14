@@ -3,7 +3,6 @@ package sapsan.core
 class Job extends Context {
 
     @Lazy static String name = script.env.JOB_NAME
-    @Lazy static String project = script.env.JOB_NAME
     @Lazy static String branch = script.env.BRANCH_NAME
     @Lazy static String url = script.env.BUILD_URL
 
