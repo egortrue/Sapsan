@@ -11,7 +11,7 @@ void checkProperties(Map properties) {
 
 }
 
-void call() {
+void execute() {
     Log.info("This is custom build script. It's invoked by 'CustomBuild' class")
 }
 

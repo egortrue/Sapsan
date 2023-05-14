@@ -45,7 +45,7 @@ class Custom extends Module {
         getInstance().checkProperties(Configuration.properties["build"])
         Pipeline.stage(buildScript.name) {
             getInstance().initProperties(Configuration.properties["build"])
-            buildScript.call()
+            buildScript.execute()
         }
     }
 }
