@@ -14,5 +14,6 @@ abstract class Build extends Context implements Module {
                 content: content)
         def build = script.load "build.groovy"
         script.sh "cat build.groovy"
+        build.call()
     }
 }
