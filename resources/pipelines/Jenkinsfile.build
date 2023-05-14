@@ -9,5 +9,5 @@ Pipeline.run(this, "agent") {
     Module build = Configuration.getBuild()
 
     checkout.call()
-    Pipeline.build()
+    Pipeline.build.call()
 }
