@@ -17,7 +17,7 @@ class Git extends Module {
             branch = properties["branch"]
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
             url = script.scm.userRemoteConfigs[0].url
-            branch = script.scm.userRemoteConfigs[0].branch
+            branch = script.scm.userRemoteConfigs[0]
         }
     }
 
