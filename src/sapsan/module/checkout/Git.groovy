@@ -1,6 +1,6 @@
 package sapsan.module.checkout
 
-
+import sapsan.core.Job
 import sapsan.core.Pipeline
 import sapsan.module.Module
 import sapsan.util.Log
@@ -17,7 +17,7 @@ class Git extends Module {
             branch = properties["branch"]
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
             url = script.scm.userRemoteConfigs[0].url
-            branch = script.scm.userRemoteConfigs[0]
+            branch = Job.branch
         }
     }
 
@@ -38,6 +38,7 @@ class Git extends Module {
             initProperties()
             script.sh("ls -al")
             Log.info "$url + $branch"
+            checkout(url, branch)
         }
     }
 
