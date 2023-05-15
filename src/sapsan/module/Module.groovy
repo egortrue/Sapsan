@@ -1,16 +1,9 @@
 package sapsan.module
 
-
 import sapsan.core.Configuration
 import sapsan.core.Context
-import sapsan.util.Log
 
 abstract class Module extends Context {
-
-    protected Module() {
-        Log.info "Initializing module '${this.class.name}'"
-        checkProperties()
-    }
 
     /**
      * Определяем, откуда модуль берет свои свойства

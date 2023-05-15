@@ -29,6 +29,7 @@ class Git extends Module {
 
     @Override
     def execute() {
+        checkProperties()
         Pipeline.stage("Checkout SCM") {
             script.sh("ls -al")
         }
