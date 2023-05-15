@@ -9,19 +9,21 @@ import sapsan.util.Log
 
 class Custom extends Module {
 
-    static Script buildScript
-    static String buildScriptPath = ".ci/build.groovy"
+    Script buildScript
+    String buildScriptFile = "build.groovy"
+    String buildScriptPath = ".ci/$buildScriptFile"
 
     @Override
-    void initProperties() {
-        buildScript.initProperties(properties)
+    protected Map getProperties() {
+        return Configuration.properties['build']
     }
+
+    @Override
+    void initProperties() {}
 
     @Override
     @NonCPS
-    void checkProperties() {
-        buildScript.checkProperties(properties)
-    }
+    void checkProperties() {}
 
     /**
      * Запуск кастомного скрипта для сборки проекта
@@ -29,24 +31,24 @@ class Custom extends Module {
      */
     @Override
     def execute() {
-        String buildScriptText = ""
+        initCustomScript()
+        Pipeline.stage(buildScript.name) {
+            initProperties()
+            buildScript.execute(properties)
+        }
+    }
 
+    private void initCustomScript() {
+        String buildScriptText = ""
         try {
-            buildScriptText = script.libraryResource("$Configuration.root/$Job.name/build.groovy")
+            buildScriptText = script.libraryResource("$Configuration.root/$Job.name/$buildScriptFile")
             script.prependToFile(file: buildScriptPath, content: buildScriptText)
             buildScript = script.load buildScriptPath
         } catch (Exception e) {
             Log.error("Build overriding is thrown exception: $e.message")
         }
-
         if (buildScriptText.size() == 0 || buildScript == null)
             Log.error("No custom Build found!")
-
         Log.var buildScriptText.size()
-
-        Pipeline.stage(buildScript.name) {
-            initProperties(Configuration.properties["build"])
-            buildScript.execute(properties)
-        }
     }
 }

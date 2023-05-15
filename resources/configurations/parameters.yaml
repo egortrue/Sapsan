@@ -1,1 +1,4 @@
 VERSION:
+  type: string
+  trim: true
+  description: "Build Version"

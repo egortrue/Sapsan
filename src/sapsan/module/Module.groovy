@@ -1,6 +1,7 @@
 package sapsan.module
 
 import com.cloudbees.groovy.cps.NonCPS
+import sapsan.core.Configuration
 import sapsan.core.Context
 import sapsan.util.Log
 
@@ -14,7 +15,9 @@ abstract class Module extends Context {
     /**
      * Определяем, откуда модуль берет свои свойства
      */
-    protected abstract Map getProperties()
+    protected Map getProperties() {
+        return Configuration.properties[this.class.simpleName]
+    }
 
     /**
      * Инициализация свойств модуля (во время выполнения шага)

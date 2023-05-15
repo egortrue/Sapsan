@@ -1,7 +1,6 @@
 params:
   DEFAULT:
     - VERSION
-    - HELLO
   CUSTOM1:
     type: ""
     value: ""
