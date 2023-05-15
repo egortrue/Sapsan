@@ -43,9 +43,9 @@ class Git extends Module {
     }
 
     private void checkout(String url, String branch = 'master') {
-        checkout([$class           : 'GitSCM',
-                  branches         : [[name: branch]],
-                  userRemoteConfigs: [[credentialsId: 'scm-manager', url: url]]
+        script.checkout([$class           : 'GitSCM',
+                         branches         : [[name: branch]],
+                         userRemoteConfigs: [[credentialsId: 'scm-manager', url: url]]
         ])
     }
 
