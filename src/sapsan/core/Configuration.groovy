@@ -39,6 +39,6 @@ class Configuration extends Context {
     }
 
     private static Map parse(String path) {
-        script.x(text: script.libraryResource(path))
+        script.readYaml(text: script.libraryResource(path))
     }
 }
