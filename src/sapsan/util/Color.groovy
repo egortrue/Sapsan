@@ -9,13 +9,14 @@ final class Color {
     private static String reset = "\033[0m"
     private static String bold = "\033[1m"
     private static String redBg = "\033[101m"
+    private static String redText = "\033[31m"
     private static String yellowBg = "\033[43m"
     private static String greenText = "\033[32m"
     private static String cyanText = "\033[36m"
 
     @NonCPS
     static String red(String message) {
-        "$redBg$message$reset"
+        "$bold$redText$message$reset"
     }
 
     @NonCPS
