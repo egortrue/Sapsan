@@ -3,6 +3,7 @@ package sapsan.module.checkout
 
 import sapsan.core.Pipeline
 import sapsan.module.Module
+import sapsan.util.Log
 
 class Git extends Module {
 
@@ -22,11 +23,10 @@ class Git extends Module {
 
     @Override
     void checkProperties() {
-//        if (Pipeline.type == Pipeline.Type.CLASSIC) {
-        assert properties != null
-        assert properties["url"] != null
-        assert properties["branch"] != null
-//        }
+        if (Pipeline.type == Pipeline.Type.CLASSIC) {
+            assert properties["url"] != null
+            assert properties["branch"] != null
+        }
     }
 
     @Override
@@ -34,6 +34,7 @@ class Git extends Module {
         checkProperties()
         Pipeline.stage("Checkout SCM") {
             script.sh("ls -al")
+            Log.info "$url + $branch"
         }
     }
 
