@@ -1,7 +1,6 @@
 package sapsan.module.checkout
 
 import com.cloudbees.groovy.cps.NonCPS
-import sapsan.core.Configuration
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
@@ -9,11 +8,6 @@ class Git extends Module {
 
     String url
     String branch
-
-    @Override
-    protected Map getProperties() {
-        return Configuration.properties["Git"]
-    }
 
     @Override
     void initProperties() {
