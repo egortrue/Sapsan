@@ -1,6 +1,6 @@
 package sapsan.module
 
-import com.cloudbees.groovy.cps.NonCPS
+
 import sapsan.core.Configuration
 import sapsan.core.Context
 import sapsan.util.Log
@@ -15,7 +15,6 @@ abstract class Module extends Context {
     /**
      * Определяем, откуда модуль берет свои свойства
      */
-    @NonCPS
     protected Map getProperties() {
         return Configuration.properties[this.class.simpleName]
     }
@@ -30,7 +29,6 @@ abstract class Module extends Context {
      * Список свойств для проверки перед запуском
      * @param properties
      */
-    @NonCPS
     protected abstract void checkProperties()
 
     /**

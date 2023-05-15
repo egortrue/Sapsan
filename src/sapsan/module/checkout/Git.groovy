@@ -1,6 +1,6 @@
 package sapsan.module.checkout
 
-import com.cloudbees.groovy.cps.NonCPS
+
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
@@ -21,7 +21,6 @@ class Git extends Module {
     }
 
     @Override
-    @NonCPS
     void checkProperties() {
         assert properties != null
         assert properties["url"] != null
