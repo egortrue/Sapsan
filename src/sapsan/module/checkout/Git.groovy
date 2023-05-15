@@ -27,7 +27,7 @@ class Git extends Module {
             assert properties["url"] != null
             assert properties["branch"] != null
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-            assert scm != null
+            assert script.scm != null
         }
     }
 
