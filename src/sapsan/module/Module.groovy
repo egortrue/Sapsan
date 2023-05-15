@@ -9,6 +9,7 @@ abstract class Module extends Context {
      * Определяем, откуда модуль берет свои свойства
      */
     protected Map getProperties() {
+        assert Configuration.properties[this.class.simpleName] != null
         return Configuration.properties[this.class.simpleName]
     }
 
