@@ -96,7 +96,7 @@ class Pipeline extends Context {
     }
 
     static private Module initModule(String name, List available) {
-        Log.var "Available $name type", Configuration.packageBuild
+        Log.var "Available $name type", available
 
         String className = Configuration.properties.find {
             available.contains(it.key)
