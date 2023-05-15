@@ -41,6 +41,6 @@ final class Log extends Context {
     static void error(String text) {
         // TODO: Добавить метку Error для Stage и останавливать Pipeline
         script.echo(Color.red("[Error] $text"))
-        script.setBuildResult('FAILURE')
+        script.currentBuild.status = 'FAILURE'
     }
 }
