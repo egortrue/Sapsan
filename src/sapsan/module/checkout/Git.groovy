@@ -26,6 +26,8 @@ class Git extends Module {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             assert properties["url"] != null
             assert properties["branch"] != null
+        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+            assert scm != null
         }
     }
 
@@ -33,6 +35,7 @@ class Git extends Module {
     def execute() {
         checkProperties()
         Pipeline.stage("Checkout SCM") {
+            initProperties()
             script.sh("ls -al")
             Log.info "$url + $branch"
         }
