@@ -22,11 +22,11 @@ class Git extends Module {
 
     @Override
     void checkProperties() {
-        if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            assert properties != null
-            assert properties["url"] != null
-            assert properties["branch"] != null
-        }
+//        if (Pipeline.type == Pipeline.Type.CLASSIC) {
+        assert properties != null
+        assert properties["url"] != null
+        assert properties["branch"] != null
+//        }
     }
 
     @Override
