@@ -15,6 +15,7 @@ abstract class Module extends Context {
     /**
      * Определяем, откуда модуль берет свои свойства
      */
+    @NonCPS
     protected Map getProperties() {
         return Configuration.properties[this.class.simpleName]
     }

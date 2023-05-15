@@ -1,5 +1,7 @@
 package sapsan.core
 
+import com.cloudbees.groovy.cps.NonCPS
+
 class Configuration extends Context {
 
     // Файлы конфигураций
@@ -11,24 +13,28 @@ class Configuration extends Context {
     private static Map parameters
     private static Map properties
 
+    @NonCPS
     static Map getGlobalParameters() {
         if (globalParameters == null)
             globalParameters = parse("$root/$parametersFile")
         return globalParameters
     }
 
+    @NonCPS
     static Map getParameters() {
         if (parameters == null)
             parameters = parse("$root/${Job.name}/$parametersFile")
         return parameters
     }
 
+    @NonCPS
     static Map getProperties() {
         if (properties == null)
             properties = parse("$root/${Job.name}/$propertiesFile")
         return properties
     }
 
+    @NonCPS
     static String getInfo() {
         """
         [Configuration Information]
@@ -38,6 +44,7 @@ class Configuration extends Context {
         """.stripIndent()
     }
 
+    @NonCPS
     private static Map parse(String path) {
         script.readYaml(text: script.libraryResource(path))
     }
