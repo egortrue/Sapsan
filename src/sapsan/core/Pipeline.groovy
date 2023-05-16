@@ -2,8 +2,6 @@ package sapsan.core
 
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
-import sapsan.module.Build
-import sapsan.module.Module
 import sapsan.util.Log
 
 static final class Pipeline extends Context {
@@ -83,31 +81,31 @@ static final class Pipeline extends Context {
         stages << new Stage(name, steps)
     }
 
-    /**
-     * Инициализация модуля сборки
-     * @return
-     */
-    static Module getBuild() {
-        return initModule("build", [
-            // TODO: Генерировать список
-            Build.name,
-            sapsan.module.build.Docker.name,
-            sapsan.module.build.Python.name,
-        ])
-    }
-
-    static private Module initModule(String name, List available) {
-        Log.var "Available $name type", available
-
-        String className = Configuration.properties.find {
-            available.contains(it.key)
-        }?.key ?: "Custom"
-
-        def classObject = Pipeline.class.classLoader.loadClass("sapsan.module.build.$className", true)
-        Log.info("Initiated build class: $classObject.name")
-
-        return classObject.getDeclaredConstructor().newInstance() as Module
-    }
+//    /**
+//     * Инициализация модуля сборки
+//     * @return
+//     */
+//    static Module getBuild() {
+//        return initModule("build", [
+//            // TODO: Генерировать список
+//            Build.name,
+//            build.Docker.name,
+//            sapsan.module.build.Python.name,
+//        ])
+//    }
+//
+//    static private Module initModule(String name, List available) {
+//        Log.var "Available $name type", available
+//
+//        String className = Configuration.properties.find {
+//            available.contains(it.key)
+//        }?.key ?: "Custom"
+//
+//        def classObject = Pipeline.class.classLoader.loadClass("sapsan.module.build.$className", true)
+//        Log.info("Initiated build class: $classObject.name")
+//
+//        return classObject.getDeclaredConstructor().newInstance() as Module
+//    }
 
     static String getInfo() {
         """
