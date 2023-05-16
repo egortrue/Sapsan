@@ -33,15 +33,15 @@ class Job extends Context {
     static String getBaseUrl() {
         url.split('/')[0..2].join('/')
     }
-    
+
     @Memoized
     static String getInfo() {
         """
         [Job Information]
-        Job.name=$name
-        Job.branch=$branch
-        Job.url=$url
-        Job.baseUrl=$baseUrl
+        name=$name
+        branch=$branch
+        url=$url
+        baseUrl=$baseUrl
         """.stripIndent()
     }
 }

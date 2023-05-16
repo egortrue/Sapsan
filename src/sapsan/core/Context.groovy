@@ -11,4 +11,5 @@ abstract class Context {
      * Позволяет использовать команды Jenkins, прописанные в /src/pipeline.gdsl
      */
     protected static Script pipeline
+    
 }

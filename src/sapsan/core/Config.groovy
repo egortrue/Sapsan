@@ -15,26 +15,21 @@ final class Config extends Context {
     }
 
     @Memoized
-    static Map getCustomParameters() {
-
-    }
-
-    @Memoized
     static Map getParameters() {
-        return parse("$root/${Job.name}/$parametersFilename")
+        return parse("$root/custom/${Job.name}/$parametersFilename")
     }
 
     @Memoized
     static Map getProperties() {
-        return parse("$root/${Job.name}/$propertiesFilename")
+        return parse("$root/custom/${Job.name}/$propertiesFilename")
     }
 
     static String getInfo() {
         """
-        [Configuration Information]
-        Configuration.globalParametersPath="$root/$parametersFilename"
-        Configuration.parametersPath="$root/${Job.name}/$parametersFilename"
-        Configuration.propertiesPath="$root/${Job.name}/$propertiesFilename"
+        [Config Information]
+        globalParametersPath="$root/$parametersFilename"
+        parametersPath="$root/${Job.name}/$parametersFilename"
+        propertiesPath="$root/${Job.name}/$propertiesFilename"
         """.stripIndent()
     }
 
