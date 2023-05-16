@@ -1,5 +1,6 @@
 package sapsan.module
 
+import groovy.transform.Memoized
 import sapsan.core.Config
 import sapsan.core.Context
 import sapsan.core.Pipeline
@@ -22,6 +23,7 @@ abstract class Module extends Context {
     /**
      * Определяем, откуда модуль берет свои свойства
      */
+    @Memoized
     protected Map getProperties() {
         try {
             assert Config.properties[this.class.simpleName] != null
