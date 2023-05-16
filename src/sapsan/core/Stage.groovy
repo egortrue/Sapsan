@@ -25,7 +25,7 @@ class Stage extends Context {
     void execute() {
         status = Status.STARTED
         try {
-            script.stage(name) {
+            Context.pipeline.stage(name) {
                 steps()
             }
             status = Status.SUCCESS

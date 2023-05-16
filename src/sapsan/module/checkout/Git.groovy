@@ -1,5 +1,6 @@
 package sapsan.module.checkout
 
+import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
 import sapsan.module.Module
@@ -16,7 +17,7 @@ class Git extends Module {
             url = properties["url"]
             branch = properties["branch"]
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-            url = script.scm.userRemoteConfigs[0].url
+            url = Context.pipeline.scm.userRemoteConfigs[0].url
             branch = Job.branch
         }
     }
@@ -27,7 +28,7 @@ class Git extends Module {
             assert properties["url"] != null
             assert properties["branch"] != null
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-            assert script.scm != null
+            assert Context.pipeline.scm != null
         }
     }
 
@@ -36,16 +37,16 @@ class Git extends Module {
         checkProperties()
         Pipeline.stage("Checkout SCM") {
             initProperties()
-            script.sh("ls -al")
+            Context.pipeline.sh("ls -al")
             Log.info "$url + $branch"
             checkout(url, branch)
         }
     }
 
     private void checkout(String url, String branch = 'master') {
-        script.checkout([$class           : 'GitSCM',
-                         branches         : [[name: branch]],
-                         userRemoteConfigs: [[credentialsId: 'my-cred', url: url]]
+        Context.pipeline.checkout([$class           : 'GitSCM',
+                                   branches         : [[name: branch]],
+                                   userRemoteConfigs: [[credentialsId: 'my-cred', url: url]]
         ])
     }
 

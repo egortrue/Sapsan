@@ -1,0 +1,9 @@
+@Library("sapsan@master") _
+
+import sapsan.core.Pipeline
+import sapsan.module.Build
+
+Pipeline.run(this, "agent") {
+    Checkout.execute()
+    Build.execute(override: "")
+}

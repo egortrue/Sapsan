@@ -1,6 +1,7 @@
 package sapsan.module.checkout
 
 import sapsan.core.Configuration
+import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
 import sapsan.module.Module
@@ -37,9 +38,9 @@ class Custom extends Module {
         String checkoutScriptText = ""
 
         try {
-            checkoutScriptText = script.libraryResource("$Configuration.root/$Job.name/$checkoutScriptFile")
-            script.prependToFile(file: checkoutScriptPath, content: checkoutScriptText)
-            checkoutScript = script.load checkoutScriptPath
+            checkoutScriptText = Context.pipeline.libraryResource("$Configuration.root/$Job.name/$checkoutScriptFile")
+            Context.pipeline.prependToFile(file: checkoutScriptPath, content: checkoutScriptText)
+            checkoutScript = Context.pipeline.load checkoutScriptPath
         } catch (Exception e) {
             Log.error("Checkout overriding is thrown exception: $e.message")
         }

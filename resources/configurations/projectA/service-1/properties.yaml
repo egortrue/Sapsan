@@ -1,9 +1,0 @@
-Team:
-  email: ''
-  key: ''
-  name: ''
-
-Docker:
-  image: ''
-  dockerfile: ''
-  compose: ''

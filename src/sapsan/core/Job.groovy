@@ -9,19 +9,19 @@ class Job extends Context {
      */
     @NonCPS
     static String getName() {
-        if (script.env.BRANCH_NAME)
-            return script.env.JOB_NAME.split('/')[0..-2].join('/')
-        return script.env.JOB_NAME
+        if (Context.pipeline.env.BRANCH_NAME)
+            return Context.pipeline.env.JOB_NAME.split('/')[0..-2].join('/')
+        return Context.pipeline.env.JOB_NAME
     }
 
     @NonCPS
     static String getBranch() {
-        script.env.BRANCH_NAME
+        Context.pipeline.env.BRANCH_NAME
     }
 
     @NonCPS
     static String getUrl() {
-        script.env.BUILD_URL
+        Context.pipeline.env.BUILD_URL
     }
 
     @NonCPS

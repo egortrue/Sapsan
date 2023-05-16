@@ -1,11 +1,11 @@
 package sapsan.core
 
-class Configuration extends Context {
+abstract class Configuration extends Context {
 
     // Файлы конфигураций
     public static String root = "configurations"
-    private static String parametersFile = "parameters.yaml"
-    private static String propertiesFile = "properties.yaml"
+    public static String parametersFile = "parameters.yaml"
+    public static String propertiesFile = "properties.yaml"
 
     private static Map globalParameters
     private static Map parameters
@@ -39,6 +39,10 @@ class Configuration extends Context {
     }
 
     private static Map parse(String path) {
-        script.readYaml(text: script.libraryResource(path))
+        Context.pipeline.readYaml(text: Context.pipeline.libraryResource(path))
     }
+
+    private static void setParameters() {}
+
+    private static void setProperties() {}
 }

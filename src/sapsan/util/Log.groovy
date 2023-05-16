@@ -22,25 +22,25 @@ final class Log extends Context {
                 string += " = $variable"
         }
 
-        script.echo(Color.cyan(string))
+        Context.pipeline.echo(Color.cyan(string))
     }
 
     @NonCPS
     static void info(String text) {
-        script.echo(Color.green(text))
+        Context.pipeline.echo(Color.green(text))
     }
 
     @NonCPS
     static void warning(String text) {
         // TODO: Добавить метку Warning для Stage
         // TODO: Сохранять все предупреждения в отдельный файл/переменную
-        script.echo(Color.yellow("[Warning] $text"))
+        Context.pipeline.echo(Color.yellow("[Warning] $text"))
     }
 
     @NonCPS
     static void error(String text) {
         // TODO: Добавить метку Error для Stage и останавливать Pipeline
-        script.echo(Color.red("[Error] $text"))
-        script.currentBuild.status = 'FAILURE'
+        Context.pipeline.echo(Color.red("[Error] $text"))
+        Context.pipeline.currentBuild.status = 'FAILURE'
     }
 }

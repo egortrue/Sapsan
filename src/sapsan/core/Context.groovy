@@ -7,8 +7,8 @@ package sapsan.core
 abstract class Context {
 
     /**
-     * Корневой восходящий скрипт (Jenkinsfile).
+     * Корневой восходящий скрипт, содержащий пайплайн (Jenkinsfile).
      * Позволяет использовать команды Jenkins, прописанные в /src/pipeline.gdsl
      */
-    protected static Script script
+    protected static Script pipeline
 }

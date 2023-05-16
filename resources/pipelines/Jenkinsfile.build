@@ -1,9 +1,0 @@
-@Library("sapsan@master") _
-import sapsan.core.Pipeline
-import sapsan.module.build.Docker
-import sapsan.module.checkout.Git
-
-Pipeline.run(this, "agent") {
-    new Git().execute()
-    new Docker().execute()
-}

@@ -2,10 +2,11 @@ package sapsan.core
 
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
+import sapsan.module.Build
 import sapsan.module.Module
 import sapsan.util.Log
 
-class Pipeline extends Context {
+static final class Pipeline extends Context {
 
     enum Type {
         NOT_DEFINED,
@@ -31,7 +32,7 @@ class Pipeline extends Context {
      * @param closure выполняемые действия
      */
     static void run(Script script, String node = 'linux', Closure closure) {
-        Context.script = script
+        Context.pipeline = script
         script.node(node) {
             script.ansiColor('xterm') {
 
@@ -57,7 +58,7 @@ class Pipeline extends Context {
 
     private static void configure() {
         // Определение типа
-        type = script.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
+        type = Context.pipeline.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Определение задачи
         if (type == Type.CLASSIC) {
@@ -89,7 +90,7 @@ class Pipeline extends Context {
     static Module getBuild() {
         return initModule("build", [
             // TODO: Генерировать список
-            sapsan.module.build.Custom.name,
+            Build.name,
             sapsan.module.build.Docker.name,
             sapsan.module.build.Python.name,
         ])
@@ -115,5 +116,4 @@ class Pipeline extends Context {
         Pipeline.task=$task
         """.stripIndent()
     }
-
 }
