@@ -33,8 +33,8 @@ final class Pipeline extends Context {
         Context.pipeline = pipeline
         pipeline.node(node) {
             pipeline.ansiColor('xterm') {
-                
-                pipeline.stage("Init") {
+
+                pipeline.stage("Initialize Pipeline") {
                     pipeline.cleanWs()
                     configure()
 
