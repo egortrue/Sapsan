@@ -26,7 +26,7 @@ abstract class Module extends Context {
         try {
             assert Config.properties[this.class.simpleName] != null
         } catch (AssertionError e) {
-            Log.error("Property '${this.class.name}' not found in ${Config.propertiesFile}")
+            Log.error("Property '${this.class.simpleName}' not found in '${Config.propertiesFile}'")
         }
 
         return Config.properties[this.class.simpleName]
