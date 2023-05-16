@@ -1,38 +1,43 @@
 package sapsan.core
 
-import groovy.transform.Memoized
-import sapsan.util.Log
-
 final class Config extends Context {
 
     static final String root = "configurations"
     static final String parametersFilename = "parameters.yaml"
     static final String propertiesFilename = "properties.yaml"
 
-    @Memoized
+    private static Map globalParameters
+    private static Map parameters
+    private static Map properties
+
     static Map getGlobalParameters() {
-        return parse("$root/global/$parametersFilename")
+        if (globalParameters == null)
+            globalParameters = parse("$root/global/$parametersFilename")
+        return globalParameters
     }
-    
+
     static Map getParameters() {
-        return parse("$root/custom/${Job.name}/$parametersFilename")
+        if (parameters == null)
+            parameters = parse("$root/custom/${Job.name}/$parametersFilename")
+        return parameters
     }
 
     static Map getProperties() {
-        return parse("$root/custom/${Job.name}/$propertiesFilename")
+        if (properties == null)
+            properties = parse("$root/custom/${Job.name}/$propertiesFilename")
+        return properties
     }
 
     static String getInfo() {
         """
         [Config Information]
-        globalParametersPath="$root/$parametersFilename"
-        parametersPath="$root/${Job.name}/$parametersFilename"
-        propertiesPath="$root/${Job.name}/$propertiesFilename"
+        globalParametersPath="$root/global/$parametersFilename"
+        parametersPath="$root/custom/${Job.name}/$parametersFilename"
+        propertiesPath="$root/custom/${Job.name}/$propertiesFilename"
         """.stripIndent()
     }
 
     private static Map parse(String path) {
-        Log.info("First time reading config file: $path")
         Context.pipeline.readYaml(text: Context.pipeline.libraryResource(path))
     }
 }

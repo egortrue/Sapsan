@@ -34,7 +34,9 @@ final class Pipeline extends Context {
         pipeline.node(node) {
             pipeline.ansiColor('xterm') {
 
-                pipeline.stage("Initialize Pipeline") {
+                pipeline.stage("Config") {
+
+                    // Подготовка окружения
                     pipeline.cleanWs()
                     configure()
 
