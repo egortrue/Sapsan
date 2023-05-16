@@ -2,9 +2,9 @@ package sapsan.core
 
 final class Config extends Context {
 
-    static final String root = "configurations"
-    static final String parametersFilename = "parameters.yaml"
-    static final String propertiesFilename = "properties.yaml"
+    private static final String root = "configurations"
+    private static final String parametersFilename = "parameters.yaml"
+    private static final String propertiesFilename = "properties.yaml"
 
     private static Map globalParameters
     private static Map parameters
