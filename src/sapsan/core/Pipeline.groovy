@@ -40,6 +40,7 @@ final class Pipeline extends Context {
 
                     // Общая информация
                     Log.info Job.info
+                    Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Configuration.info
                     Log.var("properties", Configuration.properties)

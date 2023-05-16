@@ -2,6 +2,7 @@ package sapsan.core
 
 import com.cloudbees.groovy.cps.NonCPS
 import groovy.transform.Memoized
+import sapsan.util.Log
 
 class Job extends Context {
 
@@ -11,6 +12,7 @@ class Job extends Context {
     @NonCPS
     @Memoized
     static String getName() {
+        Log.info("GET NAME")
         if (Context.pipeline.env.BRANCH_NAME)
             return Context.pipeline.env.JOB_NAME.split('/')[0..-2].join('/')
         return Context.pipeline.env.JOB_NAME
