@@ -33,8 +33,7 @@ class Job extends Context {
     static String getBaseUrl() {
         url.split('/')[0..2].join('/')
     }
-
-    @Memoized
+    
     static String getInfo() {
         """
         [Job Information]
