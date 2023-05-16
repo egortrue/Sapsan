@@ -1,6 +1,6 @@
 package sapsan.module
 
-import sapsan.core.Configuration
+import sapsan.core.Config
 import sapsan.core.Context
 import sapsan.core.Pipeline
 import sapsan.util.Log
@@ -24,12 +24,12 @@ abstract class Module extends Context {
      */
     protected Map getProperties() {
         try {
-            assert Configuration.properties[this.class.simpleName] != null
+            assert Config.properties[this.class.simpleName] != null
         } catch (AssertionError e) {
-            Log.error("Property '${this.class.name}' not found in ${Configuration.propertiesFile}")
+            Log.error("Property '${this.class.name}' not found in ${Config.propertiesFilename}")
         }
 
-        return Configuration.properties[this.class.simpleName]
+        return Config.properties[this.class.simpleName]
     }
 
     /**

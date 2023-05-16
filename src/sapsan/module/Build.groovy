@@ -1,6 +1,6 @@
 package sapsan.module
 
-import sapsan.core.Configuration
+import sapsan.core.Config
 import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.util.Log
@@ -9,7 +9,7 @@ abstract class Build extends Module {
 
     static Script buildScript
     static String buildScriptFile = "build.groovy"
-    static String buildScriptPath = "$Configuration.root/$Job.name/$buildScriptFile"
+    static String buildScriptPath = "$Config.root/$Job.name/$buildScriptFile"
 
     /**
      *
