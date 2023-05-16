@@ -10,19 +10,12 @@ abstract class Module extends Context {
     /**
      * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна
      */
-    def execute(def override = false) {
-
-        try {
-            assert this.class.simpleName == 'Module'
-        } catch (AssertionError e) {
-            Log.error(e.message)
-        }
-
+    def call(def override = false) {
         //initCustomScript()
         checkProperties(properties)
-        Pipeline.stage(buildScript.name) {
+        Pipeline.stage(this.class.simpleName) {
             initProperties(properties)
-            buildScript.execute(properties)
+            execute()
         }
     }
 
@@ -50,4 +43,6 @@ abstract class Module extends Context {
      * @param properties
      */
     protected abstract void initProperties(Map properties)
+
+    protected abstract void execute()
 }

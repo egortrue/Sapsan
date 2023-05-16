@@ -12,17 +12,17 @@ import static groovy.json.JsonOutput.toJson
 final class Log extends Context {
 
     @NonCPS
-    static void var(String name = null, def variable) {
-        def string = name ?: variable.getClass().name
+    static void var(String prefix = null, def variable) {
+        def message = prefix ?: variable.getClass().name
 
         switch (variable.getClass()) {
             case [ArrayList, LinkedHashMap, HashMap, Map]:
-                string += " " + prettyPrint(toJson(variable)); break
+                message += " " + prettyPrint(toJson(variable)); break
             default:
-                string += " = $variable"
+                message += " = $variable"
         }
 
-        Context.pipeline.echo(Color.cyan(string))
+        Context.pipeline.echo(Color.cyan(message))
     }
 
     @NonCPS

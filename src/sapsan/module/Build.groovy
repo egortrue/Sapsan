@@ -11,7 +11,6 @@ abstract class Build extends Module {
     static String buildScriptFile = "build.groovy"
     static String buildScriptPath = "$Configuration.root/$Job.name/$buildScriptFile"
 
-
     /**
      *
      */
@@ -32,17 +31,4 @@ abstract class Build extends Module {
 
     }
 
-    def get() {
-
-    }
-
-    @Override
-    protected void initProperties() {
-
-    }
-
-    @Override
-    protected void checkProperties() {
-
-    }
 }

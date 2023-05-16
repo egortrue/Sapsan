@@ -4,7 +4,7 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 import sapsan.util.Log
 
-static final class Pipeline extends Context {
+final class Pipeline extends Context {
 
     enum Type {
         NOT_DEFINED,
@@ -25,31 +25,35 @@ static final class Pipeline extends Context {
 
     /**
      * Запуск трубы
-     * @param script объект jenkinsfile
+     * @param pipeline вызывающий объект (Jenkinsfile)
      * @param node метка агента Jenkins
      * @param closure выполняемые действия
      */
-    static void run(Script script, String node = 'linux', Closure closure) {
-        Context.pipeline = script
-        script.node(node) {
-            script.ansiColor('xterm') {
-
-                script.stage("Configure") {
-                    script.cleanWs()
+    static void run(Script pipeline, String node = 'linux', Closure closure) {
+        Context.pipeline = pipeline
+        pipeline.node(node) {
+            pipeline.ansiColor('xterm') {
+                
+                pipeline.stage("Init") {
+                    pipeline.cleanWs()
                     configure()
 
+                    // Общая информация
                     Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Configuration.info
                     Log.var("properties", Configuration.properties)
                     Log.var("parameters", Configuration.parameters)
 
-                    closure.call()
+                    // Инициализация шагов
+                    closure()
                 }
 
+                // Выполнение действий, указанных в каждом шаге
                 for (int i = 0; i < stages.size(); ++i) {
                     stages[i].execute()
                 }
+
             }
         }
     }
@@ -73,8 +77,8 @@ static final class Pipeline extends Context {
     }
 
     /**
-     * Обертка создания шага пайплайна
-     * Регистрация шага в пайплайне
+     * Регистрация шага в пайплайне.
+     * Тело шага выполнится после полной инициализации всего пайплайна
      * @see Stage
      */
     static void stage(String name, @ClosureParams(value = SimpleType, options = "Stage") Closure steps) {

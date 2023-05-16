@@ -1,8 +1,9 @@
 @Library("sapsan@master") _
-
 import sapsan.core.Pipeline
-import sapsan.module.Build
+import sapsan.module.Checkout
 
 Pipeline.run(this, "agent") {
-    Build.execute(override: "")
+    new Checkout().call()
+
+//    new Build().execute(override: "")
 }
