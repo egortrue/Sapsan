@@ -13,13 +13,11 @@ final class Config extends Context {
     static Map getGlobalParameters() {
         return parse("$root/global/$parametersFilename")
     }
-
-    @Memoized
+    
     static Map getParameters() {
         return parse("$root/custom/${Job.name}/$parametersFilename")
     }
 
-    @Memoized
     static Map getProperties() {
         return parse("$root/custom/${Job.name}/$propertiesFilename")
     }
