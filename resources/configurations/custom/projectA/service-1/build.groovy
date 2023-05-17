@@ -1,7 +1,9 @@
-import groovy.transform.Field
+import sapsan.core.Config
 import sapsan.util.Log
 
-@Field String stageName = "Build 'Service-1'"
+String getStageName() {
+
+}
 
 void initProperties(Map properties) {
 
@@ -12,7 +14,8 @@ void checkProperties(Map properties) {
 }
 
 void execute(Map properties) {
-    Log.info("This is custom build script. It's invoked by 'CustomBuild' class")
+    Log.info("This is custom build script. \
+              This script located in '${Config.projectDir}'")
 }
 
 return this

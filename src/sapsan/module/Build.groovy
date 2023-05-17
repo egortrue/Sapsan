@@ -11,7 +11,7 @@ final class Build extends Module {
 
     @Override
     protected String getStageName() {
-        return script.stageName
+        return script.stageName ?: super.stageName
     }
 
     @Override
