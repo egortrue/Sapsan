@@ -46,6 +46,5 @@ class Checkout extends Module {
                                    branches         : [[name: branch]],
                                    userRemoteConfigs: [[credentialsId: 'my-cred', url: url]]])
         Context.pipeline.sh "ls -al"
-        Context.pipeline.sh "exit 1"
     }
 }
