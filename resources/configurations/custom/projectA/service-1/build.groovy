@@ -18,7 +18,7 @@ void initProperties(Map properties) {
 
 void execute() {
     Log.info("This is custom build script. This script located in '${Config.projectDir}'")
-    Context.pipeline.zip(dir: src, zipFile: dest)
+    Context.pipeline.zip(dir: src, zipFile: dest, archive: true)
 }
 
 return this
