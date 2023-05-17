@@ -80,7 +80,7 @@ final class Pipeline extends Context {
             else if (Job.name.toLowerCase().contains("test"))
                 task = Task.TESTING
             else {
-                Log.error "Pipeline.task not defined!"
+                task = Task.BUILD
             }
         } else if (type == Type.MULTIBRANCH) {
             task = Task.BUILD
