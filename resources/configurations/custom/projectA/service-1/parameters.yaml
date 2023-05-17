@@ -1,5 +1,6 @@
-params:
-  VERSION:
+default:
+  - VERSION
+custom:
   CUSTOM1:
     type: ""
     value: ""
