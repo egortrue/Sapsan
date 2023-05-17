@@ -2,3 +2,7 @@ Team:
   name: ''
   key: ''
   email: ''
+
+Build:
+  src: "./"
+  dest: "project.zip"

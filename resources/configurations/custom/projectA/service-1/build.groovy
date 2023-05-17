@@ -1,12 +1,12 @@
 import sapsan.core.Config
 import sapsan.util.Log
 
-void initProperties(Map properties) {
-    Log.var properties
-}
-
 void checkProperties(Map properties) {
 
+}
+
+void initProperties(Map properties) {
+    Log.var properties
 }
 
 void execute() {
