@@ -34,14 +34,12 @@ final class Pipeline extends Context {
         pipeline.node(node) {
             pipeline.ansiColor('xterm') {
 
+                // Конфигурация пайплайна
                 pipeline.stage("Config") {
-
-                    // Подготовка окружения
                     pipeline.cleanWs()
                     configure()
 
                     // Общая информация
-                    Log.info Job.info
                     Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Config.info
@@ -52,10 +50,20 @@ final class Pipeline extends Context {
                     closure()
                 }
 
-                // Выполнение действий, указанных в каждом шаге
-                for (int i = 0; i < stages.size(); ++i) {
-                    stages[i].execute()
+                try {
+                    // Выполнение действий, указанных в каждом шаге
+                    for (int i = 0; i < stages.size(); ++i) {
+                        stages[i].execute()
+                    }
+                } finally {
+                    // Создание отчета о выполнении
+                    pipeline.stage("Report") {
+                        Log.info("Sending email...")
+                        Log.info("Sending email...")
+                        Log.info("Sending email...")
+                    }
                 }
+
 
             }
         }

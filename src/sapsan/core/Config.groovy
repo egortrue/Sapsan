@@ -43,7 +43,6 @@ final class Config extends Context {
     static String getInfo() {
         """
         [Config Information]
-        globalParametersFile="$globalParametersFile"
         parametersFile="$parametersFile"
         propertiesFile="$propertiesFile"
         """.stripIndent()

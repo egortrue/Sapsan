@@ -39,9 +39,9 @@ final class Log extends Context {
     }
 
     @NonCPS
-    static void error(String text) {
+    static void error(String text, boolean exit = true) {
         // TODO: Добавить статус Error для класса Stage
         Context.pipeline.echo(Color.red("[Error] $text"))
-        Context.pipeline.error(text)
+        if (exit) Context.pipeline.error(text)
     }
 }

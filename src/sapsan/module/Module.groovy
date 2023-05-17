@@ -12,7 +12,6 @@ abstract class Module extends Context {
      * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна
      */
     def call(def override = false) {
-        //initCustomScript()
         checkProperties(properties)
         Pipeline.stage(this.class.simpleName) {
             initProperties(properties)
@@ -21,15 +20,12 @@ abstract class Module extends Context {
     }
 
     /**
-     * Определяем, откуда модуль берет свои свойства
+     * Определяем откуда модуль берет свои свойства
      */
     protected Map getProperties() {
-        try {
-            assert Config.properties[this.class.simpleName] != null
-        } catch (AssertionError e) {
+        if (Config.properties[this.class.simpleName] == null) {
             Log.error("Property '${this.class.simpleName}' not found in '${Config.propertiesFile}'")
         }
-
         return Config.properties[this.class.simpleName]
     }
 

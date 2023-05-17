@@ -4,6 +4,7 @@ import com.cloudbees.groovy.cps.NonCPS
 
 /**
  * Статический класс для поддержки цветного вывода.
+ * Требует расширения https://plugins.jenkins.io/ansicolor/
  */
 final class Color {
     private static String reset = "\033[0m"
