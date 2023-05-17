@@ -13,7 +13,7 @@ abstract class Module extends Context {
      */
     def call(def override = false) {
         checkProperties()
-        Pipeline.stage(this.class.simpleName) {
+        Pipeline.stage(stageName) {
             initProperties()
             execute()
         }
@@ -27,6 +27,13 @@ abstract class Module extends Context {
             Log.error("Property '${this.class.simpleName}' not found in '${Config.propertiesFile}'")
         }
         return Config.properties[this.class.simpleName]
+    }
+
+    /**
+     * Название шага для отображения в Jenkins
+     */
+    protected String getStageName() {
+        return this.class.simpleName
     }
 
     /**

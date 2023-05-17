@@ -10,24 +10,32 @@ final class Build extends Module {
     String scriptFilename = "build.groovy"
 
     @Override
+    protected String getStageName() {
+        return script.stageName
+    }
+
+    @Override
     protected void checkProperties() {
         loadScript()
+        script.checkProperties()
     }
 
     @Override
     protected void initProperties() {
-
+        script.initProperties()
     }
 
     @Override
     protected void execute() {
-
+        script.execute()
     }
 
     private void loadScript() {
         try {
             String scriptText = Context.pipeline.libraryResource("${Config.projectDir}/$scriptFilename")
-            script = Context.pipeline.load scriptText
+            Context.pipeline.prependFile(file: scriptFilename, text: scriptText)
+            script = Context.pipeline.load scriptFilename
+            Context.pipeline.sh "rm -f $scriptFilename"
         } catch (Exception e) {
             Log.error("Build loading script threw exception: $e.message")
         }
