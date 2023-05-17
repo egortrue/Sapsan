@@ -15,19 +15,19 @@ final class Build extends Module {
             return script.getStageName()
         }
         catch (NoSuchMethodError e) {
-            return super.stageName
+            return super.getStageName()
         }
     }
 
     @Override
     protected void checkProperties() {
         loadScript()
-        script.checkProperties()
+        script.checkProperties(properties)
     }
 
     @Override
     protected void initProperties() {
-        script.initProperties()
+        script.initProperties(properties)
     }
 
     @Override
