@@ -10,16 +10,24 @@ final class Config extends Context {
     private static Map parameters
     private static Map properties
 
+    static String getGlobalDir() {
+        "$root/global"
+    }
+
+    static String getProjectDir() {
+        "$root/custom/${Job.name}"
+    }
+
     static String getGlobalParametersFile() {
-        "$root/global/$parametersFilename"
+        "$globalDir/$parametersFilename"
     }
 
     static String getParametersFile() {
-        "$root/custom/${Job.name}/$parametersFilename"
+        "$projectDir/$parametersFilename"
     }
 
     static String getPropertiesFile() {
-        "$root/custom/${Job.name}/$propertiesFilename"
+        "$projectDir/$propertiesFilename"
     }
 
     static Map getGlobalParameters() {

@@ -2,33 +2,34 @@ package sapsan.module
 
 import sapsan.core.Config
 import sapsan.core.Context
-import sapsan.core.Job
 import sapsan.util.Log
 
-abstract class Build extends Module {
+final class Build extends Module {
 
-    static Script buildScript
-    static String buildScriptFile = "build.groovy"
-    static String buildScriptPath = "$Config.root/$Job.name/$buildScriptFile"
+    Script script
+    String scriptFilename = "build.groovy"
 
-    /**
-     *
-     */
-    private static void initCustomScript(String scriptPath) {
-        String buildScriptText = ""
-        try {
-            buildScriptText = Context.pipeline.libraryResource(scriptPath)
+    @Override
+    protected void checkProperties() {
+        loadScript()
+    }
 
-            GroovyClassLoader.parseClass()
-
-            buildScript = Context.pipeline.load buildScriptPath
-        } catch (Exception e) {
-            Log.error("Module overriding is thrown exception: $e.message")
-        }
-
-        if (buildScriptText.size() == 0 || buildScript == null)
-            Log.error("No custom Build found!")
+    @Override
+    protected void initProperties() {
 
     }
 
+    @Override
+    protected void execute() {
+
+    }
+
+    private void loadScript() {
+        try {
+            String scriptText = Context.pipeline.libraryResource("${Config.projectDir}/$scriptFilename")
+            script = Context.pipeline.load scriptText
+        } catch (Exception e) {
+            Log.error("Build loading script threw exception: $e.message")
+        }
+    }
 }

@@ -12,9 +12,9 @@ abstract class Module extends Context {
      * Выполнение модуля. Содержит инициализацию параметров и шага пайплайна
      */
     def call(def override = false) {
-        checkProperties(properties)
+        checkProperties()
         Pipeline.stage(this.class.simpleName) {
-            initProperties(properties)
+            initProperties()
             execute()
         }
     }
@@ -33,13 +33,16 @@ abstract class Module extends Context {
      * Валидация свойств перед запуском на шаге инициализации всего пайплайна
      * @param properties
      */
-    protected abstract void checkProperties(Map properties)
+    protected abstract void checkProperties()
 
     /**
      * Инициализация свойств модуля (во время выполнения шага)
      * @param properties
      */
-    protected abstract void initProperties(Map properties)
+    protected abstract void initProperties()
 
+    /**
+     * Тело шага. Выполняемые действия
+     */
     protected abstract void execute()
 }

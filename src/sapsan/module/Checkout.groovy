@@ -19,7 +19,7 @@ class Checkout extends Module {
     }
 
     @Override
-    protected void checkProperties(Map properties) {
+    protected void checkProperties() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             assert properties["url"] != null
             assert properties["branch"] != null
@@ -29,7 +29,7 @@ class Checkout extends Module {
     }
 
     @Override
-    protected void initProperties(Map properties) {
+    protected void initProperties() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = properties["url"]
             branch = properties["branch"]
