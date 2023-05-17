@@ -15,7 +15,7 @@ final class Build extends Module {
             return script.getStageName()
         }
         catch (NoSuchMethodError e) {
-            return super.getStageName()
+            return super.stageName
         }
     }
 
