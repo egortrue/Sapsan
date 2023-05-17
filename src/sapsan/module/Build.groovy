@@ -11,7 +11,12 @@ final class Build extends Module {
 
     @Override
     protected String getStageName() {
-        return script.getStageName() ?: super.getStageName()
+        try {
+            return script.getStageName()
+        }
+        catch (NoSuchMethodError e) {
+            return super.getStageName()
+        }
     }
 
     @Override
