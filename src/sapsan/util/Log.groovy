@@ -32,15 +32,16 @@ final class Log extends Context {
 
     @NonCPS
     static void warning(String text) {
-        // TODO: Добавить метку Warning для Stage
+        // TODO: Установить статус UNSTABLE для класса Stage
+        // TODO: Помечать вызывающий шаг желтым (UNSTABLE)
         // TODO: Сохранять все предупреждения в отдельный файл/переменную
         Context.pipeline.echo(Color.yellow("[Warning] $text"))
     }
 
     @NonCPS
     static void error(String text) {
-        // TODO: Добавить метку Error для Stage и останавливать Pipeline
+        // TODO: Добавить статус Error для класса Stage
         Context.pipeline.echo(Color.red("[Error] $text"))
-        Context.pipeline.currentBuild.result = 'FAILURE'
+        Context.pipeline.error(text)
     }
 }
