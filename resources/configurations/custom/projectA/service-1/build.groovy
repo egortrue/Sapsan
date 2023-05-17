@@ -6,19 +6,19 @@ import sapsan.util.Log
 @Field String src
 @Field String dest
 
-void checkProperties(Map properties) {
+void precheck(Map properties) {
     assert properties["src"] != null
     assert properties["dest"] != null
 }
 
-void initProperties(Map properties) {
+void init(Map properties) {
     src = properties["src"]
     dest = properties["dest"]
 }
 
 void execute() {
     Log.info("This is custom build script. This script located in '${Config.projectDir}'")
-    Context.pipeline.zip(dir: src, zipFile: dest, archive: true)
+    Context.pipeline.zip(dir: src, zipFile: dest)
 }
 
 return this

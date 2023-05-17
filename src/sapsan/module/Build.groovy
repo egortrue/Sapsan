@@ -2,12 +2,29 @@ package sapsan.module
 
 import sapsan.core.Config
 import sapsan.core.Context
+import sapsan.core.Job
 import sapsan.util.Log
 
 final class Build extends Module {
 
-    Script script
-    String scriptFilename = "build.groovy"
+    String scriptFile
+    private Script script
+
+    @Override
+    protected void precheck() {
+        loadScript()
+        script.precheck(properties)
+    }
+
+    @Override
+    protected void init() {
+        script.init(properties)
+    }
+
+    @Override
+    protected void execute() {
+        script.execute()
+    }
 
     @Override
     protected String getStageName() {
@@ -19,28 +36,14 @@ final class Build extends Module {
         }
     }
 
-    @Override
-    protected void checkProperties() {
-        loadScript()
-        script.checkProperties(properties)
-    }
-
-    @Override
-    protected void initProperties() {
-        script.initProperties(properties)
-    }
-
-    @Override
-    protected void execute() {
-        script.execute()
-    }
-
     private void loadScript() {
+        scriptFile = scriptFile ?: "${Config.projectDir}/build.groovy"
+
         try {
-            String scriptText = Context.pipeline.libraryResource("${Config.projectDir}/$scriptFilename")
-            Context.pipeline.prependToFile(file: scriptFilename, content: scriptText)
-            script = Context.pipeline.load scriptFilename
-            Context.pipeline.sh "rm -f $scriptFilename"
+            String scriptText = Context.pipeline.libraryResource(scriptFile)
+            Context.pipeline.prependToFile(file: "${Job.tag}-build.groovy", content: scriptText)
+            script = Context.pipeline.load "${Job.tag}-build.groovy"
+            Context.pipeline.sh "rm -f ${Job.tag}-build.groovy"
         } catch (Exception e) {
             Log.error("Build loading script threw exception: $e.message")
         }

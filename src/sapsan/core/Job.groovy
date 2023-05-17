@@ -18,6 +18,12 @@ class Job extends Context {
 
     @NonCPS
     @Memoized
+    static String getTag() {
+        Context.pipeline.env.BUILD_TAG
+    }
+
+    @NonCPS
+    @Memoized
     static String getBranch() {
         Context.pipeline.env.BRANCH_NAME
     }
@@ -33,7 +39,7 @@ class Job extends Context {
     static String getBaseUrl() {
         url.split('/')[0..2].join('/')
     }
-    
+
     static String getInfo() {
         """
         [Job Information]

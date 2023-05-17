@@ -1,9 +1,13 @@
 @Library("sapsan@master") _
+
 import sapsan.core.Pipeline
 import sapsan.module.Build
 import sapsan.module.Checkout
 
 Pipeline.run(this, "agent") {
-    new Checkout().call()
-    new Build().call()
+    def checkout = new Checkout()
+    def build = new Build()
+
+    checkout()
+    build()
 }
