@@ -10,6 +10,15 @@ class Checkout extends Module {
     String branch
 
     @Override
+    protected Map getProperties() {
+        if (Pipeline.type == Pipeline.Type.CLASSIC) {
+            return super.properties
+        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+            return null
+        }
+    }
+
+    @Override
     protected void checkProperties(Map properties) {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             assert properties["url"] != null
