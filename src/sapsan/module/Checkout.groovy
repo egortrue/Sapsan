@@ -41,9 +41,10 @@ class Checkout extends Module {
 
     @Override
     protected void execute() {
+        Context.pipeline.sh "ls -al"
         Context.pipeline.checkout([$class           : 'GitSCM',
                                    branches         : [[name: branch]],
-                                   userRemoteConfigs: [[credentialsId: 'my-cred', url: url]]
-        ])
+                                   userRemoteConfigs: [[credentialsId: 'my-cred', url: url]]])
+        Context.pipeline.sh "ls -al"
     }
 }
