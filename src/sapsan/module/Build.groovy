@@ -33,7 +33,7 @@ final class Build extends Module {
     private void loadScript() {
         try {
             String scriptText = Context.pipeline.libraryResource("${Config.projectDir}/$scriptFilename")
-            Context.pipeline.prependFile(file: scriptFilename, text: scriptText)
+            Context.pipeline.prependToFile(file: scriptFilename, content: scriptText)
             script = Context.pipeline.load scriptFilename
             Context.pipeline.sh "rm -f $scriptFilename"
         } catch (Exception e) {
