@@ -12,7 +12,7 @@ class Checkout extends Module {
     @Override
     protected Map getProperties() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            return super.properties
+            return super.getProperties()
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
             return null
         }
