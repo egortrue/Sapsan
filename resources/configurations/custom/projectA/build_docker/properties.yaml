@@ -3,6 +3,10 @@ Team:
   key: ''
   email: ''
 
+Checkout:
+  url: "http://172.24.0.1:8081/scm/repo/admin/sapsan/"
+  branch: "master"
+
 Build:
   src: "./"
   dest: "project.zip"
