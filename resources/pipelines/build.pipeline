@@ -14,5 +14,5 @@ Pipeline.run(this, "agent") {
 
 //    Module.execute(Config.getProjectFile("project-stage"))
 //    Module.execute(Config.getGroupFile("group-stage"))
-    Checkout.execute()
+    new Checkout().execute()
 }
