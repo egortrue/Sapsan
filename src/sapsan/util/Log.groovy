@@ -11,12 +11,6 @@ import static groovy.json.JsonOutput.toJson
  */
 final class Log extends Context {
 
-    final class LogException extends Exception {
-        LogException(String message) {
-            super(message);
-        }
-    }
-
     @NonCPS
     static void var(String prefix = null, def variable) {
         def message = prefix ?: variable.getClass().name
