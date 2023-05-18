@@ -38,7 +38,7 @@ final class Stage extends Context {
                 status = Status.SUCCESS
             }
 
-            if (currentBuild.result == 'FAILURE') {
+            if (Context.pipeline.currentBuild.result == 'FAILURE') {
                 status = Status.FAILED
             }
 
