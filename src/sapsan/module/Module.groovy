@@ -28,9 +28,6 @@ abstract class Module extends Context {
      * @return экземпляр модуля
      */
     static def execute(def module) {
-        Log.var(module.typeName)
-        Log.var(module.class.typeName)
-
         def instance
         if (module instanceof Class) {
             instance = module.getDeclaredConstructor().newInstance()
