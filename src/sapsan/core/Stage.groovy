@@ -1,8 +1,6 @@
 package sapsan.core
 
 import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
-import sapsan.util.Log
-import sapsan.util.Log.LogException
 
 final class Stage extends Context {
 
@@ -15,7 +13,7 @@ final class Stage extends Context {
         FAILED
     }
 
-    static Status lastStatus = Status.NOT_STARTED
+    static Status globalStatus = Status.NOT_STARTED
 
     String name
     Closure steps
@@ -28,29 +26,23 @@ final class Stage extends Context {
 
     void execute() {
         Context.pipeline.stage(name) {
-            if (lastStatus == Status.FAILED) {
+            if (globalStatus == Status.FAILED) {
                 status = Status.SKIPPED
                 Utils.markStageSkippedForConditional(name)
                 return
             }
 
-            try {
+            catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                 status = Status.STARTED
                 steps()
                 status = Status.SUCCESS
-            } catch (LogException e) {
-                status = Status.FAILED
-            } catch (Exception e) {
-                Log.error(e.message, false)
+            }
+
+            if (currentBuild.result == 'FAILURE') {
                 status = Status.FAILED
             }
 
-            if (status == Status.FAILED) {
-                Utils.markStageFailedAndContinued(name)
-            }
-
-            if (lastStatus != Status.FAILED)
-                lastStatus = status
+            globalStatus = status
         }
     }
 
