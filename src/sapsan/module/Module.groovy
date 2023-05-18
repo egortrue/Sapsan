@@ -49,7 +49,7 @@ abstract class Module extends Context {
     /**
      * Название шага для отображения в Jenkins
      */
-    protected String getStageName() {
+    protected String getName() {
         return this.class.simpleName
     }
 
