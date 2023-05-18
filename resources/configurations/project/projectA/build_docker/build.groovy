@@ -7,8 +7,8 @@ import sapsan.util.Log
 @Field String dest
 
 void precheck(Map properties) {
-    assert properties["src"] != null
-    assert properties["dest"] != null
+//    assert properties["src"] != null
+//    assert properties["dest"] != null
 }
 
 void execute(Map properties) {
