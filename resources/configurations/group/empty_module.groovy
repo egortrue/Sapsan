@@ -3,10 +3,10 @@ import sapsan.util.Log
 
 @Field String name = "Empty Module"
 
-void precheck(Map properties) {
+void precheck() {
 }
 
-void run(Map properties) {
+def run() {
     Log.info("This is empty module!")
     Log.error("ERROR")
 }
