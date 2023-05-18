@@ -1,7 +1,5 @@
 package sapsan.core
 
-import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
-
 final class Stage extends Context {
 
     enum Status {
@@ -26,11 +24,11 @@ final class Stage extends Context {
 
     void execute() {
         Context.pipeline.stage(name) {
-            if (globalStatus == Status.FAILED) {
-                status = Status.SKIPPED
-                Utils.markStageSkippedForConditional(name)
-                return
-            }
+//            if (globalStatus == Status.FAILED) {
+//                status = Status.SKIPPED
+//                Utils.markStageSkippedForConditional(name)
+//                return
+//            }
 
             Context.pipeline.catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                 status = Status.STARTED
@@ -43,12 +41,6 @@ final class Stage extends Context {
             }
 
             globalStatus = status
-        }
-    }
-
-    void haveCondition(Closure<Boolean> condition) {
-        if (condition.call() == false) {
-            setStatus(Status.SKIPPED)
         }
     }
 }
