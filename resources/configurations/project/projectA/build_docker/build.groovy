@@ -1,7 +1,7 @@
 import groovy.transform.Field
 import sapsan.util.Log
 
-@Field String name = "Empty Module"
+@Field String name = "Build"
 
 void precheck(Map properties) {
 }
