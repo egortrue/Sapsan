@@ -40,9 +40,9 @@ abstract class Module extends Context {
             Log.error("Module execution failed: Wrong paramerter 'module' = $module")
         }
 
-        instance.precheck(properties)
+        instance.precheck()
         Pipeline.stage(instance.stageName) {
-            instance.run(properties)
+            instance.run()
         }
 
         return instance
