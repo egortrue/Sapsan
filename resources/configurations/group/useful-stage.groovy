@@ -1,6 +1,7 @@
 import groovy.transform.Field
 import sapsan.util.Log
 
+@Field String name = "Useful Stage"
 @Field String src
 @Field String dest
 

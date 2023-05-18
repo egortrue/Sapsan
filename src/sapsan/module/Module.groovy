@@ -38,7 +38,7 @@ abstract class Module extends Context {
         }
 
         instance.precheck()
-        Pipeline.stage(instance.stageName) {
+        Pipeline.stage(instance.name) {
             instance.run()
         }
 

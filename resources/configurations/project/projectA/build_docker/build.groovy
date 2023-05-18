@@ -2,6 +2,7 @@ import groovy.transform.Field
 import sapsan.core.Config
 import sapsan.util.Log
 
+@Field String name = "Custom Build"
 @Field String src
 @Field String dest
 
