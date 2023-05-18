@@ -8,6 +8,7 @@ void precheck(Map properties) {
 
 void run(Map properties) {
     Log.info("This is empty module!")
+    Log.error("ERROR")
 }
 
 return this
