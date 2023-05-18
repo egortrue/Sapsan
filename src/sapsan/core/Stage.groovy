@@ -32,7 +32,7 @@ final class Stage extends Context {
                 return
             }
 
-            catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+            Context.pipeline.catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                 status = Status.STARTED
                 steps()
                 status = Status.SUCCESS
