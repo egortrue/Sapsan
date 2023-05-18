@@ -11,7 +11,7 @@ void precheck(Map properties) {
 //    assert properties["dest"] != null
 }
 
-void execute(Map properties) {
+void run(Map properties) {
     src = properties["src"]
     dest = properties["dest"]
     Log.info("This is custom build script. This script located in '${Config.projectDir}'")
