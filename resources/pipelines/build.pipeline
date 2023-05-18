@@ -13,10 +13,10 @@ Pipeline.run(this, "agent") {
     Module.execute(Checkout)
 
     // Использование динамического пользовательского модуля
-    Module.execute(Config.getProjectFile("project-stage"))
+    Module.execute(Config.getProjectFile("build"))
 
-    // Использование динамического группового модуля
-    Module.execute(Config.getGroupFile("group-stage"))
+//    // Использование динамического группового модуля
+//    Module.execute(Config.getGroupFile("group-stage"))
 
     // Реализация собственного шага
     Pipeline.stage("Simple stage") {
