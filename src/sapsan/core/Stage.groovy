@@ -42,7 +42,7 @@ final class Stage extends Context {
         } catch (LogException e) {
             status = Status.FAILED
         } catch (Exception e) {
-            Log.error(e.message, exit: false)
+            Log.error(e.message, false)
             status = Status.FAILED
         }
         lastStatus = status
