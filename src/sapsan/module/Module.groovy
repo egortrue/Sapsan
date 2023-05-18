@@ -26,7 +26,9 @@ abstract class Module extends Context {
      * @param path путь к файлу для выполнения
      * @return экземпляр модуля
      */
-    static def execute(String path = null) {
+    static def execute(def module) {
+        Log.var(module.typeName)
+
         Log.info("${this.typeName} == ${Module.typeName}")
 //        def instance = this.getDeclaredConstructor().newInstance()
 //        instance.precheck(properties)
