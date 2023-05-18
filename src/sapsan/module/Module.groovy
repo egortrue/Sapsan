@@ -31,7 +31,7 @@ abstract class Module extends Context {
         def instance
         if (module instanceof Class) {
             instance = module.getDeclaredConstructor().newInstance()
-        } else if (module instanceof String) {
+        } else if (module instanceof GString || module instanceof String) {
             instance = load(module)
         } else {
             Log.error("Module execution failed: Wrong paramerter 'module' = $module")
