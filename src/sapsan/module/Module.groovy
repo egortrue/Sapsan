@@ -27,7 +27,7 @@ abstract class Module extends Context {
      * @return экземпляр модуля
      */
     static def execute(String path = null) {
-        Log.var(this.typeName)
+        Log.info("${this.typeName} == ${Module.typeName}")
 //        def instance = this.getDeclaredConstructor().newInstance()
 //        instance.precheck(properties)
 //        Pipeline.stage(instance.stageName) {
