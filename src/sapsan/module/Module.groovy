@@ -26,12 +26,13 @@ abstract class Module extends Context {
      * @param path путь к файлу для выполнения
      * @return экземпляр модуля
      */
-    static void execute(String path = null) {
-        Log.var(this.name)
+    static def execute(String path = null) {
+        def instance = this.getDeclaredConstructor().newInstance()
 //        instance.precheck(properties)
 //        Pipeline.stage(instance.stageName) {
 //            instance.run(properties)
 //        }
+        return instance
     }
 
     /**
