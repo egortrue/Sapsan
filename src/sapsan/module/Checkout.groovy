@@ -22,7 +22,7 @@ class Checkout extends Module {
     }
 
     @Override
-    protected void run() {
+    protected void execute() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = Config.projectProperties["checkout"]["url"]
             branch = Config.projectProperties["checkout"]["branch"]

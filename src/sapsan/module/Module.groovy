@@ -15,7 +15,7 @@ abstract class Module extends Context {
     /**
      * Запуск модуля (после инициализации всего пайплайна)
      */
-    protected abstract void run()
+    protected abstract void execute()
 
     /**
      * Шаблонный метод (Поведенческий шаблон проектирования)
@@ -24,6 +24,8 @@ abstract class Module extends Context {
      * @return экземпляр модуля
      */
     static def execute(def module) {
+
+        // Определение модуля
         def instance
         if (module instanceof GString || module instanceof String) {
             instance = load(module)
@@ -33,9 +35,10 @@ abstract class Module extends Context {
             Log.error("Module execution failed: Wrong paramerter 'module'=$module")
         }
 
+        // Запуск модуля
         instance.precheck()
         Pipeline.stage(instance.name) {
-            instance.run([:])
+            instance.execute()
         }
 
         return instance

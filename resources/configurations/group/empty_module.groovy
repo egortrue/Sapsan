@@ -6,7 +6,7 @@ import sapsan.util.Log
 void precheck() {
 }
 
-def run() {
+def execute() {
     Log.info("This is empty module!")
     Log.error("ERROR")
 }
