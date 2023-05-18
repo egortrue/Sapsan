@@ -24,11 +24,11 @@ final class Stage extends Context {
 
     void execute() {
         Context.pipeline.stage(name) {
-//            if (globalStatus == Status.FAILED) {
-//                status = Status.SKIPPED
-//                Utils.markStageSkippedForConditional(name)
-//                return
-//            }
+            if (globalStatus == Status.FAILED) {
+                status = Status.SKIPPED
+                Utils.markStageSkippedForConditional(name)
+                return
+            }
 
             Context.pipeline.catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                 status = Status.STARTED
