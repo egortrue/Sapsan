@@ -2,6 +2,7 @@ package sapsan.core
 
 import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
 import sapsan.util.Log
+import sapsan.util.Log.LogException
 
 final class Stage extends Context {
 
@@ -38,6 +39,8 @@ final class Stage extends Context {
                 steps()
             }
             status = Status.SUCCESS
+        } catch (LogException e) {
+            status = Status.FAILED
         } catch (Exception e) {
             Log.error(e.message, exit: false)
             status = Status.FAILED
