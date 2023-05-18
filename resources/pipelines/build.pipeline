@@ -3,6 +3,7 @@
 
 import sapsan.core.Config
 import sapsan.core.Pipeline
+import sapsan.module.Checkout
 import sapsan.module.Module
 import sapsan.util.Log
 
@@ -15,5 +16,5 @@ Pipeline.run(this, "agent") {
 
     Module.execute(Config.getProjectFile("project-stage"))
     Module.execute(Config.getGroupFile("group-stage"))
-
+    Checkout.execute()
 }
