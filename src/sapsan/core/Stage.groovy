@@ -44,7 +44,11 @@ final class Stage extends Context {
                 Log.error(e.message, false)
                 status = Status.FAILED
             }
-            
+
+            if (status == Status.FAILED) {
+                Utils.markStageFailedAndContinued(name)
+            }
+
             if (lastStatus != Status.FAILED)
                 lastStatus = status
         }
