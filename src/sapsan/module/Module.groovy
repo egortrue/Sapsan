@@ -26,16 +26,8 @@ abstract class Module extends Context {
      * @param path путь к файлу для выполнения
      * @return экземпляр модуля
      */
-    static def execute(String path = null) {
-        Log.info("${this.typeName} == ${Module.typeName}")
-//        def instance = this.getDeclaredConstructor().newInstance()
-//        instance.precheck(properties)
-//        Pipeline.stage(instance.stageName) {
-//            instance.run(properties)
-//        }
-//        return instance
-    }
-
+    static abstract def execute(String path = null)
+    
     /**
      * Название шага для отображения в Jenkins
      */
