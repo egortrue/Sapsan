@@ -1,7 +1,6 @@
 package sapsan.util
 
 import com.cloudbees.groovy.cps.NonCPS
-import groovy.transform.InheritConstructors
 import sapsan.core.Context
 
 import static groovy.json.JsonOutput.prettyPrint
@@ -12,8 +11,11 @@ import static groovy.json.JsonOutput.toJson
  */
 final class Log extends Context {
 
-    @InheritConstructors
-    final class LogException extends Exception {}
+    final class LogException extends Exception {
+        LogException(String message) {
+            super(message);
+        }
+    }
 
     @NonCPS
     static void var(String prefix = null, def variable) {
