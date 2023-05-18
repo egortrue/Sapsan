@@ -13,7 +13,7 @@ import static groovy.json.JsonOutput.toJson
 final class Log extends Context {
 
     @InheritConstructors
-    final class LogException extends Exception
+    final class LogException extends Exception {}
 
     @NonCPS
     static void var(String prefix = null, def variable) {
