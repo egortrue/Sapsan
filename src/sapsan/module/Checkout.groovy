@@ -1,5 +1,6 @@
 package sapsan.module
 
+
 import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
@@ -9,14 +10,14 @@ class Checkout extends Module {
     String url
     String branch
 
-    @Override
-    protected Map getProperties() {
-        if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            return super.getProperties()
-        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-            return null
-        }
-    }
+//    @Override
+//    protected Map getProperties() {
+//        if (Pipeline.type == Pipeline.Type.CLASSIC) {
+//            return super.getProperties()
+//        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+//            return null
+//        }
+//    }
 
     @Override
     protected void precheck() {
@@ -29,7 +30,7 @@ class Checkout extends Module {
     }
 
     @Override
-    protected void init() {
+    protected void run() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             url = properties["url"]
             branch = properties["branch"]
@@ -37,10 +38,7 @@ class Checkout extends Module {
             url = Context.pipeline.scm.userRemoteConfigs[0].url
             branch = Job.branch
         }
-    }
 
-    @Override
-    protected void execute() {
         Context.pipeline.sh "ls -al"
         Context.pipeline.checkout([$class           : 'GitSCM',
                                    branches         : [[name: branch]],

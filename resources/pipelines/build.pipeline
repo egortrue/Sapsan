@@ -1,13 +1,20 @@
 @Library("sapsan@master") _
 
+import sapsan.core.Config
 import sapsan.core.Pipeline
-import sapsan.module.Build
 import sapsan.module.Checkout
+import sapsan.module.Module
+import sapsan.util.Log
 
 Pipeline.run(this, "agent") {
-    def checkout = new Checkout()
-    def build = new Build()
 
-    checkout()
-    build()
+    Pipeline.stage("Simple stage") {
+        Log.info("This is a simple step inside simple stage")
+    }
+
+
+    Module.execute(Config.getProjectFile("project-stage"))
+    Module.execute(Config.getGroupFile("group-stage"))
+
+    Checkout.execute()
 }

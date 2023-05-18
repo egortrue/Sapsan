@@ -2,57 +2,53 @@ package sapsan.core
 
 final class Config extends Context {
 
-    private static final String root = "configurations"
     private static final String parametersFilename = "parameters.yaml"
     private static final String propertiesFilename = "properties.yaml"
 
-    private static Map globalParameters
-    private static Map parameters
-    private static Map properties
+    private static Map groupParameters
+    private static Map groupProperties
+    private static Map projectParameters
+    private static Map projectProperties
 
-    static String getGlobalDir() {
-        "$root/global"
+    static String getGroupFile(String filename) {
+        "configurations/group/${filename}"
     }
 
-    static String getProjectDir() {
-        "$root/custom/${Job.name}"
+    static String getProjectFile(String filename) {
+        "configurations/project/${Job.name}/${filename}"
     }
 
-    static String getGlobalParametersFile() {
-        "$globalDir/$parametersFilename"
+    static Map getGroupParameters() {
+        if (groupParameters == null)
+            groupParameters = parse(getGroupFile(parametersFilename))
+        return groupParameters
     }
 
-    static String getParametersFile() {
-        "$projectDir/$parametersFilename"
+    static Map getGroupProperties() {
+        if (groupProperties == null)
+            groupProperties = parse(getGroupFile(propertiesFilename))
+        return groupProperties
     }
 
-    static String getPropertiesFile() {
-        "$projectDir/$propertiesFilename"
+    static Map getProjectParameters() {
+        if (projectParameters == null)
+            projectParameters = parse(getProjectFile(parametersFilename))
+        return projectParameters
     }
 
-    static Map getGlobalParameters() {
-        if (globalParameters == null)
-            globalParameters = parse(globalParametersFile)
-        return globalParameters
-    }
-
-    static Map getParameters() {
-        if (parameters == null)
-            parameters = parse(parametersFile)
-        return parameters
-    }
-
-    static Map getProperties() {
-        if (properties == null)
-            properties = parse(propertiesFile)
-        return properties
+    static Map getProjectProperties() {
+        if (projectProperties == null)
+            projectProperties = parse(getProjectFile(propertiesFilename))
+        return projectProperties
     }
 
     static String getInfo() {
         """
         [Config Information]
-        parametersFile="$parametersFile"
-        propertiesFile="$propertiesFile"
+        globalParameters="${getGroupFile(parametersFilename)}"
+        globalProperties="${getGroupFile(propertiesFilename)}"
+        projectParameters="${getProjectFile(parametersFilename)}"
+        projectProperties="${getProjectFile(propertiesFilename)}"
         """.stripIndent()
     }
 

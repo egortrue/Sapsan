@@ -2,7 +2,7 @@ package sapsan.core
 
 import sapsan.util.Log
 
-class Stage extends Context {
+final class Stage extends Context {
 
     enum Status {
         NOT_STARTED,

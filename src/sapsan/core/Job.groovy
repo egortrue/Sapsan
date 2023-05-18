@@ -3,7 +3,7 @@ package sapsan.core
 import com.cloudbees.groovy.cps.NonCPS
 import groovy.transform.Memoized
 
-class Job extends Context {
+final class Job extends Context {
 
     /**
      *  Полный путь до джобы
