@@ -21,12 +21,12 @@ class Checkout extends Module {
 
     @Override
     protected void precheck() {
-        if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            assert properties["url"] != null
-            assert properties["branch"] != null
-        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-            assert Context.pipeline.scm != null
-        }
+//        if (Pipeline.type == Pipeline.Type.CLASSIC) {
+//            assert properties["url"] != null
+//            assert properties["branch"] != null
+//        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+//            assert Context.pipeline.scm != null
+//        }
     }
 
     @Override
