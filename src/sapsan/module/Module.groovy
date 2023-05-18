@@ -3,6 +3,7 @@ package sapsan.module
 
 import sapsan.core.Context
 import sapsan.core.Job
+import sapsan.core.Pipeline
 import sapsan.util.Log
 
 abstract class Module extends Context {
@@ -30,13 +31,21 @@ abstract class Module extends Context {
         Log.var(module.typeName)
         Log.var(module.class.typeName)
 
-        Log.info("${this.typeName} == ${Module.typeName}")
-//        def instance = this.getDeclaredConstructor().newInstance()
-//        instance.precheck(properties)
-//        Pipeline.stage(instance.stageName) {
-//            instance.run(properties)
-//        }
-//        return instance
+        def instance
+        if (module instanceof Class) {
+            instance = module.getDeclaredConstructor().newInstance()
+        } else if (module instanceof String) {
+            instance = load(module)
+        } else {
+            Log.error("Module execution failed: Wrong paramerter 'module' = $module")
+        }
+
+        instance.precheck(properties)
+        Pipeline.stage(instance.stageName) {
+            instance.run(properties)
+        }
+
+        return instance
     }
 
 
