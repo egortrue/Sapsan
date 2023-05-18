@@ -1,6 +1,6 @@
 package sapsan.module
 
-
+import sapsan.core.Config
 import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
@@ -32,8 +32,8 @@ class Checkout extends Module {
     @Override
     protected void run() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            url = properties["url"]
-            branch = properties["branch"]
+            url = Config.projectProperties["checkout"]["url"]
+            branch = Config.projectProperties["checkout"]["branch"]
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
             url = Context.pipeline.scm.userRemoteConfigs[0].url
             branch = Job.branch

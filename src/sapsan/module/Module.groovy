@@ -8,9 +8,6 @@ import sapsan.util.Log
 
 abstract class Module extends Context {
 
-    protected Map moduleProperties
-    protected Map moduleParameters
-
     /**
      * Валидация свойств перед запуском модуля (на шаге инициализации всего пайплайна)
      */
