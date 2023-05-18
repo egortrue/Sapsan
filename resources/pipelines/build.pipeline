@@ -1,6 +1,4 @@
 @Library("sapsan@master") _
-
-
 import sapsan.core.Config
 import sapsan.core.Pipeline
 import sapsan.module.Checkout
@@ -16,6 +14,7 @@ Pipeline.run(this, "agent") {
     Module.execute(Config.getProjectFile("build.groovy"))
 
     // Использование динамического группового модуля
+    Module.execute(Config.getGroupFile("useful-stage.groovy"))
     Module.execute(Config.getGroupFile("useful-stage.groovy"))
 
     // Реализация собственного шага

@@ -1,6 +1,5 @@
 package sapsan.module
 
-
 import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
@@ -19,7 +18,7 @@ abstract class Module extends Context {
     protected abstract void run()
 
     /**
-     * Фабричный метод.
+     * Фабричный метод
      * Содержит инициализацию параметров и шага пайплайна.
      * @param path путь к файлу для выполнения
      * @return экземпляр модуля
@@ -42,24 +41,12 @@ abstract class Module extends Context {
         return instance
     }
 
-
     /**
      * Название шага для отображения в Jenkins
      */
     protected String getName() {
         return this.class.simpleName
     }
-
-    /**
-     * Определяем откуда модуль берет свои свойства
-     */
-//    protected Map getProperties() {
-//        if (Config.properties[this.class.simpleName] == null) {
-//            Log.error("Property '${this.class.simpleName}' not found in '${Config.propertiesFile}'")
-//        }
-//        return Config.properties[this.class.simpleName]
-//    }
-
 
     /**
      * Динамическая загрузка и подключение пользовательских скриптов

@@ -10,23 +10,15 @@ class Checkout extends Module {
     String url
     String branch
 
-//    @Override
-//    protected Map getProperties() {
-//        if (Pipeline.type == Pipeline.Type.CLASSIC) {
-//            return super.getProperties()
-//        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-//            return null
-//        }
-//    }
-
     @Override
     protected void precheck() {
-//        if (Pipeline.type == Pipeline.Type.CLASSIC) {
-//            assert properties["url"] != null
-//            assert properties["branch"] != null
-//        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-//            assert Context.pipeline.scm != null
-//        }
+        if (Pipeline.type == Pipeline.Type.CLASSIC) {
+            assert Config.projectProperties["checkout"] != null
+            assert Config.projectProperties["checkout"]["url"] != null
+            assert Config.projectProperties["checkout"]["branch"] != null
+        } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
+            assert Context.pipeline.scm != null
+        }
     }
 
     @Override
