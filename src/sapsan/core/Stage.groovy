@@ -27,25 +27,27 @@ final class Stage extends Context {
     }
 
     void execute() {
-        status = Status.STARTED
-        try {
-            Context.pipeline.stage(name) {
-                if (lastStatus == Status.FAILED) {
-                    status = Status.SKIPPED
-                    Utils.markStageSkippedForConditional(name)
-                    return
-                }
-
-                steps()
+        Context.pipeline.stage(name) {
+            if (lastStatus == Status.FAILED) {
+                status = Status.SKIPPED
+                Utils.markStageSkippedForConditional(name)
+                return
             }
-            status = Status.SUCCESS
-        } catch (LogException e) {
-            status = Status.FAILED
-        } catch (Exception e) {
-            Log.error(e.message, false)
-            status = Status.FAILED
+
+            try {
+                status = Status.STARTED
+                steps()
+                status = Status.SUCCESS
+            } catch (LogException e) {
+                status = Status.FAILED
+            } catch (Exception e) {
+                Log.error(e.message, false)
+                status = Status.FAILED
+            }
+            
+            if (lastStatus != Status.FAILED)
+                lastStatus = status
         }
-        lastStatus = status
     }
 
     void haveCondition(Closure<Boolean> condition) {
