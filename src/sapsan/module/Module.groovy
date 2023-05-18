@@ -11,23 +11,23 @@ abstract class Module extends Context {
     protected Map moduleParameters
 
     /**
-     * Валидация свойств перед запуском (на шаге инициализации всего пайплайна)
+     * Валидация свойств перед запуском модуля (на шаге инициализации всего пайплайна)
      */
     protected abstract void precheck()
 
     /**
-     * Тело шага. Выполняемые действия (после инициализации всего пайплайна)
+     * Запуск модуля (после инициализации всего пайплайна)
      */
     protected abstract void run()
 
     /**
-     * Выполнение модуля.
+     * Фабричный метод.
      * Содержит инициализацию параметров и шага пайплайна.
      * @param path путь к файлу для выполнения
      * @return экземпляр модуля
      */
     static void execute(String path = null) {
-        Log.var(this.class.name)
+        Log.var(this.name)
 //        instance.precheck(properties)
 //        Pipeline.stage(instance.stageName) {
 //            instance.run(properties)
