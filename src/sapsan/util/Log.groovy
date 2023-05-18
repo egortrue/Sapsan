@@ -42,6 +42,6 @@ final class Log extends Context {
     static void error(String text, boolean exit = true) {
         // TODO: Добавить статус Error для класса Stage
         Context.pipeline.echo(Color.red("[Error] $text"))
-        if (exit) Context.pipeline.error(text)
+        if (exit) throw new Exception(text)
     }
 }

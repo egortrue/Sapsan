@@ -8,7 +8,7 @@ void precheck() {
 
 def execute() {
     Log.info("This is empty module!")
-    Log.error("ERROR")
+    Log.error("Empty module failed")
 }
 
 return this
