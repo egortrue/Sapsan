@@ -28,6 +28,7 @@ abstract class Module extends Context {
      */
     static def execute(def module) {
         Log.var(module.typeName)
+        Log.var(module.class.typeName)
 
         Log.info("${this.typeName} == ${Module.typeName}")
 //        def instance = this.getDeclaredConstructor().newInstance()
