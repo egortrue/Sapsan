@@ -14,8 +14,7 @@ Pipeline.run(this, "agent") {
     Module.execute(Config.getProjectFile("build.groovy"))
 
     // Использование динамического группового модуля
-    Module.execute(Config.getGroupFile("useful-stage.groovy"))
-    Module.execute(Config.getGroupFile("useful-stage.groovy"))
+    Module.execute(Config.getGroupFile("empty_module.groovy"))
 
     // Реализация собственного шага
     Pipeline.stage("Simple stage") {
