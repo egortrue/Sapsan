@@ -32,11 +32,10 @@ final class Stage extends Context {
                 if (lastStatus == Status.FAILED) {
                     status = Status.SKIPPED
                     Utils.markStageSkippedForConditional(name)
-                    return
+                } else {
+                    steps()
                 }
 
-
-                steps()
             }
             status = Status.SUCCESS
         } catch (Exception exception) {
