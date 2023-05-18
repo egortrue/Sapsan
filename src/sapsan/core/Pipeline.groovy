@@ -43,8 +43,8 @@ final class Pipeline extends Context {
                     Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Config.info
-                    Log.var("properties", Config.properties)
-                    Log.var("parameters", Config.parameters)
+                    Log.var("properties", Config.projectProperties)
+                    Log.var("parameters", Config.projectParameters)
 
                     // Инициализация шагов
                     closure()
