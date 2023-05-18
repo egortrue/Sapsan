@@ -1,15 +1,13 @@
 import groovy.transform.Field
 import sapsan.util.Log
 
-@Field String name = "Useful Stage"
-@Field String src
-@Field String dest
+@Field String name = "Empty Module"
 
 void precheck(Map properties) {
 }
 
 void run(Map properties) {
-    Log.info("This is useful!")
+    Log.info("This is empty module!")
 }
 
 return this

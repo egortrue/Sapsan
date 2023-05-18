@@ -7,7 +7,7 @@ void precheck(Map properties) {
 }
 
 void run(Map properties) {
-    Log.info("This is a sample stage")
+    Log.info("This is a build stage")
 }
 
 return this

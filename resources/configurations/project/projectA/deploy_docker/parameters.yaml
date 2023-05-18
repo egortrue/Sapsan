@@ -1,7 +1,0 @@
-default:
-  - VERSION
-custom:
-  ARTIFACT_URL:
-    type: 'string'
-    value: ''
-    description: 'Link to the artifact to download'

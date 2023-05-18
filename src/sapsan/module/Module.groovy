@@ -18,7 +18,7 @@ abstract class Module extends Context {
     protected abstract void run()
 
     /**
-     * Фабричный метод
+     * Шаблонный метод
      * Содержит инициализацию параметров и шага пайплайна.
      * @param path путь к файлу для выполнения
      * @return экземпляр модуля

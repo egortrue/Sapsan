@@ -8,13 +8,16 @@ import sapsan.util.Log
 Pipeline.run(this, "agent") {
 
     // Использование статического модуля
-    Module.execute(Checkout)
+    def checkout = Module.execute(Checkout)
+    Log.var("checkout module", checkout)
 
     // Использование динамического группового модуля
-    Module.execute(Config.getGroupFile("empty_module.groovy"))
+    def empty = Module.execute(Config.getGroupFile("empty_module.groovy"))
+    Log.var("empty module" empty.class.name)
 
     // Использование динамического пользовательского модуля
-    Module.execute(Config.getProjectFile("build.groovy"))
+    def build = Module.execute(Config.getProjectFile("build.groovy"))
+    Log.var("build module", build.class.name)
 
     // Реализация собственного шага
     Pipeline.stage("Simple stage") {
