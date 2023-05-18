@@ -27,12 +27,13 @@ abstract class Module extends Context {
      * @return экземпляр модуля
      */
     static def execute(String path = null) {
-        def instance = this.getDeclaredConstructor().newInstance()
+        Log.var(this.typeName)
+//        def instance = this.getDeclaredConstructor().newInstance()
 //        instance.precheck(properties)
 //        Pipeline.stage(instance.stageName) {
 //            instance.run(properties)
 //        }
-        return instance
+//        return instance
     }
 
     /**
