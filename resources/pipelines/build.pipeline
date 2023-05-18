@@ -13,7 +13,7 @@ Pipeline.run(this, "agent") {
 
     // Использование динамического группового модуля
     def empty = Module.execute(Config.getGroupFile("empty_module.groovy"))
-    Log.var("empty module" empty.class.name)
+    Log.var("empty module", empty.class.name)
 
     // Использование динамического пользовательского модуля
     def build = Module.execute(Config.getProjectFile("build.groovy"))
