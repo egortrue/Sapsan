@@ -1,5 +1,7 @@
 package sapsan.core
 
+import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
+
 final class Stage extends Context {
 
     enum Status {
