@@ -38,8 +38,8 @@ final class Stage extends Context {
                 steps()
             }
             status = Status.SUCCESS
-        } catch (Exception exception) {
-            Log.error(exception.message, exit: false)
+        } catch (Exception e) {
+            Log.error(e.message, exit: false)
             status = Status.FAILED
         }
         lastStatus = status

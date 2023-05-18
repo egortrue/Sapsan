@@ -1,6 +1,7 @@
 package sapsan.util
 
 import com.cloudbees.groovy.cps.NonCPS
+import groovy.transform.InheritConstructors
 import sapsan.core.Context
 
 import static groovy.json.JsonOutput.prettyPrint
@@ -10,6 +11,9 @@ import static groovy.json.JsonOutput.toJson
  * Статический класс для вывода информации в консоль.
  */
 final class Log extends Context {
+
+    @InheritConstructors
+    final class LogException extends Exception
 
     @NonCPS
     static void var(String prefix = null, def variable) {
@@ -42,6 +46,6 @@ final class Log extends Context {
     static void error(String text, boolean exit = true) {
         // TODO: Добавить статус Error для класса Stage
         Context.pipeline.echo(Color.red("[Error] $text"))
-        if (exit) throw new Exception(text)
+        if (exit) throw new LogException(text)
     }
 }
