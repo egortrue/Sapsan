@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body {
+            font-family: Calibri, Arial, Verdana, sans-serif;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 0.4em;
+        }
+        /* Заголовочная ячейка */
+        th {
+            background-color: gainsboro;
+            font-size: large;
+            font-weight: bold;
+            text-align: left;
+        }
+        /* Ячейки */
+        td.key {
+            background-color: #80daeb;
+            font-weight: bold;
+        }
+        /* Статусы */
+        .success {
+            background-color: lightgreen;
+        }
+        .failure {
+            background-color: lightcoral;
+        }
+        .aborted {
+            background-color: orange;
+        }
+        .unstable {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <!-- Общая информация -->
+        <tr><th colspan=2 class=${jobResult}>${jobResult}</th></tr>
+        <% out << pipelineInformation.collect({ key, value -> "<tr> <td class=key>$key</td> <td class=value>$value</td> </tr>" }).join('') %>
+
+        <!-- Свойства -->
+        <tr><th colspan=2>Properties</th></tr>
+        <% out << properties.collect({ key, value -> "<tr> <td class=key>$key</td> <td class=value>$value</td> </tr>" }).join('') %>
+
+        <!-- Параметры -->
+        <tr><th colspan=2>Parameters</th></tr>
+        <% out << parameters.collect({ key, value -> "<tr> <td class=key>$key</td> <td class=value>$value</td> </tr>" }).join('') %>
+    </table>
+    <br>
+    <b>Contact:</b>
+    <li><a href="mailto:i@example.com">Ivan Ivanov</a></li>
+</body>
+</html>
