@@ -63,18 +63,18 @@ on ["Jenkins Shared Library"](https://www.jenkins.io/doc/book/pipeline/shared-li
 1. Press `Add new Item` on the main page
 2. Set `Name` for project (it should be the same for folders in `/resources/configurations/project/`)
 3. For **classic** pipeline
-    1. Choose `Pipeline`
-    2. Press `Create`
-    3. Set `Pipeline > Definition` to `Pipeline script from SCM`
-    4. Set `SCM` to `Git`
-    5. Set `Repository URL` to `https://github.com/egortrue/Sapsan`
-    6. Set `Script path` to one of the [pipelines](/resources/pipelines/) -> `resources/pipelines/*.pipeline.groovy`
+    - Choose `Pipeline`
+    - Press `Create`
+    - Set `Pipeline > Definition` to `Pipeline script from SCM`
+    - Set `SCM` to `Git`
+    - Set `Repository URL` to `https://github.com/egortrue/Sapsan`
+    - Set `Script path` to one of the [pipelines](/resources/pipelines/) -> `resources/pipelines/*.pipeline.groovy`
 4. For **multibranch** pipeline
-    1. Setup `Branch Sources` for project to build
-    2. Set `Build Confguration > Mode` to `By Remote Jenkinsfile Provider`
-    3. Set `Script path` to one of the [pipelines](/resources/pipelines/) -> `resources/pipelines/*.pipeline.groovy`
-    4. Set `Jenkinsfile SCM` to `Git`
-    5. Set `Repository URL` to `https://github.com/egortrue/Sapsan`
+    - Setup `Branch Sources` for project to build
+    - Set `Build Confguration > Mode` to `By Remote Jenkinsfile Provider`
+    - Set `Script path` to one of the [pipelines](/resources/pipelines/) -> `resources/pipelines/*.pipeline.groovy`
+    - Set `Jenkinsfile SCM` to `Git`
+    - Set `Repository URL` to `https://github.com/egortrue/Sapsan`
 5. Run Job
 
 # Developing and Testing
@@ -105,8 +105,8 @@ for developing and testing this project, you can use opensource
 2. Add new repository called `sapsan`
 3. Push this project to the repository
 
+**Use the following address to configure Jenkins instead of this GitHub repository**.
 The SCM available in docker internal network with the address you find out using the following command.
-**Use this address to configure Jenkins instead**
 
 ```shell
 USER=admin && \
