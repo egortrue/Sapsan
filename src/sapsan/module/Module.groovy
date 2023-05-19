@@ -31,7 +31,7 @@ abstract class Module extends Context {
      * @param path путь к файлу для выполнения
      * @return экземпляр модуля
      */
-    static def execute(def module) {
+    static Module execute(def module) {
 
         // Определение модуля
         Class moduleClass
@@ -59,7 +59,6 @@ abstract class Module extends Context {
     static Module getModule(String name) {
         modules.find({ it.name == name })
     }
-
 
     /**
      * Динамическая загрузка и подключение пользовательских модулей

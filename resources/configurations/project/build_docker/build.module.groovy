@@ -11,9 +11,9 @@ class Build extends Module {
 
     @Override
     protected void precheck() {
-        image = Config.projectProperties["docker"]["image"]
-        dockerfile = Config.projectProperties["docker"]["dockerfile"]
-        target = Config.projectProperties["docker"]["target"]
+        image = Config.properties["docker"]["image"]
+        dockerfile = Config.properties["docker"]["dockerfile"]
+        target = Config.properties["docker"]["target"]
     }
 
     @Override

@@ -5,50 +5,42 @@ final class Config extends Context {
     private static final String parametersFilename = "parameters.yaml"
     private static final String propertiesFilename = "properties.yaml"
 
-    private static Map groupParameters
-    private static Map groupProperties
-    private static Map projectParameters
-    private static Map projectProperties
+    private static Map properties
+    private static Map parameters
 
-    static String getGroupFile(String filename) {
-        "configurations/group/${filename}"
+    ////////////////////////////////////////////////////////////////
+
+    static String getGlobalFile(String filename) {
+        "configurations/${filename}"
     }
 
     static String getProjectFile(String filename) {
         "configurations/project/${Job.name}/${filename}"
     }
 
-    static Map getGroupParameters() {
-        if (groupParameters == null)
-            groupParameters = parse(getGroupFile(parametersFilename))
-        return groupParameters
+    static Map getProperties() {
+        if (properties == null) {
+            properties = parse(getProjectFile(propertiesFilename))
+        }
+        return properties
     }
 
-    static Map getGroupProperties() {
-        if (groupProperties == null)
-            groupProperties = parse(getGroupFile(propertiesFilename))
-        return groupProperties
+
+    static Map getParameters() {
+        if (parameters == null) {
+            parameters = parse(getProjectFile(parametersFilename))
+        }
+
+        return parameters
     }
 
-    static Map getProjectParameters() {
-        if (projectParameters == null)
-            projectParameters = parse(getProjectFile(parametersFilename))
-        return projectParameters
-    }
-
-    static Map getProjectProperties() {
-        if (projectProperties == null)
-            projectProperties = parse(getProjectFile(propertiesFilename))
-        return projectProperties
-    }
+    ////////////////////////////////////////////////////////////////
 
     static String getInfo() {
         """
         [Config Information]
-        globalParameters="${getGroupFile(parametersFilename)}"
-        globalProperties="${getGroupFile(propertiesFilename)}"
-        projectParameters="${getProjectFile(parametersFilename)}"
-        projectProperties="${getProjectFile(propertiesFilename)}"
+        propertiesFile="${getProjectFile(propertiesFilename)}"
+        parametersFile="${getGlobalFile(parametersFilename)}"
         """.stripIndent()
     }
 

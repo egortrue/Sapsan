@@ -1,4 +1,5 @@
-default:
-  - VERSION
 custom:
-
+  - VERSION:
+      type: string
+      trim: true
+      description: "Build Version"

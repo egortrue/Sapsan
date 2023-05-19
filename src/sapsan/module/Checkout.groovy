@@ -14,9 +14,9 @@ class Checkout extends Module {
     @Override
     protected void precheck() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            assert Config.projectProperties["checkout"] != null
-            assert Config.projectProperties["checkout"]["url"] != null
-            assert Config.projectProperties["checkout"]["branch"] != null
+            assert Config.properties()["checkout"] != null
+            assert Config.properties()["checkout"]["url"] != null
+            assert Config.properties()["checkout"]["branch"] != null
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
             assert Context.pipeline.scm != null
         }
@@ -25,8 +25,8 @@ class Checkout extends Module {
     @Override
     protected void execute() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
-            url = Config.projectProperties["checkout"]["url"]
-            branch = Config.projectProperties["checkout"]["branch"]
+            url = Config.properties()["checkout"]["url"]
+            branch = Config.properties()["checkout"]["branch"]
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
             url = Context.pipeline.scm.userRemoteConfigs[0].url
             branch = Job.branch
