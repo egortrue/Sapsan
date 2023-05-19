@@ -58,12 +58,15 @@ final class Config extends Context {
     private static void updateParameters(Map parametersDescription) {
         def parametersList = []
 
+        // Загрузка пользовательских параметров
+        parametersDescription["custom"].each { Map it ->
+            parametersList.add(createParameter(it.key, it.value))
+        }
+
+        // Загрузка стандартных параметров
         Map descriptionDefault = parse(getGlobalFile(descriptionParametersFilename))
         parametersDescription["default"].each { String key ->
             parametersList.add(createParameter(key, descriptionDefault[key]))
-        }
-        parametersDescription["custom"].each { Map it ->
-            parametersList.add(createParameter(it.key, it.value))
         }
 
         Log.var("parametersList", parametersList)
