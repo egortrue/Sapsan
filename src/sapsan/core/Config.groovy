@@ -4,9 +4,9 @@ import sapsan.util.Log
 
 final class Config extends Context {
 
-    private static final String propertiesFilename = "properties.yaml"
-    private static final String parametersFilename = "parameters.yaml"
-    private static final String descriptionParametersFilename = "description.parameters.yaml"
+    private static final String propertiesFilename = "properties.yml"
+    private static final String parametersFilename = "parameters.yml"
+    private static final String descriptionParametersFilename = "description.parameters.yml"
 
     private static Map properties
     private static Map parameters
