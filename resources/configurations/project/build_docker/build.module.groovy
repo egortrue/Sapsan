@@ -1,5 +1,6 @@
 import groovy.transform.Field
 import sapsan.core.Config
+import sapsan.core.Context
 import sapsan.core.Pipeline
 
 @Field String name = "Build Docker"
@@ -15,7 +16,7 @@ void precheck() {
 
 void execute() {
     Pipeline.sh "docker info"
-    Pipeline.sh "docker build -t $image -f $dockerfile $targetDir"
+    Pipeline.sh "docker build -t $image -f $dockerfile ${Context.pipeline.env.WORKSPACE}/$targetDir"
     Pipeline.sh "exit 1"
 }
 
