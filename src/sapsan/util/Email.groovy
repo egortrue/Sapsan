@@ -15,7 +15,20 @@ class Email extends Context {
 
     static String fillTemplate() {
         Template template = loadTemplate()
-        return template.make()
+        return template.make([
+            jobResult  : Context.pipeline.currentBuild.currentResult,
+            information: [
+                "Pipeline Name": Job.name,
+                "Pipeline Type": Context.pipeline.getClass().getName()
+            ],
+            properties : [
+                "Job Name": Context.pipeline.currentBuild.displayName,
+                "Status": Context.pipeline.currentBuild.currentResult,
+                "Execute Time": Context.pipeline.durationString().replace(' and counting', '')
+                "Link": Job.url
+            ],
+            paramerters: Context.pipeline.params
+        ])
     }
 
     static void send() {

@@ -40,7 +40,7 @@
     <table>
         <!-- Общая информация -->
         <tr><th colspan=2 class=${jobResult}>${jobResult}</th></tr>
-        <% out << pipelineInformation.collect({ key, value -> "<tr> <td class=key>$key</td> <td class=value>$value</td> </tr>" }).join('') %>
+        <% out << information.collect({ key, value -> "<tr> <td class=key>$key</td> <td class=value>$value</td> </tr>" }).join('') %>
 
         <!-- Свойства -->
         <tr><th colspan=2>Properties</th></tr>

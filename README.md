@@ -38,6 +38,7 @@ on ["Jenkins Shared Library"](https://www.jenkins.io/doc/book/pipeline/shared-li
 - [Workspace Cleanup](https://plugins.jenkins.io/ws-cleanup/) **(required)**
 - [Ansi Color](https://plugins.jenkins.io/ansicolor/) **(required)**
 - [Mask Passwords](https://plugins.jenkins.io/mask-passwords/) **(required)**
+- [Email Extension](https://plugins.jenkins.io/email-ext/) **(required)**
 - [Docker Workflow](https://plugins.jenkins.io/docker-workflow/) _(local testing)_
 - [Jenkins Swarm Agent](https://plugins.jenkins.io/swarm/) _(local testing)_
 - And all the suggested plugins from

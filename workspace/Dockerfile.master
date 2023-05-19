@@ -20,6 +20,7 @@ RUN echo "pipeline-utility-steps" >> jenkins-plugins.txt
 RUN echo "ansicolor" >> jenkins-plugins.txt
 RUN echo "remote-file" >> jenkins-plugins.txt
 RUN echo "mask-passwords" >> jenkins-plugins.txt
+RUN echo "email-ext" >> jenkins-plugins.txt
 
 # Install plugins
 RUN jenkins-plugin-cli --plugin-file jenkins-plugins.txt
