@@ -1,5 +1,7 @@
 package sapsan.core
 
+import sapsan.util.Log
+
 final class Config extends Context {
 
     private static final String parametersFilename = "parameters.yaml"
@@ -28,7 +30,11 @@ final class Config extends Context {
 
     static Map getParameters() {
         if (parameters == null) {
-            parameters = parse(getProjectFile(parametersFilename))
+            updateParameters(parse(getProjectFile(parametersFilename)))
+            if (Job.number == 1) {
+                Log.warning("Some parameters may be missed")
+            }
+            parameters = Context.pipeline.params
         }
 
         return parameters
@@ -46,5 +52,13 @@ final class Config extends Context {
 
     private static Map parse(String path) {
         Context.pipeline.readYaml(text: Context.pipeline.libraryResource(path))
+    }
+
+    private static void updateParameters(Map parametersDescription) {
+        def parametersList = []
+        parametersDescription["custom"].each { Map it ->
+            Log.var("key", it.key)
+        }
+        Context.pipeline.properties()
     }
 }

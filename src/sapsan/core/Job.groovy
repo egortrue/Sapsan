@@ -18,6 +18,12 @@ final class Job extends Context {
 
     @NonCPS
     @Memoized
+    static String getNumber() {
+        Context.pipeline.env.BUILD_NUMBER
+    }
+
+    @NonCPS
+    @Memoized
     static String getTag() {
         Context.pipeline.env.BUILD_TAG
     }
