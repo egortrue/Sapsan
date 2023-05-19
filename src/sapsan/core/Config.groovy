@@ -32,7 +32,7 @@ final class Config extends Context {
     static Map getParameters() {
         if (parameters == null) {
             updateParameters(parse(getProjectFile(parametersFilename)))
-            if (Job.number == 1) {
+            if (Job.buildNumber == 1) {
                 Log.warning("Some parameters may be missed")
             }
             parameters = Context.pipeline.params

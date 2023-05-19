@@ -18,7 +18,7 @@ final class Job extends Context {
 
     @NonCPS
     @Memoized
-    static String getNumber() {
+    static String getBuildNumber() {
         Context.pipeline.env.BUILD_NUMBER
     }
 
@@ -44,6 +44,10 @@ final class Job extends Context {
     @Memoized
     static String getBaseUrl() {
         url.split('/')[0..2].join('/')
+    }
+
+    static void setBuildName(String name) {
+        Context.pipeline.displayName = name
     }
 
     static String getInfo() {
