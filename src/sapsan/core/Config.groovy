@@ -59,6 +59,7 @@ final class Config extends Context {
         parametersDescription["custom"].each { Map it ->
             parametersList.add(createParameter(it.key, it.value))
         }
+        Log.var("parametersList", parametersList)
         Context.pipeline.properties([Context.pipeline.parameters(parametersList)])
     }
 
