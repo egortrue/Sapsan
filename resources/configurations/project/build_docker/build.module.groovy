@@ -1,12 +1,16 @@
 import groovy.transform.Field
+import sapsan.core.Config
 import sapsan.core.Pipeline
 
 @Field String name = "Build Docker"
-@Field String image = "my-image"
-@Field String dockerfile = "./workspace/Dockerfile.agent"
-@Field String targetDir = "."
+@Field String image
+@Field String dockerfile
+@Field String targetDir
 
 void precheck() {
+    image = Config.projectProperties["docker"]["image"]
+    dockerfile = Config.projectProperties["docker"]["dockerfile"]
+    targetDir = Config.projectProperties["docker"]["dockerfile"]
 }
 
 void execute() {
