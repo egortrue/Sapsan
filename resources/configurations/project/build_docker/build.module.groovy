@@ -21,7 +21,7 @@ class Build extends Module {
         assert image != ''
         assert version != ''
 
-        Job.buildName = "$image:$version"
+        Job.setBuildName("$image:$version")
     }
 
     @Override
