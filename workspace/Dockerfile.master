@@ -19,6 +19,7 @@ RUN echo "ws-cleanup" >> jenkins-plugins.txt
 RUN echo "pipeline-utility-steps" >> jenkins-plugins.txt
 RUN echo "ansicolor" >> jenkins-plugins.txt
 RUN echo "remote-file" >> jenkins-plugins.txt
+RUN echo "mask-passwords" >> jenkins-plugins.txt
 
 # Install plugins
 RUN jenkins-plugin-cli --plugin-file jenkins-plugins.txt

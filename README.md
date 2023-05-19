@@ -31,6 +31,7 @@ The ultimate DevOps Framework based on 'Jenkins Shared Library'
 - [Pipeline Utility Steps](https://plugins.jenkins.io/pipeline-utility-steps/) **(required)**
 - [Workspace Cleanup](https://plugins.jenkins.io/ws-cleanup/) **(required)**
 - [Ansi Color](https://plugins.jenkins.io/ansicolor/) **(required)**
+- [Maks Passwords](https://plugins.jenkins.io/mask-passwords/) **(required)**
 - [Docker Workflow](https://plugins.jenkins.io/docker-workflow/) _(local testing)_
 - [Jenkins Swarm Agent](https://plugins.jenkins.io/swarm/) _(local testing)_
 - And all the suggested plugins from

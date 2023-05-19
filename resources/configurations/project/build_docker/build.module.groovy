@@ -8,12 +8,14 @@ class Build extends Module {
     String image
     String dockerfile
     String target
+    String version
 
     @Override
     protected void precheck() {
         image = Config.properties["docker"]["image"]
         dockerfile = Config.properties["docker"]["dockerfile"]
         target = Config.properties["docker"]["target"]
+        version = Config.parameters["VERSION"]
     }
 
     @Override
