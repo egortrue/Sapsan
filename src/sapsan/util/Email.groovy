@@ -22,10 +22,10 @@ class Email extends Context {
                 "Pipeline Type": Context.pipeline.getClass().getName()
             ],
             properties : [
-                "Job Name": Context.pipeline.currentBuild.displayName,
-                "Status": Context.pipeline.currentBuild.currentResult,
-                "Execute Time": Context.pipeline.durationString().replace(' and counting', '')
-                "Link": Job.url
+                "Job Name"    : Context.pipeline.currentBuild.displayName,
+                "Status"      : Context.pipeline.currentBuild.currentResult,
+                "Execute Time": Context.pipeline.durationString().replace(' and counting', ''),
+                "Link"        : Job.url
             ],
             paramerters: Context.pipeline.params
         ])
