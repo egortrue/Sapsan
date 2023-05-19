@@ -1,7 +1,6 @@
 package sapsan.core
 
-import groovy.transform.stc.ClosureParams
-import groovy.transform.stc.SimpleType
+
 import sapsan.util.Log
 
 final class Pipeline extends Context {
@@ -92,7 +91,7 @@ final class Pipeline extends Context {
      * Тело шага выполнится после полной инициализации всего пайплайна
      * @see Stage
      */
-    static void stage(String name, @ClosureParams(value = SimpleType, options = "Stage") Closure steps) {
+    static void stage(String name, Closure steps) {
         stages << new Stage(name, steps)
     }
 

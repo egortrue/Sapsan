@@ -1,13 +1,13 @@
 import groovy.transform.Field
-import sapsan.util.Log
+import sapsan.core.Context
 
-@Field String name = "Build"
+@Field String name = "Build Docker"
 
 void precheck() {
 }
 
 void execute() {
-    Log.info("This is a build stage")
+    Context.pipeline.sh "docker info"
 }
 
 return this

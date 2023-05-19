@@ -1,12 +1,12 @@
 import groovy.transform.Field
 import sapsan.util.Log
 
-@Field String name = "Empty Module"
+@Field String name = "Sample Module"
 
 void precheck() {
 }
 
-def execute() {
+void execute() {
     Log.info("This is empty module!")
 }
 
