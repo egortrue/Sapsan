@@ -15,6 +15,8 @@ class Build extends Module {
         image = Config.properties["docker"]["image"]
         dockerfile = Config.properties["docker"]["dockerfile"]
         target = Config.properties["docker"]["target"]
+
+        assert Config.parameters["VERSION"] != ''
         version = Config.parameters["VERSION"]
     }
 
