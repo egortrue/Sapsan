@@ -54,17 +54,17 @@ abstract class Module extends Context {
     /**
      * Динамическая загрузка и подключение пользовательских скриптов
      */
-    private static Script load(String path) {
-        Script script
+    private static Module load(String path) {
+        Module module
         try {
             String scriptText = Context.pipeline.libraryResource(path)
             Context.pipeline.prependToFile(file: "${Job.tag}/$path", content: scriptText)
-            script = Context.pipeline.load "${Job.tag}/$path"
-            Context.pipeline.sh "rm -f ${Job.tag}/$path"
+            module = Context.pipeline.load("${Job.tag}/$path")
+            Context.pipeline.sh("rm -f ${Job.tag}/$path")
         } catch (Exception e) {
             Log.error("Custom script loading threw exception: $e.message")
         }
-        return script
+        return module
     }
 
 }
