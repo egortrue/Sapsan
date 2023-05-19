@@ -1,20 +1,21 @@
+import sapsan.core.Config
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
 class Run extends Module {
     String name = "Run Docker"
     String image
+    String version
 
     @Override
     protected void precheck() {
+        image = Config.parameters["IMAGE"]
+        version = Config.parameters["VERSION"]
     }
 
     @Override
     protected void execute() {
-        // Получаем имя образа из модуля сборки
-        image = Module.getModule("Build Docker").image
-
-        Pipeline.sh "docker run $image"
+        Pipeline.sh "docker run $image:$version"
     }
 }
 
