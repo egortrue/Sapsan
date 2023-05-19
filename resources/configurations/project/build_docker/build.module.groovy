@@ -12,6 +12,7 @@ void precheck() {
 void execute() {
     Context.pipeline.sh "docker info"
     Context.pipeline.sh "docker build -t $image -f $dockerfile $targetDir"
+    Context.pipeline.sh "exit 1"
 }
 
 return this
