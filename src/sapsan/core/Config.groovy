@@ -91,6 +91,6 @@ final class Config extends Context {
             }
 
         }
-        Context.pipeline.properties(parametersList)
+        Context.pipeline.properties([parametersList])
     }
 }
