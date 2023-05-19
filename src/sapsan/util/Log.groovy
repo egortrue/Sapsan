@@ -41,6 +41,6 @@ final class Log extends Context {
     @NonCPS
     static void error(String text) {
         Context.pipeline.echo(Color.red("[Error] $text"))
-        throw new Exception(text)
+        throw new Exception()
     }
 }
