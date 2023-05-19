@@ -9,9 +9,9 @@ import sapsan.core.Pipeline
 @Field String target
 
 void precheck() {
-    image = Config.projectProperties["docker"][image.name]
-    dockerfile = Config.projectProperties["docker"][dockerfile.name]
-    target = Config.projectProperties["docker"][target.name]
+    image = Config.projectProperties["docker"]["image"]
+    dockerfile = Config.projectProperties["docker"]["dockerfile"]
+    target = Config.projectProperties["docker"]["target"]
 }
 
 void execute() {

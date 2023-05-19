@@ -54,7 +54,7 @@ to easily prepare a simple infrastructure for local testing.
 ### Run Docker
 
 ```shell
-cd workpace && \
+cd workspace && \
 docker compose up -d --build
 ```
 
