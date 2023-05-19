@@ -9,12 +9,8 @@ import sapsan.core.Stage
 
 class Email extends Context {
 
-    static Template loadTemplate() {
-        return new GStringTemplateEngine().createTemplate(Context.pipeline.libraryResource("templates/email.html") as String)
-    }
-
-    static String fillTemplate() {
-        Template template = loadTemplate()
+    static String create() {
+        Template template = new GStringTemplateEngine().createTemplate(Context.pipeline.libraryResource("templates/email.html") as String)
         return template.make([
             jobResult  : Context.pipeline.currentBuild.currentResult,
             information: [
@@ -34,7 +30,7 @@ class Email extends Context {
     static void send() {
         Context.pipeline.emailext(
             subject: "${Job.name} :: ${Stage.globalStatus.toString()}",
-            body: fillTemplate(),
+            body: "${create()}",
             to: Config.parameters["EMAIL_RECIPIENTS"],
             attachLog: Stage.globalStatus != Stage.Status.SUCCESS,
             mimeType: 'text/html',
