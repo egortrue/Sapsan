@@ -33,14 +33,16 @@ abstract class Module extends Context {
     static def execute(def module) {
 
         // Определение модуля
+        Class moduleClass
         Module instance
         if (module instanceof GString || module instanceof String) {
-            instance = load(module).getDeclaredConstructor().newInstance()
+            moduleClass = load(module)
         } else if (module instanceof Class) {
-            instance = module.getDeclaredConstructor().newInstance()
+            moduleClass = module
         } else {
             Log.error("Module execution failed: Wrong paramerter 'module'=$module")
         }
+        instance = moduleClass.getDeclaredConstructor().newInstance()
 
         // Запуск модуля
         instance.precheck()
@@ -54,8 +56,8 @@ abstract class Module extends Context {
     /**
      * Динамическая загрузка и подключение пользовательских скриптов
      */
-    private static Module load(String path) {
-        Module module
+    private static Class load(String path) {
+        Class module
         try {
             String scriptText = Context.pipeline.libraryResource(path)
             Context.pipeline.prependToFile(file: "${Job.tag}/$path", content: scriptText)
