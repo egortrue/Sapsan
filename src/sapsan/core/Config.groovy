@@ -4,8 +4,9 @@ import sapsan.util.Log
 
 final class Config extends Context {
 
-    private static final String parametersFilename = "parameters.yaml"
     private static final String propertiesFilename = "properties.yaml"
+    private static final String parametersFilename = "parameters.yaml"
+    private static final String descriptionParametersFilename = "description.parameters.yaml"
 
     private static Map properties
     private static Map parameters
@@ -56,9 +57,15 @@ final class Config extends Context {
 
     private static void updateParameters(Map parametersDescription) {
         def parametersList = []
+
+        Map descriptionDefault = parse(getGlobalFile(descriptionParametersFilename))
+        parametersDescription["default"].each { String key ->
+            parametersList.add(createParameter(key, descriptionDefault[key]))
+        }
         parametersDescription["custom"].each { Map it ->
             parametersList.add(createParameter(it.key, it.value))
         }
+
         Log.var("parametersList", parametersList)
         Context.pipeline.properties([Context.pipeline.parameters(parametersList)])
     }
