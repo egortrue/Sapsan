@@ -35,7 +35,7 @@ abstract class Module extends Context {
         // Определение модуля
         Module instance
         if (module instanceof GString || module instanceof String) {
-            instance = load(module)
+            instance = load(module).getDeclaredConstructor().newInstance()
         } else if (module instanceof Class) {
             instance = module.getDeclaredConstructor().newInstance()
         } else {

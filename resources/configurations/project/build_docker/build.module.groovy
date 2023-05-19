@@ -8,7 +8,7 @@ class Build extends Module {
     String image
     String dockerfile
     String target
-    
+
     @Override
     protected void precheck() {
         image = Config.projectProperties["docker"]["image"]
@@ -25,4 +25,4 @@ class Build extends Module {
 }
 
 
-return new Build()
+return Build.class
