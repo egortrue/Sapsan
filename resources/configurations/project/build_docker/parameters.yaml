@@ -1,5 +1,5 @@
 custom:
-  - VERSION:
-      type: string
-      trim: true
-      description: "Build Version"
+  VERSION:
+    type: string
+    trim: true
+    description: "Build Version"
