@@ -8,6 +8,7 @@ void precheck() {
 
 void execute() {
     Context.pipeline.sh "docker info"
+    Context.pipeline.sh "docker build -t my-image -f ./workspace/Dockerfile.agent ."
 }
 
 return this

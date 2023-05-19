@@ -23,7 +23,7 @@ The ultimate DevOps Framework based on 'Jenkins Shared Library'
 
 - `Git`
 - `Docker`
-- `Docker Compose v3`
+- `Docker Compose`
 
 #### Jenkins Plugins:
 
