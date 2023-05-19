@@ -1,0 +1,7 @@
+default:
+  - VERSION
+custom:
+  EXECUTE:
+    type: choice
+    choices: [ "sample.py", "sample2.py" ]
+    description: "What to execute"

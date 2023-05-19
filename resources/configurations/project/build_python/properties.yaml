@@ -1,6 +1,5 @@
 checkout:
   url: "http://172.25.0.1:8081/scm/repo/admin/sapsan/"
   branch: "master"
-docker:
-  dockerfile: "Dockerfile"
-  target: "test/build_docker"
+python:
+  workDir: "test/build_python"
