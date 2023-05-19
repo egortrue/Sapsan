@@ -4,7 +4,7 @@ import sapsan.core.Pipeline
 import sapsan.module.Module
 
 class Build extends Module {
-    String name = "Run Docker"
+    String name = "Build Docker"
     String image
     String dockerfile
     String target

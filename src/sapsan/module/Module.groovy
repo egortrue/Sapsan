@@ -1,5 +1,6 @@
 package sapsan.module
 
+import com.cloudbees.groovy.cps.NonCPS
 import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
@@ -7,7 +8,7 @@ import sapsan.util.Log
 
 abstract class Module extends Context {
 
-    static LinkedList<Object> modules = []
+    private static LinkedList<Module> modules = []
 
     /**
      * Название шага для отображения в Jenkins
@@ -43,6 +44,7 @@ abstract class Module extends Context {
             Log.error("Module execution failed: Wrong paramerter 'module'=$module")
         }
         instance = moduleClass.getDeclaredConstructor().newInstance()
+        modules << instance
 
         // Запуск модуля
         instance.precheck()
@@ -53,8 +55,14 @@ abstract class Module extends Context {
         return instance
     }
 
+    @NonCPS
+    static Module getModule(String name) {
+        modules.find({ it.name == name })
+    }
+
+
     /**
-     * Динамическая загрузка и подключение пользовательских скриптов
+     * Динамическая загрузка и подключение пользовательских модулей
      */
     private static Class load(String path) {
         Class module
@@ -64,7 +72,7 @@ abstract class Module extends Context {
             module = Context.pipeline.load("${Job.tag}/$path")
             Context.pipeline.sh("rm -f ${Job.tag}/$path")
         } catch (Exception e) {
-            Log.error("Custom script loading threw exception: $e.message")
+            Log.error("Custom module loading threw exception: $e.message")
         }
         return module
     }
