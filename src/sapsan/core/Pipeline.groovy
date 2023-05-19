@@ -101,7 +101,7 @@ final class Pipeline extends Context {
         Integer statusCode = Context.pipeline.sh(script: executable, returnStatus: true)
         String output = Context.pipeline.sh(script: "cat $outputFilename", returnStdout: true)
         if (statusCode != 0) {
-            Log.error("Shell returned status code ${statusCode}\nCommand:\n$command\nOutput:\n$output")
+            Log.error("Shell returned status code ${statusCode}\nCommand: $command\nOutput: $output")
         }
         return output
     }
