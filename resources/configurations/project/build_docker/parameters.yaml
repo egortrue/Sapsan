@@ -7,7 +7,10 @@ custom:
     type: string
     trim: true
     description: "Image Name"
-  TYPE:
+  YOUR_CHOICE:
     type: choice
     choices: [ "a", "b", "c", "d" ]
-    description: "Image Name"
+    description: "Your choice"
+  YOUR_PASSWORD:
+    type: password
+    description: "Password for host"
