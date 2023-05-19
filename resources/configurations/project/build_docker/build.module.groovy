@@ -18,7 +18,6 @@ void execute() {
     Pipeline.sh "docker info"
     Pipeline.sh "ls -al"
     Pipeline.sh "docker build -t $image ${Context.pipeline.env.WORKSPACE}/$target"
-    Pipeline.sh "exit 1"
 }
 
 return this

@@ -100,6 +100,7 @@ final class Pipeline extends Context {
         String executable = "$command > $outputFilename 2>&1"
         Integer statusCode = Context.pipeline.sh(script: executable, returnStatus: true)
         String output = Context.pipeline.sh(script: "cat $outputFilename", returnStdout: true)
+        Context.pipeline.sh(script: "rm -f $outputFilename")
         if (statusCode != 0) {
             Log.error("Shell returned status code ${statusCode}\nCommand: $command\nOutput: \"$output\"")
         } else {

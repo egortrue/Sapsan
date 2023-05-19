@@ -7,6 +7,13 @@ import sapsan.util.Log
 
 abstract class Module extends Context {
 
+    static LinkedList<Object> modules = []
+
+    /**
+     * Название шага для отображения в Jenkins
+     */
+    protected abstract String getName()
+
     /**
      * Валидация свойств перед запуском модуля (на шаге инициализации всего пайплайна)
      */
@@ -42,13 +49,6 @@ abstract class Module extends Context {
         }
 
         return instance
-    }
-
-    /**
-     * Название шага для отображения в Jenkins
-     */
-    protected String getName() {
-        return this.class.simpleName
     }
 
     /**

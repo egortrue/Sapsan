@@ -7,7 +7,5 @@ import sapsan.module.Module
 Pipeline.run(this, "agent") {
     Module.execute(Checkout)
     Module.execute(Config.getProjectFile("build.module.groovy"))
-    Pipeline.stage("Publish") {
-
-    }
+    Module.execute(Config.getProjectFile("run.module.groovy"))
 }
