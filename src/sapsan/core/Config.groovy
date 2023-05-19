@@ -87,7 +87,7 @@ final class Config extends Context {
                 return Context.pipeline.choice(
                     name: key,
                     description: value['description'],
-                    choices: value['choice']
+                    choices: value['choices']
                 )
             case 'password':
                 return Context.pipeline.password(
