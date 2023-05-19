@@ -56,41 +56,43 @@ final class Config extends Context {
 
     private static void updateParameters(Map parametersDescription) {
         def parametersList = []
-        parametersDescription["custom"].each { key, value ->
-            switch (value["type"]) {
-                case 'string':
-                    parametersList.add(Context.pipeline.string(
-                        name: key,
-                        description: value['description'],
-                        trim: value['trim'],
-                        defaultValue: value['defaultValue']
-                    )); break
-                case 'boolean':
-                    parametersList.add(Context.pipeline.booleanParam(
-                        name: key,
-                        description: value['description'],
-                        defaultValue: value['defaultValue']
-                    )); break
-                case 'text':
-                    parametersList.add(Context.pipeline.text(
-                        name: key,
-                        description: value['description'],
-                        defaultValue: value['defaultValue']
-                    )); break
-                case 'choice':
-                    parametersList.add(Context.pipeline.choice(
-                        name: key,
-                        description: value['description'],
-                        choices: value['choice']
-                    )); break
-                case 'password':
-                    parametersList.add(Context.pipeline.password(
-                        name: key,
-                        description: value['description'],
-                    )); break
-            }
-
+        parametersDescription["custom"].each { Map it ->
+            parametersList.add(createParameter(it.key, it.value))
         }
         Context.pipeline.properties([Context.pipeline.parameters(parametersList)])
+    }
+
+    static def createParameter(String key, Map value) {
+        switch (value["type"]) {
+            case 'string':
+                return Context.pipeline.string(
+                    name: key,
+                    description: value['description'],
+                    trim: value['trim'],
+                    defaultValue: value['defaultValue']
+                )
+            case 'boolean':
+                return Context.pipeline.booleanParam(
+                    name: key,
+                    description: value['description'],
+                    defaultValue: value['defaultValue']
+                )
+            case 'text':
+                return Context.pipeline.text(
+                    name: key,
+                    description: value['description'],
+                    defaultValue: value['defaultValue']
+                )
+            case 'choice':
+                return Context.pipeline.choice(
+                    name: key,
+                    description: value['description'],
+                    choices: value['choice']
+                )
+            case 'password':
+                return Context.pipeline.password(
+                    name: key,
+                    description: value['description'],
+                )
     }
 }
