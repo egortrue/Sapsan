@@ -95,12 +95,15 @@ final class Pipeline extends Context {
         stages << new Stage(name, steps)
     }
 
-    static void sh(String command, boolean stdout = false) {
-        def result = Context.pipeline.sh(script: command, returnStatus: true, returnStdout: true)
-        Log.var(result)
-        if (result.status != 0) {
-            Log.error("Shell returned status code ${result.status}. Command: $command")
+    static String sh(String command) {
+        String outputFilename = "${Job.tag}.output"
+        String executable = "$command > $outputFilename 2>&1"
+        Integer statusCode = Context.pipeline.sh(script: executable, returnStatus: true)
+        String output = Context.pipeline.sh(script: "cat $outputFilename", returnStdout: true)
+        if (statusCode != 0) {
+            Log.error("Shell returned status code ${statusCode}\nCommand:\n$command\nOutput:\n$output")
         }
+        return output
     }
 
     static String getInfo() {
