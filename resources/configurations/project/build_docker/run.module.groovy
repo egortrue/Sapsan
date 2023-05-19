@@ -14,7 +14,7 @@ class Run extends Module {
     @Override
     protected void execute() {
         // Можем обновить имя образа, если оно поменялось во время сборки
-        image = getModule("Build Docker").image
+        image = Module.getModule("Build Docker").image
 
         Pipeline.sh "docker run $image"
     }
