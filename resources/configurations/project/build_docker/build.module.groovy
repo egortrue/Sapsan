@@ -1,5 +1,5 @@
 import groovy.transform.Field
-import sapsan.core.Context
+import sapsan.core.Pipeline
 
 @Field String name = "Build Docker"
 @Field String image = "my-image"
@@ -10,9 +10,9 @@ void precheck() {
 }
 
 void execute() {
-    Context.pipeline.sh "docker info"
-    Context.pipeline.sh "docker build -t $image -f $dockerfile $targetDir"
-    throw new Exception("docker fail")
+    Pipeline.sh "docker info"
+    Pipeline.sh "docker build -t $image -f $dockerfile $targetDir"
+    Pipeline.sh "exit 1"
 }
 
 return this

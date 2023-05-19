@@ -95,6 +95,14 @@ final class Pipeline extends Context {
         stages << new Stage(name, steps)
     }
 
+    static void sh(String command, boolean stdout = false) {
+        def result = Context.pipeline.sh(script: command, returnStatus: true, returnStdout: true)
+        Log.var(result)
+        if (result.status != 0) {
+            Log.error("Shell returned status code ${result.status}. Command: $command")
+        }
+    }
+
     static String getInfo() {
         """
         [Pipeline Information]
