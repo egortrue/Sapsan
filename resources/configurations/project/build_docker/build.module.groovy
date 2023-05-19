@@ -16,6 +16,7 @@ void precheck() {
 
 void execute() {
     Pipeline.sh "docker info"
+    Pipeline.sh "ls -al"
     Pipeline.sh "docker build -t $image -f $dockerfile ${Context.pipeline.env.WORKSPACE}/$targetDir"
     Pipeline.sh "exit 1"
 }
