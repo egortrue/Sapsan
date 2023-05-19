@@ -10,4 +10,4 @@ checkout:
 docker:
   image: "ubuntu-easter-egg"
   dockerfile: "Dockerfile"
-  targetDir: "test/build_docker"
+  target: "test/build_docker"
