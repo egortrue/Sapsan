@@ -80,7 +80,7 @@ on ["Jenkins Shared Library"](https://www.jenkins.io/doc/book/pipeline/shared-li
     - Set `Repository URL` to `https://github.com/egortrue/Sapsan`
 5. Run Job
 
-# Developing and Testing
+## Developing and Testing
 
 There is a [workspace](workspace) folder with the necessary files,
 such as Docker Compose file and Dockerfiles for jenkins master and agent
