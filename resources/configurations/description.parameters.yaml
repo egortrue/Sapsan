@@ -2,3 +2,4 @@ VERSION:
   type: string
   trim: true
   description: "Build Version"
+  defaultValue: 1.0.0

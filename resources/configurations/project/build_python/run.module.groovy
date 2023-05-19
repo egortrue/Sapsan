@@ -17,7 +17,7 @@ class Run extends Module {
         assert (workDir != null) && (workDir != '')
         assert (executable != null) && (executable != '')
 
-        Job.buildName = "$executable"
+        Job.buildName = "$executable:"
     }
 
     @Override

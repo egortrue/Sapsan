@@ -10,7 +10,7 @@ class Build extends Module {
     @Override
     protected void init() {
         workDir = Config.properties["python"]["workDir"]
-        assert (workDir != null) && (workDir != '')
+        assert (workDir != null) || (workDir != '')
     }
 
     @Override
