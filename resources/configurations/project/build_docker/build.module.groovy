@@ -1,6 +1,5 @@
 import sapsan.core.Config
 import sapsan.core.Context
-import sapsan.core.Job
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
@@ -21,7 +20,7 @@ class Build extends Module {
         assert image != ''
         assert version != ''
 
-        Job.setBuildName("$image:$version")
+        Context.pipeline.currentBuild.displayName = "$image:$version"
     }
 
     @Override

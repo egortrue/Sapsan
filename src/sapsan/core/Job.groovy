@@ -47,7 +47,7 @@ final class Job extends Context {
     }
 
     static void setBuildName(String name) {
-        Context.pipeline.displayName = name
+        Context.pipeline.currentBuild.displayName = name
     }
 
     static String getInfo() {
