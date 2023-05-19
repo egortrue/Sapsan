@@ -94,5 +94,6 @@ final class Config extends Context {
                     name: key,
                     description: value['description'],
                 )
+        }
     }
 }
