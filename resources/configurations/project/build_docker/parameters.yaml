@@ -9,6 +9,3 @@ custom:
     type: choice
     choices: [ "a", "b", "c", "d" ]
     description: "Your choice"
-  YOUR_PASSWORD:
-    type: password
-    description: "Password for host"

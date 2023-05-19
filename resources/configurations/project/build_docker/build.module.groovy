@@ -12,12 +12,13 @@ class Build extends Module {
 
     @Override
     protected void precheck() {
-        image = Config.properties["docker"]["image"]
         dockerfile = Config.properties["docker"]["dockerfile"]
         target = Config.properties["docker"]["target"]
-
-        assert Config.parameters["VERSION"] != ''
+        image = Config.parameters["IMAGE"]
         version = Config.parameters["VERSION"]
+
+        assert image != ''
+        assert version != ''
     }
 
     @Override
