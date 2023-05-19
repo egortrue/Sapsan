@@ -33,7 +33,7 @@ abstract class Module extends Context {
     static def execute(def module) {
 
         // Определение модуля
-        def instance
+        Module instance
         if (module instanceof GString || module instanceof String) {
             instance = load(module)
         } else if (module instanceof Class) {

@@ -6,6 +6,7 @@ import sapsan.core.Job
 import sapsan.core.Pipeline
 
 class Checkout extends Module {
+    String name = "Checkout"
 
     String url
     String branch
