@@ -22,7 +22,7 @@ class Build extends Module {
     protected void execute() {
         Pipeline.sh "docker info"
         Pipeline.sh "ls -al"
-        Pipeline.sh "docker build -t $image ${Context.pipeline.env.WORKSPACE}/$target"
+        Pipeline.sh "docker build -t $image:$version ${Context.pipeline.env.WORKSPACE}/$target"
     }
 }
 
