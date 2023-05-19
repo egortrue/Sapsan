@@ -15,4 +15,4 @@ class Run extends Module {
 }
 
 
-return new Build()
+return Run.class
