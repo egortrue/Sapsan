@@ -3,3 +3,7 @@ custom:
     type: string
     trim: true
     description: "Build Version"
+  IMAGE:
+    type: string
+    trim: true
+    description: "Image Name"
