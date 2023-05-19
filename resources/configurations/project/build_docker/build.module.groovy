@@ -10,7 +10,7 @@ import sapsan.core.Pipeline
 void precheck() {
     image = Config.projectProperties["docker"]["image"]
     dockerfile = Config.projectProperties["docker"]["dockerfile"]
-    targetDir = Config.projectProperties["docker"]["dockerfile"]
+    targetDir = Config.projectProperties["docker"]["targetDir"]
 }
 
 void execute() {

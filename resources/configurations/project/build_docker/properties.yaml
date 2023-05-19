@@ -7,6 +7,7 @@ checkout:
   url: "http://172.24.0.1:8081/scm/repo/admin/sapsan/"
   branch: "master"
 
-build:
-  src: "./"
-  dest: "project.zip"
+docker:
+  image: "ubuntu-easter-egg"
+  dockerfile: "Dockerfile"
+  targetDir: "test/build_docker"
