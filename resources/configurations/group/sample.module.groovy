@@ -1,11 +1,18 @@
-import groovy.transform.Field
+import sapsan.module.Module
 
-@Field String name = "Sample Module"
+class Sample extends Module {
+    String name = "Sample Module"
 
-void precheck() {
+    @Override
+    protected void precheck() {
+
+    }
+
+    @Override
+    protected void execute() {
+
+    }
 }
 
-void execute() {
-}
 
-return this
+return new Sample()

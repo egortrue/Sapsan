@@ -1,23 +1,28 @@
-import groovy.transform.Field
 import sapsan.core.Config
 import sapsan.core.Context
 import sapsan.core.Pipeline
+import sapsan.module.Module
 
-@Field String name = "Build Docker"
-@Field String image
-@Field String dockerfile
-@Field String target
+class Build extends Module {
+    String name = "Run Docker"
+    String image
+    String dockerfile
+    String target
+    
+    @Override
+    protected void precheck() {
+        image = Config.projectProperties["docker"]["image"]
+        dockerfile = Config.projectProperties["docker"]["dockerfile"]
+        target = Config.projectProperties["docker"]["target"]
+    }
 
-void precheck() {
-    image = Config.projectProperties["docker"]["image"]
-    dockerfile = Config.projectProperties["docker"]["dockerfile"]
-    target = Config.projectProperties["docker"]["target"]
+    @Override
+    protected void execute() {
+        Pipeline.sh "docker info"
+        Pipeline.sh "ls -al"
+        Pipeline.sh "docker build -t $image ${Context.pipeline.env.WORKSPACE}/$target"
+    }
 }
 
-void execute() {
-    Pipeline.sh "docker info"
-    Pipeline.sh "ls -al"
-    Pipeline.sh "docker build -t $image ${Context.pipeline.env.WORKSPACE}/$target"
-}
 
-return this
+return new Build()
