@@ -8,16 +8,18 @@ class Run extends Module {
     String name = "Run Python"
     String workDir
     String executable
+    String version
 
     @Override
     protected void init() {
         workDir = Config.properties["python"]["workDir"]
         executable = Config.parameters["EXECUTABLE"]
+        version = Config.parameters["VERSION"]
 
-        assert (workDir != null) && (workDir != '')
-        assert (executable != null) && (executable != '')
+        assert (workDir != null) || (workDir != '')
+        assert (executable != null) || (executable != '')
 
-        Job.buildName = "$executable:"
+        Job.buildName = "$executable:$version"
     }
 
     @Override
