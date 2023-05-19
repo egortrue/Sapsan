@@ -18,7 +18,7 @@ abstract class Module extends Context {
     /**
      * Валидация свойств перед запуском модуля (на шаге инициализации всего пайплайна)
      */
-    protected abstract void precheck()
+    protected abstract void init()
 
     /**
      * Запуск модуля (после инициализации всего пайплайна)
@@ -47,7 +47,7 @@ abstract class Module extends Context {
         modules << instance
 
         // Запуск модуля
-        instance.precheck()
+        instance.init()
         Pipeline.stage(instance.name) {
             instance.execute()
         }

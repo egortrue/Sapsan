@@ -12,7 +12,7 @@ class Checkout extends Module {
     String branch
 
     @Override
-    protected void precheck() {
+    protected void init() {
         if (Pipeline.type == Pipeline.Type.CLASSIC) {
             assert Config.properties["checkout"] != null
             assert Config.properties["checkout"]["url"] != null

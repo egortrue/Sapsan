@@ -4,7 +4,7 @@ class Sample extends Module {
     String name = "Sample Module"
 
     @Override
-    protected void precheck() {
+    protected void init() {
 
     }
 

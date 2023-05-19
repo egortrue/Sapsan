@@ -34,7 +34,7 @@ final class Pipeline extends Context {
             pipeline.ansiColor('xterm') {
 
                 // Конфигурация пайплайна
-                pipeline.stage("Precheck") {
+                pipeline.stage("Init") {
                     pipeline.cleanWs()
                     configure()
 

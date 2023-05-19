@@ -12,7 +12,7 @@ class Build extends Module {
     String version
 
     @Override
-    protected void precheck() {
+    protected void init() {
         dockerfile = Config.properties["docker"]["dockerfile"]
         target = Config.properties["docker"]["target"]
         image = Config.parameters["IMAGE"]

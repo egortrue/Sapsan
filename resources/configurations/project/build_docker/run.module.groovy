@@ -8,7 +8,7 @@ class Run extends Module {
     String version
 
     @Override
-    protected void precheck() {
+    protected void init() {
         image = Config.parameters["IMAGE"]
         version = Config.parameters["VERSION"]
     }
