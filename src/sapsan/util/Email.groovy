@@ -27,7 +27,7 @@ class Email extends Context {
                 "Execute Time": Context.pipeline.currentBuild.durationString.replace(' and counting', ''),
                 "Link"        : Job.url
             ],
-            paramerters: Context.pipeline.params
+            parameters : Context.pipeline.params
         ])
     }
 
