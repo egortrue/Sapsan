@@ -57,7 +57,7 @@ final class Config extends Context {
     private static void updateParameters(Map parametersDescription) {
         def parametersList = []
         parametersDescription["custom"].each { key, value ->
-            switch (it.value["type"]) {
+            switch (value["type"]) {
                 case 'string':
                     parametersList.add(Context.pipeline.string(
                         name: key,
