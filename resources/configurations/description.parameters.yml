@@ -3,3 +3,7 @@ VERSION:
   trim: true
   description: "Build Version"
   defaultValue: 1.0.0
+EMAIL_RECIPIENTS:
+  type: string
+  trim: true
+  description: "Send report email to the list of recipients (comma separated)"

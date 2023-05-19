@@ -11,7 +11,6 @@
     <a><img src="https://img.shields.io/badge/platform-Unix-aff"></a>
     <a><img src="https://img.shields.io/tokei/lines/github/egortrue/Sapsan"></a>
     <a><img src="https://img.shields.io/github/repo-size/egortrue/Sapsan"></a>
-    <a><img src="https://github.com/egotrue/Sapsan/actions/workflows/linter.yml/badge.svg"></a>
 </p>
 
 ## Description

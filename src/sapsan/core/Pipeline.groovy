@@ -1,6 +1,6 @@
 package sapsan.core
 
-
+import sapsan.util.Email
 import sapsan.util.Log
 
 final class Pipeline extends Context {
@@ -58,8 +58,7 @@ final class Pipeline extends Context {
                     // Создание отчета о выполнении
                     pipeline.stage("Report") {
                         Log.info("Sending email...")
-                        Log.info("Sending email...")
-                        Log.info("Sending email...")
+                        Email.send()
                     }
                 }
 
