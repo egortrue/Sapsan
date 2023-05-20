@@ -118,3 +118,13 @@ echo "http://$(docker network inspect sapsan_default | grep Gateway | awk '{ pri
 ```
 
 Next, follow the instructions in `How to Use` section
+
+## UML
+
+### Classes
+
+```plantuml
+!include img/classes.puml
+```
+
+

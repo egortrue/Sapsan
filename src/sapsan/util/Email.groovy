@@ -7,28 +7,32 @@ import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Stage
 
+/**
+ * Статический класс для поддержки цветного вывода.
+ * Требует расширения https://plugins.jenkins.io/email-ext/
+ */
 class Email extends Context {
 
     private static String create() {
-        Template template = new GStringTemplateEngine().createTemplate(Context.pipeline.libraryResource("templates/email.html") as String)
+        Template template = new GStringTemplateEngine().createTemplate(pipeline.libraryResource("templates/email.html") as String)
         return template.make([
-            jobResult  : Context.pipeline.currentBuild.currentResult,
+            jobResult  : pipeline.currentBuild.currentResult,
             information: [
                 "Pipeline Name": Job.name,
-                "Pipeline Type": Context.pipeline.getClass().getName()
+                "Pipeline Type": pipeline.getClass().getName()
             ],
             properties : [
-                "Job Name"    : Context.pipeline.currentBuild.displayName,
-                "Status"      : Context.pipeline.currentBuild.currentResult,
-                "Execute Time": Context.pipeline.currentBuild.durationString.replace(' and counting', ''),
+                "Job Name"    : pipeline.currentBuild.displayName,
+                "Status"      : pipeline.currentBuild.currentResult,
+                "Execute Time": pipeline.currentBuild.durationString.replace(' and counting', ''),
                 "Link"        : Job.url
             ],
-            parameters : Context.pipeline.params
+            parameters : pipeline.params
         ])
     }
 
     static void send() {
-        Context.pipeline.emailext(
+        pipeline.emailext(
             subject: "${Job.name} :: ${Stage.globalStatus.toString()}",
             body: "${create()}",
             to: Config.parameters["EMAIL_RECIPIENTS"],

@@ -1,5 +1,4 @@
 import sapsan.core.Config
-import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
 import sapsan.module.Module
@@ -24,7 +23,7 @@ class Run extends Module {
 
     @Override
     protected void execute() {
-        Pipeline.sh "python3 ${Context.pipeline.env.WORKSPACE}/$workDir/$executable"
+        Pipeline.sh "python3 ${pipeline.env.WORKSPACE}/$workDir/$executable"
     }
 }
 

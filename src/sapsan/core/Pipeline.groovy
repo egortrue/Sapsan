@@ -29,7 +29,7 @@ final class Pipeline extends Context {
      * @param closure выполняемые действия
      */
     static void run(Script pipeline, String node = 'linux', Closure closure) {
-        Context.pipeline = pipeline
+        pipeline = pipeline
         pipeline.node(node) {
             pipeline.ansiColor('xterm') {
 
@@ -69,7 +69,7 @@ final class Pipeline extends Context {
 
     private static void configure() {
         // Определение типа
-        type = Context.pipeline.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
+        type = pipeline.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Определение задачи
         if (type == Type.CLASSIC) {
@@ -97,9 +97,9 @@ final class Pipeline extends Context {
     static String sh(String command) {
         String outputFilename = "${Job.tag}.output"
         String executable = "$command > $outputFilename 2>&1"
-        Integer statusCode = Context.pipeline.sh(script: executable, returnStatus: true)
-        String output = Context.pipeline.sh(script: "cat $outputFilename", returnStdout: true)
-        Context.pipeline.sh(script: "rm -f $outputFilename")
+        Integer statusCode = pipeline.sh(script: executable, returnStatus: true)
+        String output = pipeline.sh(script: "cat $outputFilename", returnStdout: true)
+        pipeline.sh(script: "rm -f $outputFilename")
         if (statusCode != 0) {
             Log.error("Shell returned status code ${statusCode}\nCommand: $command\nOutput: \"$output\"")
         } else {

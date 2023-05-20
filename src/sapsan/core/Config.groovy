@@ -35,7 +35,7 @@ final class Config extends Context {
             if (Job.buildNumber == 1) {
                 Log.warning("Some parameters may be missed")
             }
-            parameters = Context.pipeline.params
+            parameters = pipeline.params
         }
 
         return parameters
@@ -52,7 +52,7 @@ final class Config extends Context {
     }
 
     private static Map parse(String path) {
-        Context.pipeline.readYaml(text: Context.pipeline.libraryResource(path))
+        pipeline.readYaml(text: pipeline.libraryResource(path))
     }
 
     private static void updateParameters(Map parametersDescription) {
@@ -70,38 +70,38 @@ final class Config extends Context {
         }
 
         Log.var("parametersList", parametersList)
-        Context.pipeline.properties([Context.pipeline.parameters(parametersList)])
+        pipeline.properties([pipeline.parameters(parametersList)])
     }
 
     static def createParameter(String key, Map value) {
         switch (value["type"]) {
             case 'string':
-                return Context.pipeline.string(
+                return pipeline.string(
                     name: key,
                     description: value['description'],
                     trim: value['trim'],
                     defaultValue: value['defaultValue']
                 )
             case 'boolean':
-                return Context.pipeline.booleanParam(
+                return pipeline.booleanParam(
                     name: key,
                     description: value['description'],
                     defaultValue: value['defaultValue']
                 )
             case 'text':
-                return Context.pipeline.text(
+                return pipeline.text(
                     name: key,
                     description: value['description'],
                     defaultValue: value['defaultValue']
                 )
             case 'choice':
-                return Context.pipeline.choice(
+                return pipeline.choice(
                     name: key,
                     description: value['description'],
                     choices: value['choices']
                 )
             case 'password':
-                return Context.pipeline.password(
+                return pipeline.password(
                     name: key,
                     description: value['description'],
                 )

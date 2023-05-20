@@ -1,5 +1,4 @@
 import sapsan.core.Config
-import sapsan.core.Context
 import sapsan.core.Job
 import sapsan.core.Pipeline
 import sapsan.module.Module
@@ -28,7 +27,7 @@ class Build extends Module {
     protected void execute() {
         Pipeline.sh "docker info"
         Pipeline.sh "ls -al"
-        Pipeline.sh "docker build -t $image:$version ${Context.pipeline.env.WORKSPACE}/$target"
+        Pipeline.sh "docker build -t $image:$version ${pipeline.env.WORKSPACE}/$target"
     }
 }
 

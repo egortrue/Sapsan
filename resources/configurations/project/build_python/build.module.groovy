@@ -1,5 +1,4 @@
 import sapsan.core.Config
-import sapsan.core.Context
 import sapsan.core.Pipeline
 import sapsan.module.Module
 
@@ -15,7 +14,7 @@ class Build extends Module {
 
     @Override
     protected void execute() {
-        Pipeline.sh "pip install -r ${Context.pipeline.env.WORKSPACE}/$workDir/requirements.txt"
+        Pipeline.sh "pip install -r ${pipeline.env.WORKSPACE}/$workDir/requirements.txt"
     }
 }
 
