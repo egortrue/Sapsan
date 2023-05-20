@@ -121,8 +121,4 @@ Next, follow the instructions in `How to Use` section
 
 ## UML
 
-### Classes
-
-<img src="https://raw.githubusercontent.com/egortrue/Sapsan/master/img/classes.puml">
-
-
+<img src="img/classes.png">
