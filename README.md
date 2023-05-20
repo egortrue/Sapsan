@@ -123,8 +123,6 @@ Next, follow the instructions in `How to Use` section
 
 ### Classes
 
-```plantuml
-!include img/classes.puml
-```
+<img src="https://raw.githubusercontent.com/egortrue/Sapsan/master/img/classes.puml">
 
 
