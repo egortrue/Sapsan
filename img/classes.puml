@@ -1,0 +1,251 @@
+@startuml
+' https://plantuml.com/ru/class-diagram
+
+title \nDevOps Framework\nSAPSAN
+
+skinparam {
+    background white
+    arrowColor black
+    arrowThickness 1.5
+
+    classBorderColor black
+    classBorderThickness 1
+
+'    groupInheritance 2
+'    linetype polyline
+'    linetype ortho
+'    ClassHeaderBackgroundColor #e0ffff
+}
+
+set namespaceSeparator ::
+allowmixing
+hide empty methods
+hide empty fields
+
+namespace src {
+    abstract class Context {
+        {static} #pipeline: Script
+    }
+}
+
+package src::core #DDDDDD {
+
+    class Pipeline << static >> {
+        -type: Type
+        -task: Task
+        -stages: List<Stage>
+        ---
+        +run(String, Closure)
+        +stage()
+        +sh()
+        -configure()
+    }
+
+    class Job << static >> {
+        +name: String
+        +buildNumber: String
+        +buildName: String
+        +tag: String
+        +url: String
+        +baseUrl: String
+    }
+
+    class Config << static >> {
+        +properties: Map
+        +parameters: Map
+        ---
+        +getGlobalFile()
+        +getProjectFile()
+        -parse()
+        -updateParameters()
+    }
+
+    class Stage {
+        {static} +globalStatus: Status
+        -name: String
+        -steps: Closure
+        -status: Status
+        ---
+        +execute()
+    }
+
+    enum Type {
+        +NOT_DEFINED
+        +CLASSIC
+        +MULTIBRANCH
+    }
+
+    enum Task {
+        +NOT_DEFINED
+        +BUILD
+        +TESTING
+        +DEPLOYMENT
+    }
+
+    enum Status {
+        +NOT_STARTED
+        +SKIPPED
+        +STARTED
+        +SUCCESS
+        +UNSTABLE
+        +FAILED
+    }
+
+'    Pipeline *- Stage : 1..*
+    Pipeline -up- Task
+    Pipeline -up- Type
+    Stage -up- Status
+    Job -[hidden]up Status
+}
+
+package src::module #DDDDDD {
+    abstract class Module {
+        {static} +modules: List<Module>
+        {abstract} +name: String
+        ---
+        {static} +execute(String): Module
+        {abstract} #init()
+        {abstract} #execute()
+    }
+
+    class Checkout {
+        +name: String
+        +url: String
+        +branch: String
+        ---
+        -init()
+        -execute()
+    }
+
+    Module <|-- Checkout
+}
+
+package src::service #DDDDDD {
+    class Jenkins {
+        +publish()
+        +download()
+    }
+
+    class DockerHub {
+        +publish()
+    }
+
+    Jenkins -[hidden]- DockerHub
+}
+
+package src::util #DDDDDD {
+    class Color {
+        {static} +red(String): String
+        {static} +yellow(String): String
+        {static} +green(String): String
+        {static} +cyan(String): String
+    }
+
+    class Log {
+        {static} +var(Object)
+        {static} +info(String)
+        {static} +warning(String)
+        {static} +error(String)
+    }
+
+    class Email {
+        {static} -create()
+        {static} +send()
+    }
+
+    Log -- Color
+}
+
+package resources {
+
+    package configurations #DDDDDD {
+        component projectA [
+            ProjectA
+            |_ properties.yml
+            |_ parameters.yml
+            |_ build.module.groovy
+            |_ publish.module.groovy
+            |_ ...
+        ]
+
+        component projectB [
+            ProjectB
+            |_ properties.yml
+            |_ parameters.yml
+            |_ build.module.groovy
+            |_ publish.module.groovy
+            |_ ...
+        ]
+
+        component projectC [
+            ProjectC
+            |_ properties.yml
+            |_ parameters.yml
+            |_ build.module.groovy
+            |_ publish.module.groovy
+            |_ ...
+        ]
+
+        projectA -[hidden]- projectB
+        projectB -[hidden]- projectC
+    }
+
+    package pipelines #DDDDDD {
+        component pipelineA [
+             sample.pipeline.groovy
+        ]
+        component pipelineB [
+             build.pipeline.groovy
+        ]
+        component pipelineC [
+             deploy.pipeline.groovy
+        ]
+        pipelineA -[hidden]- pipelineB
+        pipelineB -[hidden]- pipelineC
+    }
+
+    diamond Choice
+
+    pipelineA <.d Choice
+    pipelineB <.r Choice
+    pipelineC <.u Choice
+
+    Choice .u> projectA
+    Choice .r> projectB
+    Choice .d> projectC
+}
+
+cloud "Jenkins Host" {
+    component JobA
+    component JobB
+    component JobC
+
+    JobA .[hidden]r. JobB
+    JobB .[hidden]r. JobC
+
+    JobA ..> pipelineA
+    JobB ..> pipelineA
+    JobC ..> pipelineA
+}
+
+Pipeline --|> Context
+Job --|> Context
+Config --|> Context
+Stage --|> Context
+
+Context <|-- Module
+Context <|-- Log
+Context <|-- Email
+Context <|- Jenkins
+Context <|- DockerHub
+
+Context <.up pipelineA
+Context <.r pipelineB
+Context <.d pipelineC
+
+core -[hidden]--- module
+core -[hidden]--- util
+core -[hidden]--- service
+util -[hidden]left- module
+
+@enduml
