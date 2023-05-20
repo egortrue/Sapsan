@@ -1,0 +1,116 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title DevOps Framework\nSAPSAN
+
+database Jenkins #FF4433
+entity "pipeline.groovy\n(Jenkinsfile)" as Jenkinsfile
+box \nОбщие классы #F9F9F9
+participant Pipeline #99FFFF
+participant Stage #99FFFF
+participant Config #99FFFF
+participant Email #99FFFF
+participant Job #99FFFF
+participant Module #99FFFF
+end box
+box \nКонфиги под каждый проект #F9F9F9
+entity module.groovy as CustomModule #FFFF99
+entity properties.yml as Properties #FFFF99
+entity parameters.yml as Parameters #FFFF99
+end box
+
+==Подготовка==
+
+Jenkins <- Jenkinsfile : Ручное связывание\nJenkins c Jenkinsfile
+
+Jenkinsfile --> Module  : Написание\nмодулей
+
+activate Jenkinsfile
+activate Module
+Module --> CustomModule : Описание\nмодуля
+activate CustomModule
+CustomModule --> Properties : Указание свойств
+CustomModule --> Parameters : Указание параметров
+Module <-- CustomModule
+deactivate CustomModule
+
+Jenkinsfile -> Jenkinsfile : Добавление\nшагов
+
+Jenkinsfile <-- Module : Добавление\nмодулей
+deactivate Jenkinsfile
+deactivate Module
+
+==Запуск==
+
+Jenkins -> Jenkinsfile : Кнопка\n"Build with Parameters"
+Jenkinsfile -> Pipeline : Pipeline.run()\t\t
+activate Pipeline
+Pipeline -> Stage : Pipeline.stage("Init")\n(Общий шаг инициализации)
+activate Stage
+
+Stage -> Config
+activate Config
+Config <- Properties : Получение свойств
+Config <- Parameters : Получение параметров
+Stage <- Config
+
+deactivate Config
+Jenkinsfile <- Pipeline : Чтение тела\nпайплайна
+Stage -> Pipeline
+deactivate Stage
+
+activate Jenkinsfile
+group Простой шаг\n(блок выполнится для каждого такого шага)
+Jenkinsfile -> Pipeline : Pipeline.stage()
+Pipeline <-> Stage : new Stage()
+end
+
+group Модульный шаг\n(блок выполнится для каждого такого шага)
+Jenkinsfile -> Module : Module.execute()
+activate Module
+Module -> CustomModule : Module.init()\t
+activate CustomModule
+CustomModule <<-->> Config : Проверка свойств
+activate Config
+CustomModule <<-->> Config : Проверка параметров
+deactivate Config
+CustomModule -> Module
+deactivate CustomModule
+Module -> Pipeline : Pipeline.stage()
+
+deactivate Module
+Pipeline <-> Stage : new Stage()
+end
+Jenkinsfile -> Pipeline : Выполнение\nтела пайплайна
+deactivate Jenkinsfile
+
+Pipeline -> Stage : Stage.execute()
+activate Stage
+Stage -> Stage : Выполнение\nпростого шага
+Stage -[hidden]> Stage
+deactivate Stage
+Pipeline -> Stage : Stage.execute()
+
+activate Stage
+Stage -> CustomModule : Module.execute()\nВыполнение модульного шага
+activate CustomModule
+CustomModule <- Config : Получение свойств
+activate Config
+CustomModule <- Config : Получение параметров
+deactivate Config
+CustomModule -> Stage
+deactivate CustomModule
+deactivate Stage
+
+Pipeline -> Stage : Pipeline.stage("Report")\n(Общий шаг завершения)
+deactivate Pipeline
+activate Stage
+Stage -> Email : Email.send()
+activate Email
+Job -> Email : Job.info()
+Email -> Stage
+deactivate Email
+deactivate Stage
+
+
+
+@enduml
