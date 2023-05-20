@@ -122,3 +122,4 @@ Next, follow the instructions in `How to Use` section
 ## UML
 
 <img src="img/classes.svg">
+<img src="img/sequence.svg">
