@@ -9,7 +9,7 @@ import sapsan.core.Stage
 
 class Email extends Context {
 
-    static String create() {
+    private static String create() {
         Template template = new GStringTemplateEngine().createTemplate(Context.pipeline.libraryResource("templates/email.html") as String)
         return template.make([
             jobResult  : Context.pipeline.currentBuild.currentResult,
