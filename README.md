@@ -9,7 +9,6 @@
         <img src="https://img.shields.io/badge/runs%20by-Jenkins-fef">
     </a>
     <a><img src="https://img.shields.io/badge/platform-Unix-aff"></a>
-    <a><img src="https://img.shields.io/tokei/lines/github/egortrue/Sapsan"></a>
     <a><img src="https://img.shields.io/github/repo-size/egortrue/Sapsan"></a>
 </p>
 
