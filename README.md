@@ -87,7 +87,7 @@ to easily prepare a simple infrastructure for local developing and testing.
 
 ### Startup
 
-The following [docker compose](/workspace/docker-compose.yaml) command starts 3 containers in `workspace` directory:
+The following [docker compose](/workspace/docker-compose.yml) command starts 3 containers in `workspace` directory:
 
 1. `jenkins-master` for hosting Jenkins on `http://localhost:8080`
 2. `jenkins-agent` for executing pipelines _(have no open ports to connect from host)_
