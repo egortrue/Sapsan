@@ -1,7 +1,7 @@
 import sapsan.module.Module
 
-class Sample extends Module {
-    String name = "Sample Module"
+class TemplateModule extends Module {
+    String name = "Template Module"
 
     @Override
     protected void init() {
@@ -15,4 +15,4 @@ class Sample extends Module {
 }
 
 
-return new Sample()
+return TemplateModule.class

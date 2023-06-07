@@ -66,10 +66,10 @@ abstract class Module extends Context {
     private static Class load(String path) {
         Class module
         try {
-            String scriptText = pipeline.libraryResource(path)
-            pipeline.prependToFile(file: "${Job.tag}/$path", content: scriptText)
-            module = pipeline.load("${Job.tag}/$path")
-            pipeline.sh("rm -f ${Job.tag}/$path")
+            String scriptText = Context.pipeline.libraryResource(path)
+            Context.pipeline.prependToFile(file: "${Job.tag}/$path", content: scriptText)
+            module = Context.pipeline.load("${Job.tag}/$path")
+            Context.pipeline.sh("rm -f ${Job.tag}/$path")
         } catch (Exception e) {
             Log.error("Custom module loading threw exception: $e.message")
         }

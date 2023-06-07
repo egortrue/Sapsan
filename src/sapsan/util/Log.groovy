@@ -22,12 +22,12 @@ final class Log extends Context {
                 message += " = $variable"
         }
 
-        pipeline.echo(Color.cyan(message))
+        Context.pipeline.echo(Color.cyan(message))
     }
 
     @NonCPS
     static void info(String text) {
-        pipeline.echo(Color.green(text))
+        Context.pipeline.echo(Color.green(text))
     }
 
     @NonCPS
@@ -35,12 +35,12 @@ final class Log extends Context {
         // TODO: Установить статус UNSTABLE для класса Stage
         // TODO: Помечать вызывающий шаг желтым (UNSTABLE)
         // TODO: Сохранять все предупреждения в отдельный файл/переменную
-        pipeline.echo(Color.yellow("[Warning] $text"))
+        Context.pipeline.echo(Color.yellow("[Warning] $text"))
     }
 
     @NonCPS
     static void error(String text) {
-        pipeline.echo(Color.red("[Error] $text"))
+        Context.pipeline.echo(Color.red("[Error] $text"))
         throw new Exception()
     }
 }

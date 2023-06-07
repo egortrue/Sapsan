@@ -29,21 +29,19 @@ final class Pipeline extends Context {
      * @param closure выполняемые действия
      */
     static void run(Script pipeline, String node = 'linux', Closure closure) {
-        pipeline = pipeline
-        pipeline.node(node) {
-            pipeline.ansiColor('xterm') {
+        Context.pipeline = pipeline
+        Context.pipeline.node(node) {
+            Context.pipeline.ansiColor('xterm') {
 
                 // Конфигурация пайплайна
-                pipeline.stage("Init") {
-                    pipeline.cleanWs()
+                Context.pipeline.stage("Init") {
+                    Context.pipeline.cleanWs()
                     configure()
 
                     // Общая информация
                     Log.info Job.info
                     Log.info Pipeline.info
                     Log.info Config.info
-                    Log.var("properties", Config.properties)
-                    Log.var("parameters", Config.parameters)
 
                     // Инициализация шагов
                     closure()
@@ -56,7 +54,7 @@ final class Pipeline extends Context {
                     }
                 } finally {
                     // Создание отчета о выполнении
-                    pipeline.stage("Report") {
+                    Context.pipeline.stage("Report") {
                         Log.info("Sending email...")
                         Email.send()
                     }
@@ -69,7 +67,7 @@ final class Pipeline extends Context {
 
     private static void configure() {
         // Определение типа
-        type = pipeline.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
+        type = Context.pipeline.env.BRANCH_NAME ? Type.MULTIBRANCH : Type.CLASSIC
 
         // Определение задачи
         if (type == Type.CLASSIC) {
@@ -97,9 +95,9 @@ final class Pipeline extends Context {
     static String sh(String command) {
         String outputFilename = "${Job.tag}.output"
         String executable = "$command > $outputFilename 2>&1"
-        Integer statusCode = pipeline.sh(script: executable, returnStatus: true)
-        String output = pipeline.sh(script: "cat $outputFilename", returnStdout: true)
-        pipeline.sh(script: "rm -f $outputFilename")
+        Integer statusCode = Context.pipeline.sh(script: executable, returnStatus: true)
+        String output = Context.pipeline.sh(script: "cat $outputFilename", returnStdout: true)
+        Context.pipeline.sh(script: "rm -f $outputFilename")
         if (statusCode != 0) {
             Log.error("Shell returned status code ${statusCode}\nCommand: $command\nOutput: \"$output\"")
         } else {

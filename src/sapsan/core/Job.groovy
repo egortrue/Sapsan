@@ -11,33 +11,33 @@ final class Job extends Context {
     @NonCPS
     @Memoized
     static String getName() {
-        if (pipeline.env.BRANCH_NAME)
-            return pipeline.env.JOB_NAME.split('/')[0..-2].join('/')
-        return pipeline.env.JOB_NAME
+        if (Context.pipeline.env.BRANCH_NAME)
+            return Context.pipeline.env.JOB_NAME.split('/')[0..-2].join('/')
+        return Context.pipeline.env.JOB_NAME
     }
 
     @NonCPS
     @Memoized
     static String getBuildNumber() {
-        pipeline.env.BUILD_NUMBER
+        Context.pipeline.env.BUILD_NUMBER
     }
 
     @NonCPS
     @Memoized
     static String getTag() {
-        pipeline.env.BUILD_TAG
+        Context.pipeline.env.BUILD_TAG
     }
 
     @NonCPS
     @Memoized
     static String getBranch() {
-        pipeline.env.BRANCH_NAME
+        Context.pipeline.env.BRANCH_NAME
     }
 
     @NonCPS
     @Memoized
     static String getUrl() {
-        pipeline.env.BUILD_URL
+        Context.pipeline.env.BUILD_URL
     }
 
     @NonCPS
@@ -47,7 +47,7 @@ final class Job extends Context {
     }
 
     static void setBuildName(String name) {
-        pipeline.currentBuild.displayName = name
+        Context.pipeline.currentBuild.displayName = name
     }
 
     static String getInfo() {

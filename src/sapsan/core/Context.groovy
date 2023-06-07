@@ -8,7 +8,7 @@ abstract class Context {
 
     /**
      * Корневой восходящий скрипт, содержащий пайплайн (Jenkinsfile).
-     * Позволяет использовать команды Jenkins, прописанные в /src/pipeline.gdsl
+     * Позволяет использовать команды Jenkins, прописанные в /src/Context.pipeline.gdsl
      */
     protected static Script pipeline
     

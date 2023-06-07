@@ -17,7 +17,7 @@ class Checkout extends Module {
             assert Config.properties["checkout"]["url"] != null
             assert Config.properties["checkout"]["branch"] != null
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-            assert pipeline.scm != null
+            assert Context.pipeline.scm != null
         }
     }
 
@@ -27,12 +27,12 @@ class Checkout extends Module {
             url = Config.properties["checkout"]["url"]
             branch = Config.properties["checkout"]["branch"]
         } else if (Pipeline.type == Pipeline.Type.MULTIBRANCH) {
-            url = pipeline.scm.userRemoteConfigs[0].url
+            url = Context.pipeline.scm.userRemoteConfigs[0].url
             branch = Job.branch
         }
 
-        pipeline.checkout([$class           : 'GitSCM',
-                           branches         : [[name: branch]],
-                           userRemoteConfigs: [[credentialsId: 'my-cred', url: url]]])
+        Context.pipeline.checkout([$class           : 'GitSCM',
+                                   branches         : [[name: branch]],
+                                   userRemoteConfigs: [[credentialsId: 'my-cred', url: url]]])
     }
 }
